@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mwm.env.mybatis.dao.UserInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.mwm.env.mybatis.modal.UserInfo" >
+    <id column="UserId" property="userid" jdbcType="INTEGER" />
+    <result column="UserName" property="username" jdbcType="VARCHAR" />
+    <result column="UserPhone" property="userphone" jdbcType="VARCHAR" />
+    <result column="UserEmail" property="useremail" jdbcType="VARCHAR" />
+    <result column="UserPwd" property="userpwd" jdbcType="VARCHAR" />
+    <result column="Salt" property="salt" jdbcType="CHAR" />
+    <result column="UserType" property="usertype" jdbcType="CHAR" />
+    <result column="AuditStatus" property="auditstatus" jdbcType="CHAR" />
+    <result column="BlackListFlag" property="blacklistflag" jdbcType="CHAR" />
+    <result column="BlackListReason" property="blacklistreason" jdbcType="VARCHAR" />
+    <result column="BlackListDate" property="blacklistdate" jdbcType="BIGINT" />
+    <result column="Createdate" property="createdate" jdbcType="BIGINT" />
+    <result column="ModifyDate" property="modifydate" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    UserId, UserName, UserPhone, UserEmail, UserPwd, Salt, UserType, AuditStatus, BlackListFlag, 
+    BlackListReason, BlackListDate, Createdate, ModifyDate
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mwm.env.mybatis.modal.UserInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from UserInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from UserInfo
+    where UserId = #{userid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from UserInfo
+    where UserId = #{userid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mwm.env.mybatis.modal.UserInfoExample" >
+    delete from UserInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mwm.env.mybatis.modal.UserInfo" >
+    <selectKey resultType="java.lang.Integer" keyProperty="userid" order="AFTER" >
+      select last_insert_id()
+    </selectKey>
+    insert into UserInfo (UserName, UserPhone, UserEmail, 
+      UserPwd, Salt, UserType, 
+      AuditStatus, BlackListFlag, BlackListReason, 
+      BlackListDate, Createdate, ModifyDate
+      )
+    values (#{username,jdbcType=VARCHAR}, #{userphone,jdbcType=VARCHAR}, #{useremail,jdbcType=VARCHAR}, 
+      #{userpwd,jdbcType=VARCHAR}, #{salt,jdbcType=CHAR}, #{usertype,jdbcType=CHAR}, 
+      #{auditstatus,jdbcType=CHAR}, #{blacklistflag,jdbcType=CHAR}, #{blacklistreason,jdbcType=VARCHAR}, 
+      #{blacklistdate,jdbcType=BIGINT}, #{createdate,jdbcType=BIGINT}, #{modifydate,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mwm.env.mybatis.modal.UserInfo" >
+    <selectKey resultType="java.lang.Integer" keyProperty="userid" order="AFTER" >
+      select last_insert_id()
+    </selectKey>
+    insert into UserInfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="username != null" >
+        UserName,
+      </if>
+      <if test="userphone != null" >
+        UserPhone,
+      </if>
+      <if test="useremail != null" >
+        UserEmail,
+      </if>
+      <if test="userpwd != null" >
+        UserPwd,
+      </if>
+      <if test="salt != null" >
+        Salt,
+      </if>
+      <if test="usertype != null" >
+        UserType,
+      </if>
+      <if test="auditstatus != null" >
+        AuditStatus,
+      </if>
+      <if test="blacklistflag != null" >
+        BlackListFlag,
+      </if>
+      <if test="blacklistreason != null" >
+        BlackListReason,
+      </if>
+      <if test="blacklistdate != null" >
+        BlackListDate,
+      </if>
+      <if test="createdate != null" >
+        Createdate,
+      </if>
+      <if test="modifydate != null" >
+        ModifyDate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="userphone != null" >
+        #{userphone,jdbcType=VARCHAR},
+      </if>
+      <if test="useremail != null" >
+        #{useremail,jdbcType=VARCHAR},
+      </if>
+      <if test="userpwd != null" >
+        #{userpwd,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null" >
+        #{salt,jdbcType=CHAR},
+      </if>
+      <if test="usertype != null" >
+        #{usertype,jdbcType=CHAR},
+      </if>
+      <if test="auditstatus != null" >
+        #{auditstatus,jdbcType=CHAR},
+      </if>
+      <if test="blacklistflag != null" >
+        #{blacklistflag,jdbcType=CHAR},
+      </if>
+      <if test="blacklistreason != null" >
+        #{blacklistreason,jdbcType=VARCHAR},
+      </if>
+      <if test="blacklistdate != null" >
+        #{blacklistdate,jdbcType=BIGINT},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=BIGINT},
+      </if>
+      <if test="modifydate != null" >
+        #{modifydate,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mwm.env.mybatis.modal.UserInfoExample" resultType="java.lang.Integer" >
+    select count(*) from UserInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update UserInfo
+    <set >
+      <if test="record.userid != null" >
+        UserId = #{record.userid,jdbcType=INTEGER},
+      </if>
+      <if test="record.username != null" >
+        UserName = #{record.username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userphone != null" >
+        UserPhone = #{record.userphone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.useremail != null" >
+        UserEmail = #{record.useremail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userpwd != null" >
+        UserPwd = #{record.userpwd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.salt != null" >
+        Salt = #{record.salt,jdbcType=CHAR},
+      </if>
+      <if test="record.usertype != null" >
+        UserType = #{record.usertype,jdbcType=CHAR},
+      </if>
+      <if test="record.auditstatus != null" >
+        AuditStatus = #{record.auditstatus,jdbcType=CHAR},
+      </if>
+      <if test="record.blacklistflag != null" >
+        BlackListFlag = #{record.blacklistflag,jdbcType=CHAR},
+      </if>
+      <if test="record.blacklistreason != null" >
+        BlackListReason = #{record.blacklistreason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.blacklistdate != null" >
+        BlackListDate = #{record.blacklistdate,jdbcType=BIGINT},
+      </if>
+      <if test="record.createdate != null" >
+        Createdate = #{record.createdate,jdbcType=BIGINT},
+      </if>
+      <if test="record.modifydate != null" >
+        ModifyDate = #{record.modifydate,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update UserInfo
+    set UserId = #{record.userid,jdbcType=INTEGER},
+      UserName = #{record.username,jdbcType=VARCHAR},
+      UserPhone = #{record.userphone,jdbcType=VARCHAR},
+      UserEmail = #{record.useremail,jdbcType=VARCHAR},
+      UserPwd = #{record.userpwd,jdbcType=VARCHAR},
+      Salt = #{record.salt,jdbcType=CHAR},
+      UserType = #{record.usertype,jdbcType=CHAR},
+      AuditStatus = #{record.auditstatus,jdbcType=CHAR},
+      BlackListFlag = #{record.blacklistflag,jdbcType=CHAR},
+      BlackListReason = #{record.blacklistreason,jdbcType=VARCHAR},
+      BlackListDate = #{record.blacklistdate,jdbcType=BIGINT},
+      Createdate = #{record.createdate,jdbcType=BIGINT},
+      ModifyDate = #{record.modifydate,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mwm.env.mybatis.modal.UserInfo" >
+    update UserInfo
+    <set >
+      <if test="username != null" >
+        UserName = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="userphone != null" >
+        UserPhone = #{userphone,jdbcType=VARCHAR},
+      </if>
+      <if test="useremail != null" >
+        UserEmail = #{useremail,jdbcType=VARCHAR},
+      </if>
+      <if test="userpwd != null" >
+        UserPwd = #{userpwd,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null" >
+        Salt = #{salt,jdbcType=CHAR},
+      </if>
+      <if test="usertype != null" >
+        UserType = #{usertype,jdbcType=CHAR},
+      </if>
+      <if test="auditstatus != null" >
+        AuditStatus = #{auditstatus,jdbcType=CHAR},
+      </if>
+      <if test="blacklistflag != null" >
+        BlackListFlag = #{blacklistflag,jdbcType=CHAR},
+      </if>
+      <if test="blacklistreason != null" >
+        BlackListReason = #{blacklistreason,jdbcType=VARCHAR},
+      </if>
+      <if test="blacklistdate != null" >
+        BlackListDate = #{blacklistdate,jdbcType=BIGINT},
+      </if>
+      <if test="createdate != null" >
+        Createdate = #{createdate,jdbcType=BIGINT},
+      </if>
+      <if test="modifydate != null" >
+        ModifyDate = #{modifydate,jdbcType=BIGINT},
+      </if>
+    </set>
+    where UserId = #{userid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mwm.env.mybatis.modal.UserInfo" >
+    update UserInfo
+    set UserName = #{username,jdbcType=VARCHAR},
+      UserPhone = #{userphone,jdbcType=VARCHAR},
+      UserEmail = #{useremail,jdbcType=VARCHAR},
+      UserPwd = #{userpwd,jdbcType=VARCHAR},
+      Salt = #{salt,jdbcType=CHAR},
+      UserType = #{usertype,jdbcType=CHAR},
+      AuditStatus = #{auditstatus,jdbcType=CHAR},
+      BlackListFlag = #{blacklistflag,jdbcType=CHAR},
+      BlackListReason = #{blacklistreason,jdbcType=VARCHAR},
+      BlackListDate = #{blacklistdate,jdbcType=BIGINT},
+      Createdate = #{createdate,jdbcType=BIGINT},
+      ModifyDate = #{modifydate,jdbcType=BIGINT}
+    where UserId = #{userid,jdbcType=INTEGER}
+  </update>
+</mapper>

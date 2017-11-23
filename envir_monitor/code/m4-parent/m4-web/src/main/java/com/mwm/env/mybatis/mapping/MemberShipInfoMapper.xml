@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mwm.env.mybatis.dao.MemberShipInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.mwm.env.mybatis.modal.MemberShipInfo" >
+    <id column="MemberShipId" property="membershipid" jdbcType="INTEGER" />
+    <result column="MemberShipCode" property="membershipcode" jdbcType="VARCHAR" />
+    <result column="MemberShipName" property="membershipname" jdbcType="VARCHAR" />
+    <result column="Regulation" property="regulation" jdbcType="INTEGER" />
+    <result column="ApplyWay" property="applyway" jdbcType="CHAR" />
+    <result column="AmoutPaid" property="amoutpaid" jdbcType="VARCHAR" />
+    <result column="IncomRatio" property="incomratio" jdbcType="DECIMAL" />
+    <result column="Period" property="period" jdbcType="CHAR" />
+    <result column="Createdate" property="createdate" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    MemberShipId, MemberShipCode, MemberShipName, Regulation, ApplyWay, AmoutPaid, IncomRatio, 
+    Period, Createdate
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mwm.env.mybatis.modal.MemberShipInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from MemberShipInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from MemberShipInfo
+    where MemberShipId = #{membershipid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from MemberShipInfo
+    where MemberShipId = #{membershipid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mwm.env.mybatis.modal.MemberShipInfoExample" >
+    delete from MemberShipInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mwm.env.mybatis.modal.MemberShipInfo" >
+    <selectKey resultType="java.lang.Integer" keyProperty="membershipid" order="AFTER" >
+      select last_insert_id()
+    </selectKey>
+    insert into MemberShipInfo (MemberShipCode, MemberShipName, Regulation, 
+      ApplyWay, AmoutPaid, IncomRatio, 
+      Period, Createdate)
+    values (#{membershipcode,jdbcType=VARCHAR}, #{membershipname,jdbcType=VARCHAR}, #{regulation,jdbcType=INTEGER}, 
+      #{applyway,jdbcType=CHAR}, #{amoutpaid,jdbcType=VARCHAR}, #{incomratio,jdbcType=DECIMAL}, 
+      #{period,jdbcType=CHAR}, #{createdate,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mwm.env.mybatis.modal.MemberShipInfo" >
+    <selectKey resultType="java.lang.Integer" keyProperty="membershipid" order="AFTER" >
+      select last_insert_id()
+    </selectKey>
+    insert into MemberShipInfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="membershipcode != null" >
+        MemberShipCode,
+      </if>
+      <if test="membershipname != null" >
+        MemberShipName,
+      </if>
+      <if test="regulation != null" >
+        Regulation,
+      </if>
+      <if test="applyway != null" >
+        ApplyWay,
+      </if>
+      <if test="amoutpaid != null" >
+        AmoutPaid,
+      </if>
+      <if test="incomratio != null" >
+        IncomRatio,
+      </if>
+      <if test="period != null" >
+        Period,
+      </if>
+      <if test="createdate != null" >
+        Createdate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="membershipcode != null" >
+        #{membershipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="membershipname != null" >
+        #{membershipname,jdbcType=VARCHAR},
+      </if>
+      <if test="regulation != null" >
+        #{regulation,jdbcType=INTEGER},
+      </if>
+      <if test="applyway != null" >
+        #{applyway,jdbcType=CHAR},
+      </if>
+      <if test="amoutpaid != null" >
+        #{amoutpaid,jdbcType=VARCHAR},
+      </if>
+      <if test="incomratio != null" >
+        #{incomratio,jdbcType=DECIMAL},
+      </if>
+      <if test="period != null" >
+        #{period,jdbcType=CHAR},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mwm.env.mybatis.modal.MemberShipInfoExample" resultType="java.lang.Integer" >
+    select count(*) from MemberShipInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update MemberShipInfo
+    <set >
+      <if test="record.membershipid != null" >
+        MemberShipId = #{record.membershipid,jdbcType=INTEGER},
+      </if>
+      <if test="record.membershipcode != null" >
+        MemberShipCode = #{record.membershipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.membershipname != null" >
+        MemberShipName = #{record.membershipname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.regulation != null" >
+        Regulation = #{record.regulation,jdbcType=INTEGER},
+      </if>
+      <if test="record.applyway != null" >
+        ApplyWay = #{record.applyway,jdbcType=CHAR},
+      </if>
+      <if test="record.amoutpaid != null" >
+        AmoutPaid = #{record.amoutpaid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.incomratio != null" >
+        IncomRatio = #{record.incomratio,jdbcType=DECIMAL},
+      </if>
+      <if test="record.period != null" >
+        Period = #{record.period,jdbcType=CHAR},
+      </if>
+      <if test="record.createdate != null" >
+        Createdate = #{record.createdate,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update MemberShipInfo
+    set MemberShipId = #{record.membershipid,jdbcType=INTEGER},
+      MemberShipCode = #{record.membershipcode,jdbcType=VARCHAR},
+      MemberShipName = #{record.membershipname,jdbcType=VARCHAR},
+      Regulation = #{record.regulation,jdbcType=INTEGER},
+      ApplyWay = #{record.applyway,jdbcType=CHAR},
+      AmoutPaid = #{record.amoutpaid,jdbcType=VARCHAR},
+      IncomRatio = #{record.incomratio,jdbcType=DECIMAL},
+      Period = #{record.period,jdbcType=CHAR},
+      Createdate = #{record.createdate,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mwm.env.mybatis.modal.MemberShipInfo" >
+    update MemberShipInfo
+    <set >
+      <if test="membershipcode != null" >
+        MemberShipCode = #{membershipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="membershipname != null" >
+        MemberShipName = #{membershipname,jdbcType=VARCHAR},
+      </if>
+      <if test="regulation != null" >
+        Regulation = #{regulation,jdbcType=INTEGER},
+      </if>
+      <if test="applyway != null" >
+        ApplyWay = #{applyway,jdbcType=CHAR},
+      </if>
+      <if test="amoutpaid != null" >
+        AmoutPaid = #{amoutpaid,jdbcType=VARCHAR},
+      </if>
+      <if test="incomratio != null" >
+        IncomRatio = #{incomratio,jdbcType=DECIMAL},
+      </if>
+      <if test="period != null" >
+        Period = #{period,jdbcType=CHAR},
+      </if>
+      <if test="createdate != null" >
+        Createdate = #{createdate,jdbcType=BIGINT},
+      </if>
+    </set>
+    where MemberShipId = #{membershipid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mwm.env.mybatis.modal.MemberShipInfo" >
+    update MemberShipInfo
+    set MemberShipCode = #{membershipcode,jdbcType=VARCHAR},
+      MemberShipName = #{membershipname,jdbcType=VARCHAR},
+      Regulation = #{regulation,jdbcType=INTEGER},
+      ApplyWay = #{applyway,jdbcType=CHAR},
+      AmoutPaid = #{amoutpaid,jdbcType=VARCHAR},
+      IncomRatio = #{incomratio,jdbcType=DECIMAL},
+      Period = #{period,jdbcType=CHAR},
+      Createdate = #{createdate,jdbcType=BIGINT}
+    where MemberShipId = #{membershipid,jdbcType=INTEGER}
+  </update>
+</mapper>

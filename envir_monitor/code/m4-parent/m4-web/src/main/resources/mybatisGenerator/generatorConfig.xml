@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE generatorConfiguration  
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"  
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+  
+<generatorConfiguration>
+	<!-- 数据库驱动 -->
+	<classPathEntry location="src/main/resources/mybatisGenerator/mysql-connector-java-5.1.5-bin.jar" />
+	
+	<context id="DB2Tables" targetRuntime="MyBatis3">
+	
+		<commentGenerator>
+			<property name="suppressDate" value="true" />
+			<!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+		
+		<!--数据库链接URL，用户名、密码 -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://120.76.168.41:3306/DataTradingPlatform" userId="env" password="8c675h7vNgyLiU6g9qvcTHWQor9geiFH">
+		</jdbcConnection>
+		
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+		
+		<!-- 生成模型的包名和位置 -->
+		<javaModelGenerator targetPackage="com.mwm.env.mybatis.modal" targetProject="src/main/java">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+		
+		<!-- 生成映射文件的包名和位置 -->
+		<sqlMapGenerator targetPackage="com.mwm.env.mybatis.mapping" targetProject="src/main/java">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+		
+		<!-- 生成DAO的包名和位置 -->
+		<javaClientGenerator type="XMLMAPPER" targetPackage="com.mwm.env.mybatis.dao" targetProject="src/main/java">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+		
+		
+		
+		
+		<!-- 要生成哪些表 -->
+		<table domainObjectName="AccountInfo" tableName="AccountInfo" >
+	      	<property name="useActualColumnNames" value="false" />
+			<generatedKey column="AccountId" sqlStatement="select last_insert_id()" identity="true"/>
+	    </table>
+	    
+	    <table domainObjectName="AddressInfo" tableName="AddressInfo" >
+	      	<property name="useActualColumnNames" value="false" />
+			<generatedKey column="AddressId" sqlStatement="select last_insert_id()" identity="true"/>
+	    </table>
+	    
+	    <table domainObjectName="ChargeBackInfo" tableName="ChargeBackInfo" >
+	      	<property name="useActualColumnNames" value="false" />
+			<generatedKey column="BackId" sqlStatement="select last_insert_id()" identity="true"/>
+	    </table>
+	    
+	    <table domainObjectName="CompanyUserInfo" tableName="CompanyUserInfo" >
+	      	<property name="useActualColumnNames" value="false" />
+			<generatedKey column="CompanyId" sqlStatement="select last_insert_id()" identity="true"/>
+	    </table>
+	    
+	    <table domainObjectName="ComplaintContent" tableName="ComplaintContent" >
+	      	<property name="useActualColumnNames" value="false" />
+			<generatedKey column="ContentId" sqlStatement="select last_insert_id()" identity="true"/>
+	    </table>
+	    
+	    <table domainObjectName="ComplaintLog" tableName="ComplaintLog" >
+	      	<property name="useActualColumnNames" value="false" />
+			<generatedKey column="AccountId" sqlStatement="select last_insert_id()" identity="true"/>
+	    </table>
+	    
+	    <table domainObjectName="CustomerSerInfo" tableName="CustomerSerInfo" >
+	      	<property name="useActualColumnNames" value="false" />
+			<generatedKey column="ServiceId" sqlStatement="select last_insert_id()" identity="true"/>
+	    </table>
+	    
+	    <table domainObjectName="DataGoodsInfo" tableName="DataGoodsInfo" >
+	      	<property name="useActualColumnNames" value="false" />
+			<generatedKey column="Goods" sqlStatement="select last_insert_id()" identity="true"/>
+	    </table>
+	    
+	    <table domainObjectName="GrantInfo" tableName="GrantInfo" >
+	      	<property name="useActualColumnNames" value="false" />
+			<generatedKey column="GrantId" sqlStatement="select last_insert_id()" identity="true"/>
+	    </table>
+	    
+	    <table domainObjectName="IndexInfo" tableName="IndexInfo" >
+	      	<property name="useActualColumnNames" value="false" />
+			<generatedKey column="IndexId" sqlStatement="select last_insert_id()" identity="true"/>
+	    </table>
+	    
+	    <table domainObjectName="IndexLibraryInfo" tableName="IndexLibraryInfo" >
+	      	<property name="useActualColumnNames" value="false" />
+			<generatedKey column="IndexLibId" sqlStatement="select last_insert_id()" identity="true"/>
+	    </table>
+	    
+	    <table domainObjectName="IndexTypeInfo" tableName="IndexTypeInfo" >
+	      	<property name="useActualColumnNames" value="false" />
+			<generatedKey column="IndexTypeId" sqlStatement="select last_insert_id()" identity="true"/>
+	    </table>
+	    
+	    <table domainObjectName="MasterOrderInfo" tableName="MasterOrderInfo" >
+	      	<property name="useActualColumnNames" value="false" />
+			<generatedKey column="MasterId" sqlStatement="select last_insert_id()" identity="true"/>
+	    </table>
+	    
+	    <table domainObjectName="MemberInfo" tableName="MemberInfo" >
+	      	<property name="useActualColumnNames" value="false" />
+			<generatedKey column="MemberId" sqlStatement="select last_insert_id()" identity="true"/>
+	    </table>
+	    
+	    <table domainObjectName="MemberShipInfo" tableName="MemberShipInfo" >
+	      	<property name="useActualColumnNames" value="false" />
+			<generatedKey column="MemberShipId" sqlStatement="select last_insert_id()" identity="true"/>
+	    </table>
+	    
+	    <table domainObjectName="MessageInfo" tableName="MessageInfo" >
+	      	<property name="useActualColumnNames" value="false" />
+			<generatedKey column="MessageId" sqlStatement="select last_insert_id()" identity="true"/>
+	    </table>
+	    
+	    <table domainObjectName="OffIndexInfo" tableName="OffIndexInfo" >
+	      	<property name="useActualColumnNames" value="false" />
+			<generatedKey column="OffIndexId" sqlStatement="select last_insert_id()" identity="true"/>
+	    </table>
+	    
+	    <table domainObjectName="OffIndexLibraryInfo" tableName="OffIndexLibraryInfo" >
+	      	<property name="useActualColumnNames" value="false" />
+			<generatedKey column="OffIndexLibId" sqlStatement="select last_insert_id()" identity="true"/>
+	    </table>
+	    
+	    <table domainObjectName="PersonalUserInfo" tableName="PersonalUserInfo" >
+	      	<property name="useActualColumnNames" value="false" />
+			<generatedKey column="PersonalId" sqlStatement="select last_insert_id()" identity="true"/>
+	    </table>
+	    
+	    <table domainObjectName="ProvideInfo" tableName="ProvideInfo" >
+	      	<property name="useActualColumnNames" value="false" />
+			<generatedKey column="ProvideId" sqlStatement="select last_insert_id()" identity="true"/>
+	    </table>
+	    
+	    <table domainObjectName="ReportInfo" tableName="ReportInfo" >
+	      	<property name="useActualColumnNames" value="false" />
+			<generatedKey column="ReportId" sqlStatement="select last_insert_id()" identity="true"/>
+	    </table>
+	    
+	    <table domainObjectName="SlaveOrderInfo" tableName="SlaveOrderInfo" >
+	      	<property name="useActualColumnNames" value="false" />
+			<generatedKey column="SlaveId" sqlStatement="select last_insert_id()" identity="true"/>
+	    </table>
+	    
+	    <table domainObjectName="UserBankInfo" tableName="UserBankInfo" >
+	      	<property name="useActualColumnNames" value="false" />
+			<generatedKey column="BankId" sqlStatement="select last_insert_id()" identity="true"/>
+	    </table>
+	    
+	    <table domainObjectName="UserInfo" tableName="UserInfo" >
+	      	<property name="useActualColumnNames" value="false" />
+			<generatedKey column="UserId" sqlStatement="select last_insert_id()" identity="true"/>
+	    </table>
+	    
+	    <table domainObjectName="UserLog" tableName="UserLog" >
+	      	<property name="useActualColumnNames" value="false" />
+			<generatedKey column="LogId" sqlStatement="select last_insert_id()" identity="true"/>
+	    </table>
+	    
+	    <table domainObjectName="WebsiteInfo" tableName="WebsiteInfo" >
+	      	<property name="useActualColumnNames" value="false" />
+			<generatedKey column="Id" sqlStatement="select last_insert_id()" identity="true"/>
+	    </table>
+	    
+	    <table domainObjectName="LiveChatMsg" tableName="LiveChatMsg" >
+	      	<property name="useActualColumnNames" value="false" />
+			<generatedKey column="MsgId" sqlStatement="select last_insert_id()" identity="true"/>
+	    </table>
+	    
+	    <table domainObjectName="DemandLibInfo" tableName="DemandLibInfo" >
+	      	<property name="useActualColumnNames" value="false" />
+			<generatedKey column="DemandLibId" sqlStatement="select last_insert_id()" identity="true"/>
+	    </table>
+	    
+	    <table domainObjectName="DemandInfo" tableName="DemandInfo" >
+	      	<property name="useActualColumnNames" value="false" />
+			<generatedKey column="DemandId" sqlStatement="select last_insert_id()" identity="true"/>
+	    </table>
+			
+	</context>
+	
+</generatorConfiguration>  

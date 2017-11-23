@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mwm.env.mybatis.dao.OffIndexInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.mwm.env.mybatis.modal.OffIndexInfo" >
+    <id column="OffIndexId" property="offindexid" jdbcType="INTEGER" />
+    <result column="OffIndexLibId" property="offindexlibid" jdbcType="INTEGER" />
+    <result column="OffIndexName" property="offindexname" jdbcType="VARCHAR" />
+    <result column="OffIndexUnits" property="offindexunits" jdbcType="VARCHAR" />
+    <result column="OffIndexPrice" property="offindexprice" jdbcType="DECIMAL" />
+    <result column="Createdate" property="createdate" jdbcType="BIGINT" />
+    <result column="ModifyDate" property="modifydate" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    OffIndexId, OffIndexLibId, OffIndexName, OffIndexUnits, OffIndexPrice, Createdate, 
+    ModifyDate
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mwm.env.mybatis.modal.OffIndexInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from OffIndexInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from OffIndexInfo
+    where OffIndexId = #{offindexid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from OffIndexInfo
+    where OffIndexId = #{offindexid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mwm.env.mybatis.modal.OffIndexInfoExample" >
+    delete from OffIndexInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mwm.env.mybatis.modal.OffIndexInfo" >
+    <selectKey resultType="java.lang.Integer" keyProperty="offindexid" order="AFTER" >
+      select last_insert_id()
+    </selectKey>
+    insert into OffIndexInfo (OffIndexLibId, OffIndexName, OffIndexUnits, 
+      OffIndexPrice, Createdate, ModifyDate
+      )
+    values (#{offindexlibid,jdbcType=INTEGER}, #{offindexname,jdbcType=VARCHAR}, #{offindexunits,jdbcType=VARCHAR}, 
+      #{offindexprice,jdbcType=DECIMAL}, #{createdate,jdbcType=BIGINT}, #{modifydate,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mwm.env.mybatis.modal.OffIndexInfo" >
+    <selectKey resultType="java.lang.Integer" keyProperty="offindexid" order="AFTER" >
+      select last_insert_id()
+    </selectKey>
+    insert into OffIndexInfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="offindexlibid != null" >
+        OffIndexLibId,
+      </if>
+      <if test="offindexname != null" >
+        OffIndexName,
+      </if>
+      <if test="offindexunits != null" >
+        OffIndexUnits,
+      </if>
+      <if test="offindexprice != null" >
+        OffIndexPrice,
+      </if>
+      <if test="createdate != null" >
+        Createdate,
+      </if>
+      <if test="modifydate != null" >
+        ModifyDate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="offindexlibid != null" >
+        #{offindexlibid,jdbcType=INTEGER},
+      </if>
+      <if test="offindexname != null" >
+        #{offindexname,jdbcType=VARCHAR},
+      </if>
+      <if test="offindexunits != null" >
+        #{offindexunits,jdbcType=VARCHAR},
+      </if>
+      <if test="offindexprice != null" >
+        #{offindexprice,jdbcType=DECIMAL},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=BIGINT},
+      </if>
+      <if test="modifydate != null" >
+        #{modifydate,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mwm.env.mybatis.modal.OffIndexInfoExample" resultType="java.lang.Integer" >
+    select count(*) from OffIndexInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update OffIndexInfo
+    <set >
+      <if test="record.offindexid != null" >
+        OffIndexId = #{record.offindexid,jdbcType=INTEGER},
+      </if>
+      <if test="record.offindexlibid != null" >
+        OffIndexLibId = #{record.offindexlibid,jdbcType=INTEGER},
+      </if>
+      <if test="record.offindexname != null" >
+        OffIndexName = #{record.offindexname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.offindexunits != null" >
+        OffIndexUnits = #{record.offindexunits,jdbcType=VARCHAR},
+      </if>
+      <if test="record.offindexprice != null" >
+        OffIndexPrice = #{record.offindexprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.createdate != null" >
+        Createdate = #{record.createdate,jdbcType=BIGINT},
+      </if>
+      <if test="record.modifydate != null" >
+        ModifyDate = #{record.modifydate,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update OffIndexInfo
+    set OffIndexId = #{record.offindexid,jdbcType=INTEGER},
+      OffIndexLibId = #{record.offindexlibid,jdbcType=INTEGER},
+      OffIndexName = #{record.offindexname,jdbcType=VARCHAR},
+      OffIndexUnits = #{record.offindexunits,jdbcType=VARCHAR},
+      OffIndexPrice = #{record.offindexprice,jdbcType=DECIMAL},
+      Createdate = #{record.createdate,jdbcType=BIGINT},
+      ModifyDate = #{record.modifydate,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mwm.env.mybatis.modal.OffIndexInfo" >
+    update OffIndexInfo
+    <set >
+      <if test="offindexlibid != null" >
+        OffIndexLibId = #{offindexlibid,jdbcType=INTEGER},
+      </if>
+      <if test="offindexname != null" >
+        OffIndexName = #{offindexname,jdbcType=VARCHAR},
+      </if>
+      <if test="offindexunits != null" >
+        OffIndexUnits = #{offindexunits,jdbcType=VARCHAR},
+      </if>
+      <if test="offindexprice != null" >
+        OffIndexPrice = #{offindexprice,jdbcType=DECIMAL},
+      </if>
+      <if test="createdate != null" >
+        Createdate = #{createdate,jdbcType=BIGINT},
+      </if>
+      <if test="modifydate != null" >
+        ModifyDate = #{modifydate,jdbcType=BIGINT},
+      </if>
+    </set>
+    where OffIndexId = #{offindexid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mwm.env.mybatis.modal.OffIndexInfo" >
+    update OffIndexInfo
+    set OffIndexLibId = #{offindexlibid,jdbcType=INTEGER},
+      OffIndexName = #{offindexname,jdbcType=VARCHAR},
+      OffIndexUnits = #{offindexunits,jdbcType=VARCHAR},
+      OffIndexPrice = #{offindexprice,jdbcType=DECIMAL},
+      Createdate = #{createdate,jdbcType=BIGINT},
+      ModifyDate = #{modifydate,jdbcType=BIGINT}
+    where OffIndexId = #{offindexid,jdbcType=INTEGER}
+  </update>
+</mapper>

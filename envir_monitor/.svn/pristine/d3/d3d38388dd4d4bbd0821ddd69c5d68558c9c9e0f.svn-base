@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mwm.env.dao.IDemandDao">
+
+	<!-- 需求方需求集 -->
+	<select id="getDemandLib" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		SELECT
+			*
+		FROM
+			DemandLibInfo lib
+		WHERE
+			lib.State = "N"
+			AND lib.UserId = #{userId}
+			<if test=" demandlibname !=null and demandlibname != '' ">
+			AND lib.DemandLibName LIKE CONCAT("%",#{demandlibname},"%")
+			</if>
+	</select>
+	
+	<!-- 需求方需求 -->
+	<select id="getDemandList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		SELECT
+			*
+		FROM
+			DemandInfo demand
+		WHERE
+			demand.DemandLibId = #{demandlibid}
+			AND demand.UserId = #{userId}
+			<if test=" demandname !=null and demandname != '' ">
+			AND demand.DemandName LIKE CONCAT("%",#{demandname},"%")
+			</if>
+	</select>
+	
+	
+</mapper>

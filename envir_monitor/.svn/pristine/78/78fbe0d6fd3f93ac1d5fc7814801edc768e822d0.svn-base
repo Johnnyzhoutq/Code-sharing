@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mwm.env.mybatis.dao.UserBankInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.mwm.env.mybatis.modal.UserBankInfo" >
+    <id column="BankId" property="bankid" jdbcType="INTEGER" />
+    <result column="UserId" property="userid" jdbcType="INTEGER" />
+    <result column="BankAccount" property="bankaccount" jdbcType="CHAR" />
+    <result column="BankType" property="banktype" jdbcType="VARCHAR" />
+    <result column="Banks" property="banks" jdbcType="VARCHAR" />
+    <result column="Beneficiary" property="beneficiary" jdbcType="VARCHAR" />
+    <result column="Certification" property="certification" jdbcType="DECIMAL" />
+    <result column="AuditStatus" property="auditstatus" jdbcType="CHAR" />
+    <result column="Createdate" property="createdate" jdbcType="BIGINT" />
+    <result column="ModifyDate" property="modifydate" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    BankId, UserId, BankAccount, BankType, Banks, Beneficiary, Certification, AuditStatus, 
+    Createdate, ModifyDate
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mwm.env.mybatis.modal.UserBankInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from UserBankInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from UserBankInfo
+    where BankId = #{bankid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from UserBankInfo
+    where BankId = #{bankid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mwm.env.mybatis.modal.UserBankInfoExample" >
+    delete from UserBankInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mwm.env.mybatis.modal.UserBankInfo" >
+    <selectKey resultType="java.lang.Integer" keyProperty="bankid" order="AFTER" >
+      select last_insert_id()
+    </selectKey>
+    insert into UserBankInfo (UserId, BankAccount, BankType, 
+      Banks, Beneficiary, Certification, 
+      AuditStatus, Createdate, ModifyDate
+      )
+    values (#{userid,jdbcType=INTEGER}, #{bankaccount,jdbcType=CHAR}, #{banktype,jdbcType=VARCHAR}, 
+      #{banks,jdbcType=VARCHAR}, #{beneficiary,jdbcType=VARCHAR}, #{certification,jdbcType=DECIMAL}, 
+      #{auditstatus,jdbcType=CHAR}, #{createdate,jdbcType=BIGINT}, #{modifydate,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mwm.env.mybatis.modal.UserBankInfo" >
+    <selectKey resultType="java.lang.Integer" keyProperty="bankid" order="AFTER" >
+      select last_insert_id()
+    </selectKey>
+    insert into UserBankInfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        UserId,
+      </if>
+      <if test="bankaccount != null" >
+        BankAccount,
+      </if>
+      <if test="banktype != null" >
+        BankType,
+      </if>
+      <if test="banks != null" >
+        Banks,
+      </if>
+      <if test="beneficiary != null" >
+        Beneficiary,
+      </if>
+      <if test="certification != null" >
+        Certification,
+      </if>
+      <if test="auditstatus != null" >
+        AuditStatus,
+      </if>
+      <if test="createdate != null" >
+        Createdate,
+      </if>
+      <if test="modifydate != null" >
+        ModifyDate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="bankaccount != null" >
+        #{bankaccount,jdbcType=CHAR},
+      </if>
+      <if test="banktype != null" >
+        #{banktype,jdbcType=VARCHAR},
+      </if>
+      <if test="banks != null" >
+        #{banks,jdbcType=VARCHAR},
+      </if>
+      <if test="beneficiary != null" >
+        #{beneficiary,jdbcType=VARCHAR},
+      </if>
+      <if test="certification != null" >
+        #{certification,jdbcType=DECIMAL},
+      </if>
+      <if test="auditstatus != null" >
+        #{auditstatus,jdbcType=CHAR},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=BIGINT},
+      </if>
+      <if test="modifydate != null" >
+        #{modifydate,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mwm.env.mybatis.modal.UserBankInfoExample" resultType="java.lang.Integer" >
+    select count(*) from UserBankInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update UserBankInfo
+    <set >
+      <if test="record.bankid != null" >
+        BankId = #{record.bankid,jdbcType=INTEGER},
+      </if>
+      <if test="record.userid != null" >
+        UserId = #{record.userid,jdbcType=INTEGER},
+      </if>
+      <if test="record.bankaccount != null" >
+        BankAccount = #{record.bankaccount,jdbcType=CHAR},
+      </if>
+      <if test="record.banktype != null" >
+        BankType = #{record.banktype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.banks != null" >
+        Banks = #{record.banks,jdbcType=VARCHAR},
+      </if>
+      <if test="record.beneficiary != null" >
+        Beneficiary = #{record.beneficiary,jdbcType=VARCHAR},
+      </if>
+      <if test="record.certification != null" >
+        Certification = #{record.certification,jdbcType=DECIMAL},
+      </if>
+      <if test="record.auditstatus != null" >
+        AuditStatus = #{record.auditstatus,jdbcType=CHAR},
+      </if>
+      <if test="record.createdate != null" >
+        Createdate = #{record.createdate,jdbcType=BIGINT},
+      </if>
+      <if test="record.modifydate != null" >
+        ModifyDate = #{record.modifydate,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update UserBankInfo
+    set BankId = #{record.bankid,jdbcType=INTEGER},
+      UserId = #{record.userid,jdbcType=INTEGER},
+      BankAccount = #{record.bankaccount,jdbcType=CHAR},
+      BankType = #{record.banktype,jdbcType=VARCHAR},
+      Banks = #{record.banks,jdbcType=VARCHAR},
+      Beneficiary = #{record.beneficiary,jdbcType=VARCHAR},
+      Certification = #{record.certification,jdbcType=DECIMAL},
+      AuditStatus = #{record.auditstatus,jdbcType=CHAR},
+      Createdate = #{record.createdate,jdbcType=BIGINT},
+      ModifyDate = #{record.modifydate,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mwm.env.mybatis.modal.UserBankInfo" >
+    update UserBankInfo
+    <set >
+      <if test="userid != null" >
+        UserId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="bankaccount != null" >
+        BankAccount = #{bankaccount,jdbcType=CHAR},
+      </if>
+      <if test="banktype != null" >
+        BankType = #{banktype,jdbcType=VARCHAR},
+      </if>
+      <if test="banks != null" >
+        Banks = #{banks,jdbcType=VARCHAR},
+      </if>
+      <if test="beneficiary != null" >
+        Beneficiary = #{beneficiary,jdbcType=VARCHAR},
+      </if>
+      <if test="certification != null" >
+        Certification = #{certification,jdbcType=DECIMAL},
+      </if>
+      <if test="auditstatus != null" >
+        AuditStatus = #{auditstatus,jdbcType=CHAR},
+      </if>
+      <if test="createdate != null" >
+        Createdate = #{createdate,jdbcType=BIGINT},
+      </if>
+      <if test="modifydate != null" >
+        ModifyDate = #{modifydate,jdbcType=BIGINT},
+      </if>
+    </set>
+    where BankId = #{bankid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mwm.env.mybatis.modal.UserBankInfo" >
+    update UserBankInfo
+    set UserId = #{userid,jdbcType=INTEGER},
+      BankAccount = #{bankaccount,jdbcType=CHAR},
+      BankType = #{banktype,jdbcType=VARCHAR},
+      Banks = #{banks,jdbcType=VARCHAR},
+      Beneficiary = #{beneficiary,jdbcType=VARCHAR},
+      Certification = #{certification,jdbcType=DECIMAL},
+      AuditStatus = #{auditstatus,jdbcType=CHAR},
+      Createdate = #{createdate,jdbcType=BIGINT},
+      ModifyDate = #{modifydate,jdbcType=BIGINT}
+    where BankId = #{bankid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,308 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <title>personal-phone</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <link href="resources/css/jquery-ui-themes.css" type="text/css" rel="stylesheet"/>
+    <link href="resources/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
+    <link href="data/styles.css" type="text/css" rel="stylesheet"/>
+    <link href="files/personal-phone/styles.css" type="text/css" rel="stylesheet"/>
+    <script src="resources/scripts/jquery-1.7.1.min.js"></script>
+    <script src="resources/scripts/jquery-ui-1.8.10.custom.min.js"></script>
+    <script src="resources/scripts/axure/axQuery.js"></script>
+    <script src="resources/scripts/axure/globals.js"></script>
+    <script src="resources/scripts/axutils.js"></script>
+    <script src="resources/scripts/axure/annotation.js"></script>
+    <script src="resources/scripts/axure/axQuery.std.js"></script>
+    <script src="resources/scripts/axure/doc.js"></script>
+    <script src="data/document.js"></script>
+    <script src="resources/scripts/messagecenter.js"></script>
+    <script src="resources/scripts/axure/events.js"></script>
+    <script src="resources/scripts/axure/recording.js"></script>
+    <script src="resources/scripts/axure/action.js"></script>
+    <script src="resources/scripts/axure/expr.js"></script>
+    <script src="resources/scripts/axure/geometry.js"></script>
+    <script src="resources/scripts/axure/flyout.js"></script>
+    <script src="resources/scripts/axure/ie.js"></script>
+    <script src="resources/scripts/axure/model.js"></script>
+    <script src="resources/scripts/axure/repeater.js"></script>
+    <script src="resources/scripts/axure/sto.js"></script>
+    <script src="resources/scripts/axure/utils.temp.js"></script>
+    <script src="resources/scripts/axure/variables.js"></script>
+    <script src="resources/scripts/axure/drag.js"></script>
+    <script src="resources/scripts/axure/move.js"></script>
+    <script src="resources/scripts/axure/visibility.js"></script>
+    <script src="resources/scripts/axure/style.js"></script>
+    <script src="resources/scripts/axure/adaptive.js"></script>
+    <script src="resources/scripts/axure/tree.js"></script>
+    <script src="resources/scripts/axure/init.temp.js"></script>
+    <script src="files/personal-phone/data.js"></script>
+    <script src="resources/scripts/axure/legacy.js"></script>
+    <script src="resources/scripts/axure/viewer.js"></script>
+    <script src="resources/scripts/axure/math.js"></script>
+    <script type="text/javascript">
+      $axure.utils.getTransparentGifPath = function() { return 'resources/images/transparent.gif'; };
+      $axure.utils.getOtherPath = function() { return 'resources/Other.html'; };
+      $axure.utils.getReloadPath = function() { return 'resources/reload.html'; };
+    </script>
+  </head>
+  <body>
+    <div id="base" class="">
+
+      <!-- Unnamed (nav) -->
+
+      <!-- Unnamed (矩形) -->
+      <div id="u9113" class="ax_default link_button">
+        <div id="u9113_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u9114" class="text" style="visibility: visible;">
+          <p><span>首页</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u9115" class="ax_default link_button">
+        <div id="u9115_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u9116" class="text" style="visibility: visible;">
+          <p><span>帮助手册</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (水平线) -->
+      <div id="u9117" class="ax_default line">
+        <img id="u9117_img" class="img " src="images/首页/u7.png"/>
+        <!-- Unnamed () -->
+        <div id="u9118" class="text" style="display: none; visibility: hidden">
+          <p><span></span></p>
+        </div>
+      </div>
+
+      <!-- 登录 (矩形) -->
+      <div id="u9119" class="ax_default link_button" data-label="登录">
+        <div id="u9119_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u9120" class="text" style="visibility: visible;">
+          <p><span>登录</span></p>
+        </div>
+      </div>
+
+      <!-- 注册 (矩形) -->
+      <div id="u9121" class="ax_default link_button" data-label="注册">
+        <div id="u9121_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u9122" class="text" style="visibility: visible;">
+          <p><span>注册</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u9123" class="ax_default link_button">
+        <div id="u9123_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u9124" class="text" style="visibility: visible;">
+          <p><span>在线客服</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u9125" class="ax_default link_button">
+        <div id="u9125_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u9126" class="text" style="visibility: visible;">
+          <p><span>我要买报告</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u9127" class="ax_default link_button">
+        <div id="u9127_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u9128" class="text" style="visibility: visible;">
+          <p><span>我要卖报告</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (形状) -->
+      <div id="u9129" class="ax_default icon ax_default_hidden" style="display: none; visibility: hidden">
+        <img id="u9129_img" class="img " src="images/首页/u19.png"/>
+        <!-- Unnamed () -->
+        <div id="u9130" class="text" style="display: none; visibility: hidden">
+          <p><span></span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u9131" class="ax_default link_button">
+        <div id="u9131_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u9132" class="text" style="visibility: visible;">
+          <p><span>商务合作</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u9133" class="ax_default link_button">
+        <div id="u9133_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u9134" class="text" style="visibility: visible;">
+          <p><span>人才招聘</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (person) -->
+
+      <!-- Unnamed (垂直线) -->
+      <div id="u9136" class="ax_default line">
+        <img id="u9136_img" class="img " src="images/信息维护/u8957.png"/>
+        <!-- Unnamed () -->
+        <div id="u9137" class="text" style="display: none; visibility: hidden">
+          <p><span></span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u9138" class="ax_default label">
+        <div id="u9138_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u9139" class="text" style="visibility: visible;">
+          <p><span>基本资料维护</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u9140" class="ax_default label">
+        <div id="u9140_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u9141" class="text" style="visibility: visible;">
+          <p><span>密码修改</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u9142" class="ax_default label">
+        <div id="u9142_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u9143" class="text" style="visibility: visible;">
+          <p><span>银行账号</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u9144" class="ax_default label">
+        <div id="u9144_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u9145" class="text" style="visibility: visible;">
+          <p><span>收货信息维护</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u9146" class="ax_default label">
+        <div id="u9146_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u9147" class="text" style="visibility: visible;">
+          <p><span>系统消息</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u9148" class="ax_default label">
+        <div id="u9148_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u9149" class="text" style="visibility: visible;">
+          <p><span>手机邮箱维护</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u9150" class="ax_default label">
+        <div id="u9150_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u9151" class="text" style="visibility: visible;">
+          <p><span>新手机号码</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (文本框) -->
+      <div id="u9152" class="ax_default text_field">
+        <input id="u9152_input" type="text" value=""/>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u9153" class="ax_default label">
+        <div id="u9153_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u9154" class="text" style="visibility: visible;">
+          <p><span>+86</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u9155" class="ax_default primary_button">
+        <div id="u9155_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u9156" class="text" style="visibility: visible;">
+          <p><span>向旧手机发送验证码</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (文本框) -->
+      <div id="u9157" class="ax_default text_field">
+        <input id="u9157_input" type="text" value=""/>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u9158" class="ax_default label">
+        <div id="u9158_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u9159" class="text" style="visibility: visible;">
+          <p><span>验证码</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u9160" class="ax_default primary_button">
+        <div id="u9160_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u9161" class="text" style="visibility: visible;">
+          <p><span>确认修改</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u9162" class="ax_default label">
+        <div id="u9162_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u9163" class="text" style="visibility: visible;">
+          <p><span>新邮箱地址</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (文本框) -->
+      <div id="u9164" class="ax_default text_field">
+        <input id="u9164_input" type="text" value=""/>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u9165" class="ax_default primary_button">
+        <div id="u9165_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u9166" class="text" style="visibility: visible;">
+          <p><span>前去激活新邮箱</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u9167" class="ax_default primary_button">
+        <div id="u9167_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u9168" class="text" style="visibility: visible;">
+          <p><span>发送验证</span></p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

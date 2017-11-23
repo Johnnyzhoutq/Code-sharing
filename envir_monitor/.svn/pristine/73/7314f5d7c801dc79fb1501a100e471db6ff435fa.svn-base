@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mwm.env.mybatis.dao.IndexTypeInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.mwm.env.mybatis.modal.IndexTypeInfo" >
+    <id column="IndexTypeId" property="indextypeid" jdbcType="INTEGER" />
+    <result column="ProvideId" property="provideid" jdbcType="INTEGER" />
+    <result column="TypeNum" property="typenum" jdbcType="VARCHAR" />
+    <result column="IndexTypeName" property="indextypename" jdbcType="VARCHAR" />
+    <result column="TimeDomain" property="timedomain" jdbcType="CHAR" />
+    <result column="TDType" property="tdtype" jdbcType="VARCHAR" />
+    <result column="TDContent" property="tdcontent" jdbcType="VARCHAR" />
+    <result column="PriceMultiple" property="pricemultiple" jdbcType="DECIMAL" />
+    <result column="TypeFlag" property="typeflag" jdbcType="CHAR" />
+    <result column="Createdate" property="createdate" jdbcType="BIGINT" />
+    <result column="ModifyDate" property="modifydate" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    IndexTypeId, ProvideId, TypeNum, IndexTypeName, TimeDomain, TDType, TDContent, PriceMultiple, 
+    TypeFlag, Createdate, ModifyDate
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mwm.env.mybatis.modal.IndexTypeInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from IndexTypeInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from IndexTypeInfo
+    where IndexTypeId = #{indextypeid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from IndexTypeInfo
+    where IndexTypeId = #{indextypeid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mwm.env.mybatis.modal.IndexTypeInfoExample" >
+    delete from IndexTypeInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mwm.env.mybatis.modal.IndexTypeInfo" >
+    <selectKey resultType="java.lang.Integer" keyProperty="indextypeid" order="AFTER" >
+      select last_insert_id()
+    </selectKey>
+    insert into IndexTypeInfo (ProvideId, TypeNum, IndexTypeName, 
+      TimeDomain, TDType, TDContent, 
+      PriceMultiple, TypeFlag, Createdate, 
+      ModifyDate)
+    values (#{provideid,jdbcType=INTEGER}, #{typenum,jdbcType=VARCHAR}, #{indextypename,jdbcType=VARCHAR}, 
+      #{timedomain,jdbcType=CHAR}, #{tdtype,jdbcType=VARCHAR}, #{tdcontent,jdbcType=VARCHAR}, 
+      #{pricemultiple,jdbcType=DECIMAL}, #{typeflag,jdbcType=CHAR}, #{createdate,jdbcType=BIGINT}, 
+      #{modifydate,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mwm.env.mybatis.modal.IndexTypeInfo" >
+    <selectKey resultType="java.lang.Integer" keyProperty="indextypeid" order="AFTER" >
+      select last_insert_id()
+    </selectKey>
+    insert into IndexTypeInfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="provideid != null" >
+        ProvideId,
+      </if>
+      <if test="typenum != null" >
+        TypeNum,
+      </if>
+      <if test="indextypename != null" >
+        IndexTypeName,
+      </if>
+      <if test="timedomain != null" >
+        TimeDomain,
+      </if>
+      <if test="tdtype != null" >
+        TDType,
+      </if>
+      <if test="tdcontent != null" >
+        TDContent,
+      </if>
+      <if test="pricemultiple != null" >
+        PriceMultiple,
+      </if>
+      <if test="typeflag != null" >
+        TypeFlag,
+      </if>
+      <if test="createdate != null" >
+        Createdate,
+      </if>
+      <if test="modifydate != null" >
+        ModifyDate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="provideid != null" >
+        #{provideid,jdbcType=INTEGER},
+      </if>
+      <if test="typenum != null" >
+        #{typenum,jdbcType=VARCHAR},
+      </if>
+      <if test="indextypename != null" >
+        #{indextypename,jdbcType=VARCHAR},
+      </if>
+      <if test="timedomain != null" >
+        #{timedomain,jdbcType=CHAR},
+      </if>
+      <if test="tdtype != null" >
+        #{tdtype,jdbcType=VARCHAR},
+      </if>
+      <if test="tdcontent != null" >
+        #{tdcontent,jdbcType=VARCHAR},
+      </if>
+      <if test="pricemultiple != null" >
+        #{pricemultiple,jdbcType=DECIMAL},
+      </if>
+      <if test="typeflag != null" >
+        #{typeflag,jdbcType=CHAR},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=BIGINT},
+      </if>
+      <if test="modifydate != null" >
+        #{modifydate,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mwm.env.mybatis.modal.IndexTypeInfoExample" resultType="java.lang.Integer" >
+    select count(*) from IndexTypeInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update IndexTypeInfo
+    <set >
+      <if test="record.indextypeid != null" >
+        IndexTypeId = #{record.indextypeid,jdbcType=INTEGER},
+      </if>
+      <if test="record.provideid != null" >
+        ProvideId = #{record.provideid,jdbcType=INTEGER},
+      </if>
+      <if test="record.typenum != null" >
+        TypeNum = #{record.typenum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.indextypename != null" >
+        IndexTypeName = #{record.indextypename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.timedomain != null" >
+        TimeDomain = #{record.timedomain,jdbcType=CHAR},
+      </if>
+      <if test="record.tdtype != null" >
+        TDType = #{record.tdtype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tdcontent != null" >
+        TDContent = #{record.tdcontent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pricemultiple != null" >
+        PriceMultiple = #{record.pricemultiple,jdbcType=DECIMAL},
+      </if>
+      <if test="record.typeflag != null" >
+        TypeFlag = #{record.typeflag,jdbcType=CHAR},
+      </if>
+      <if test="record.createdate != null" >
+        Createdate = #{record.createdate,jdbcType=BIGINT},
+      </if>
+      <if test="record.modifydate != null" >
+        ModifyDate = #{record.modifydate,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update IndexTypeInfo
+    set IndexTypeId = #{record.indextypeid,jdbcType=INTEGER},
+      ProvideId = #{record.provideid,jdbcType=INTEGER},
+      TypeNum = #{record.typenum,jdbcType=VARCHAR},
+      IndexTypeName = #{record.indextypename,jdbcType=VARCHAR},
+      TimeDomain = #{record.timedomain,jdbcType=CHAR},
+      TDType = #{record.tdtype,jdbcType=VARCHAR},
+      TDContent = #{record.tdcontent,jdbcType=VARCHAR},
+      PriceMultiple = #{record.pricemultiple,jdbcType=DECIMAL},
+      TypeFlag = #{record.typeflag,jdbcType=CHAR},
+      Createdate = #{record.createdate,jdbcType=BIGINT},
+      ModifyDate = #{record.modifydate,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mwm.env.mybatis.modal.IndexTypeInfo" >
+    update IndexTypeInfo
+    <set >
+      <if test="provideid != null" >
+        ProvideId = #{provideid,jdbcType=INTEGER},
+      </if>
+      <if test="typenum != null" >
+        TypeNum = #{typenum,jdbcType=VARCHAR},
+      </if>
+      <if test="indextypename != null" >
+        IndexTypeName = #{indextypename,jdbcType=VARCHAR},
+      </if>
+      <if test="timedomain != null" >
+        TimeDomain = #{timedomain,jdbcType=CHAR},
+      </if>
+      <if test="tdtype != null" >
+        TDType = #{tdtype,jdbcType=VARCHAR},
+      </if>
+      <if test="tdcontent != null" >
+        TDContent = #{tdcontent,jdbcType=VARCHAR},
+      </if>
+      <if test="pricemultiple != null" >
+        PriceMultiple = #{pricemultiple,jdbcType=DECIMAL},
+      </if>
+      <if test="typeflag != null" >
+        TypeFlag = #{typeflag,jdbcType=CHAR},
+      </if>
+      <if test="createdate != null" >
+        Createdate = #{createdate,jdbcType=BIGINT},
+      </if>
+      <if test="modifydate != null" >
+        ModifyDate = #{modifydate,jdbcType=BIGINT},
+      </if>
+    </set>
+    where IndexTypeId = #{indextypeid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mwm.env.mybatis.modal.IndexTypeInfo" >
+    update IndexTypeInfo
+    set ProvideId = #{provideid,jdbcType=INTEGER},
+      TypeNum = #{typenum,jdbcType=VARCHAR},
+      IndexTypeName = #{indextypename,jdbcType=VARCHAR},
+      TimeDomain = #{timedomain,jdbcType=CHAR},
+      TDType = #{tdtype,jdbcType=VARCHAR},
+      TDContent = #{tdcontent,jdbcType=VARCHAR},
+      PriceMultiple = #{pricemultiple,jdbcType=DECIMAL},
+      TypeFlag = #{typeflag,jdbcType=CHAR},
+      Createdate = #{createdate,jdbcType=BIGINT},
+      ModifyDate = #{modifydate,jdbcType=BIGINT}
+    where IndexTypeId = #{indextypeid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:aop="http://www.springframework.org/schema/aop" 
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:task="http://www.springframework.org/schema/task"
+    xmlns:mybatis="http://mybatis.org/schema/mybatis-spring" 
+    xsi:schemaLocation="http://www.springframework.org/schema/beans    
+    http://www.springframework.org/schema/beans/spring-beans.xsd 
+    http://www.springframework.org/schema/tx    
+    http://www.springframework.org/schema/tx/spring-tx.xsd   
+    http://www.springframework.org/schema/context   
+    http://www.springframework.org/schema/context/spring-context.xsd 
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop.xsd  
+    http://www.springframework.org/schema/mvc   
+    http://www.springframework.org/schema/mvc/spring-mvc.xsd
+    http://www.springframework.org/schema/task
+    http://www.springframework.org/schema/task/spring-task.xsd
+    http://mybatis.org/schema/mybatis-spring 
+    http://mybatis.org/schema/mybatis-spring.xsd" 
+    default-lazy-init="false">
+
+	<!-- Spring MVC配置 -->
+    <context:annotation-config />
+    
+    <!--扫描注解 -->
+    <context:component-scan base-package="com.mwm.*.controller" />
+    <context:component-scan base-package="com.mwm.*.service" />
+    <context:component-scan base-package="com.mwm.*.util"/>
+    <context:component-scan base-package="com.mwm.*.interceptor"/>
+    <!--默认的mvc注解映射的支持 -->
+    <mvc:annotation-driven/>
+    
+    <!-- 拦截器 -->
+    <mvc:interceptors>
+    	<bean class="com.mwm.env.interceptor.CORSInterceptor" />
+    	<bean class="com.mwm.commons.interceptor.MwmParamInterceptor"/>
+	</mvc:interceptors>
+    
+    <!-- 定时器 -->
+    <context:component-scan base-package="com.mwm.*.task" />
+    <task:executor id="executor" pool-size="5" />      
+    <task:scheduler id="scheduler" pool-size="10" />    
+    <task:annotation-driven executor="executor" scheduler="scheduler" />  
+    
+    <!-- 视图解析器和json解析器 -->
+    <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+        <property name="mediaTypes">
+            <map>
+                <entry key="html" value="text/html"/>
+                <entry key="json" value="application/json"/>
+            </map>
+        </property>
+        <property name="viewResolvers">
+            <list>
+                <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+                    <property name="prefix" value="/WEB-INF/" /> <!--可为空,方便实现自已的依据扩展名来选择视图解释类的逻辑 -->
+                    <property name="suffix" value=".jsp"/>
+                    <property name="order" value="1"/>      
+                </bean>
+            </list>
+        </property>
+    </bean>
+    
+    <!-- 总错误处理 -->
+    <bean class="com.mwm.commons.handler.MyExceptionHandler"/>
+    
+    <!-- 对静态资源文件的访问 -->
+    <mvc:resources mapping="/res4back/**" location="/res4back/" cache-period="31556926" />
+    <mvc:resources mapping="/res4front/**" location="/res4front/" cache-period="31556926" />
+    <mvc:resources mapping="/res4mobile/**" location="/res4mobile/" cache-period="31556926" />
+    
+    <!-- 数据库和事务配置 -->
+
+    <!-- 加载配置文件 -->
+    <context:property-placeholder location="classpath:jdbc.properties" />
+
+	<!-- 定义数据源 -->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+        <property name="driverClass">
+            <value>com.mysql.jdbc.Driver</value>
+        </property>
+        <property name="jdbcUrl">
+            <value>${jdbc.url}</value>
+        </property>
+        <property name="user">
+            <value>${jdbc.username}</value>
+        </property>
+        <property name="password">
+            <value>${jdbc.password}</value>
+        </property>
+        <!--连接池中保留的最小连接数。 -->
+        <property name="minPoolSize">
+            <value>1</value>
+        </property>
+        <!--连接池中保留的最大连接数。Default: 15 -->
+        <property name="maxPoolSize">
+            <value>40</value>
+        </property>
+        <!--初始化时获取的连接数，取值应在minPoolSize与maxPoolSize之间。Default: 3 -->
+        <property name="initialPoolSize">
+            <value>2</value>
+        </property>
+        <!--每30秒检查所有连接池中的空闲连接。Default: 0 -->
+        <property name="idleConnectionTestPeriod">
+            <value>3</value>
+        </property>
+        <!--定义所有连接测试都执行的测试语句。在使用连接测试的情况下这个一显著提高测试速度。注意： 
+		测试的表必须在初始数据源的时候就存在。Default: null--> 
+		<property name="preferredTestQuery">
+			<value>SELECT 1</value>
+		</property>
+    </bean>
+    
+    <!-- 定义jdbcTemplate -->
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource"><ref bean="dataSource"/></property>
+    </bean>
+    <bean id="namedParameterJdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
+        <constructor-arg><ref bean="dataSource"/></constructor-arg> 
+    </bean>
+    
+    <!-- 定义事务管理器 -->
+    <bean id="transactionManager"
+        class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource">
+            <ref bean="dataSource" />
+        </property>
+    </bean>
+    
+    <!-- 配置事务特性 ，配置add、delete和update开始的方法，事务传播特性为required -->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="save*" propagation="REQUIRED" />
+            <tx:method name="insert*" propagation="REQUIRED" />
+            <tx:method name="delete*" propagation="REQUIRED" />
+            <tx:method name="update*" propagation="REQUIRED" />
+            <tx:method name="login*" propagation="REQUIRED" />
+            <tx:method name="regist*" propagation="REQUIRED" />
+            <tx:method name="*" read-only="false" />
+        </tx:attributes>
+    </tx:advice>
+
+    <!-- 配置那些类的方法进行事务管理 -->
+    <aop:config>
+        <aop:pointcut id="allManagerMethod" expression="execution(* com.mwm..service.*Impl.*(..))" />
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="allManagerMethod" />
+    </aop:config>
+    
+    <!-- 该包下的类支持注解，表示可以自动引入mapper类-->  
+    <mybatis:scan base-package="com.mwm.*.dao"/>
+    <mybatis:scan base-package="com.mwm.*.mybatis.dao"/>
+    
+    <!-- mybatis配置 -->  
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">  
+        <property name="dataSource" ref="dataSource" />  
+        <!-- 配置文件 -->
+        <property name="configLocation" value="classpath:mybatis/mybatis.xml"/>
+        <!-- 自动扫描mapping.xml文件 -->  
+        <property name="mapperLocations" value="classpath*:com/mwm/**/**/mapping/*.xml"></property>
+    	<!-- 分页插件 -->
+    	<property name="typeAliasesPackage" value="com.mwm.*.mybatis.modal"/>
+		<property name="plugins">
+			<array>
+		    	<bean class="com.github.pagehelper.PageHelper">
+		        	<property name="properties">
+		          		<value>dialect=mysql</value>
+		        	</property>
+		    	</bean>
+			</array>
+		</property>
+    </bean>
+    
+</beans>

@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mwm.commons.mybatis.dao.MwmConfigMapper" >
+  <resultMap id="BaseResultMap" type="com.mwm.commons.mybatis.modal.MwmConfig" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="keyword" property="keyword" jdbcType="VARCHAR" />
+    <result column="value" property="value" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="group_id" property="groupId" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="is_for_user" property="isForUser" jdbcType="INTEGER" />
+    <result column="version" property="version" jdbcType="TIMESTAMP" />
+    <result column="create_dt" property="createDt" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, keyword, value, description, type, group_id, name, is_for_user, version, create_dt
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mwm.commons.mybatis.modal.MwmConfigExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from mwm_config
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from mwm_config
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from mwm_config
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mwm.commons.mybatis.modal.MwmConfigExample" >
+    delete from mwm_config
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mwm.commons.mybatis.modal.MwmConfig" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      select last_insert_id()
+    </selectKey>
+    insert into mwm_config (keyword, value, description, 
+      type, group_id, name, 
+      is_for_user, version, create_dt
+      )
+    values (#{keyword,jdbcType=VARCHAR}, #{value,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{type,jdbcType=INTEGER}, #{groupId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{isForUser,jdbcType=INTEGER}, #{version,jdbcType=TIMESTAMP}, #{createDt,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mwm.commons.mybatis.modal.MwmConfig" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      select last_insert_id()
+    </selectKey>
+    insert into mwm_config
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="keyword != null" >
+        keyword,
+      </if>
+      <if test="value != null" >
+        value,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="groupId != null" >
+        group_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="isForUser != null" >
+        is_for_user,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="createDt != null" >
+        create_dt,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="keyword != null" >
+        #{keyword,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null" >
+        #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="groupId != null" >
+        #{groupId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="isForUser != null" >
+        #{isForUser,jdbcType=INTEGER},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createDt != null" >
+        #{createDt,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mwm.commons.mybatis.modal.MwmConfigExample" resultType="java.lang.Integer" >
+    select count(*) from mwm_config
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update mwm_config
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.keyword != null" >
+        keyword = #{record.keyword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.value != null" >
+        value = #{record.value,jdbcType=VARCHAR},
+      </if>
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.groupId != null" >
+        group_id = #{record.groupId,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isForUser != null" >
+        is_for_user = #{record.isForUser,jdbcType=INTEGER},
+      </if>
+      <if test="record.version != null" >
+        version = #{record.version,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createDt != null" >
+        create_dt = #{record.createDt,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update mwm_config
+    set id = #{record.id,jdbcType=INTEGER},
+      keyword = #{record.keyword,jdbcType=VARCHAR},
+      value = #{record.value,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=INTEGER},
+      group_id = #{record.groupId,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      is_for_user = #{record.isForUser,jdbcType=INTEGER},
+      version = #{record.version,jdbcType=TIMESTAMP},
+      create_dt = #{record.createDt,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mwm.commons.mybatis.modal.MwmConfig" >
+    update mwm_config
+    <set >
+      <if test="keyword != null" >
+        keyword = #{keyword,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null" >
+        value = #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="groupId != null" >
+        group_id = #{groupId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="isForUser != null" >
+        is_for_user = #{isForUser,jdbcType=INTEGER},
+      </if>
+      <if test="version != null" >
+        version = #{version,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createDt != null" >
+        create_dt = #{createDt,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mwm.commons.mybatis.modal.MwmConfig" >
+    update mwm_config
+    set keyword = #{keyword,jdbcType=VARCHAR},
+      value = #{value,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      group_id = #{groupId,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      is_for_user = #{isForUser,jdbcType=INTEGER},
+      version = #{version,jdbcType=TIMESTAMP},
+      create_dt = #{createDt,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

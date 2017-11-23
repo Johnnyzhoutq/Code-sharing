@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mwm.env.mybatis.dao.CustomerSerInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.mwm.env.mybatis.modal.CustomerSerInfo" >
+    <id column="ServiceId" property="serviceid" jdbcType="TINYINT" />
+    <result column="ServiceName" property="servicename" jdbcType="VARCHAR" />
+    <result column="ServiceUser" property="serviceuser" jdbcType="VARCHAR" />
+    <result column="ServiceNum" property="servicenum" jdbcType="VARCHAR" />
+    <result column="Phone" property="phone" jdbcType="CHAR" />
+    <result column="ServicePwd" property="servicepwd" jdbcType="VARCHAR" />
+    <result column="Createdate" property="createdate" jdbcType="BIGINT" />
+    <result column="ModifyDate" property="modifydate" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ServiceId, ServiceName, ServiceUser, ServiceNum, Phone, ServicePwd, Createdate, ModifyDate
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mwm.env.mybatis.modal.CustomerSerInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from CustomerSerInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Byte" >
+    select 
+    <include refid="Base_Column_List" />
+    from CustomerSerInfo
+    where ServiceId = #{serviceid,jdbcType=TINYINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Byte" >
+    delete from CustomerSerInfo
+    where ServiceId = #{serviceid,jdbcType=TINYINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mwm.env.mybatis.modal.CustomerSerInfoExample" >
+    delete from CustomerSerInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mwm.env.mybatis.modal.CustomerSerInfo" >
+    <selectKey resultType="java.lang.Byte" keyProperty="serviceid" order="AFTER" >
+      select last_insert_id()
+    </selectKey>
+    insert into CustomerSerInfo (ServiceName, ServiceUser, ServiceNum, 
+      Phone, ServicePwd, Createdate, 
+      ModifyDate)
+    values (#{servicename,jdbcType=VARCHAR}, #{serviceuser,jdbcType=VARCHAR}, #{servicenum,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=CHAR}, #{servicepwd,jdbcType=VARCHAR}, #{createdate,jdbcType=BIGINT}, 
+      #{modifydate,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mwm.env.mybatis.modal.CustomerSerInfo" >
+    <selectKey resultType="java.lang.Byte" keyProperty="serviceid" order="AFTER" >
+      select last_insert_id()
+    </selectKey>
+    insert into CustomerSerInfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="servicename != null" >
+        ServiceName,
+      </if>
+      <if test="serviceuser != null" >
+        ServiceUser,
+      </if>
+      <if test="servicenum != null" >
+        ServiceNum,
+      </if>
+      <if test="phone != null" >
+        Phone,
+      </if>
+      <if test="servicepwd != null" >
+        ServicePwd,
+      </if>
+      <if test="createdate != null" >
+        Createdate,
+      </if>
+      <if test="modifydate != null" >
+        ModifyDate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="servicename != null" >
+        #{servicename,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceuser != null" >
+        #{serviceuser,jdbcType=VARCHAR},
+      </if>
+      <if test="servicenum != null" >
+        #{servicenum,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=CHAR},
+      </if>
+      <if test="servicepwd != null" >
+        #{servicepwd,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=BIGINT},
+      </if>
+      <if test="modifydate != null" >
+        #{modifydate,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mwm.env.mybatis.modal.CustomerSerInfoExample" resultType="java.lang.Integer" >
+    select count(*) from CustomerSerInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update CustomerSerInfo
+    <set >
+      <if test="record.serviceid != null" >
+        ServiceId = #{record.serviceid,jdbcType=TINYINT},
+      </if>
+      <if test="record.servicename != null" >
+        ServiceName = #{record.servicename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.serviceuser != null" >
+        ServiceUser = #{record.serviceuser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.servicenum != null" >
+        ServiceNum = #{record.servicenum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null" >
+        Phone = #{record.phone,jdbcType=CHAR},
+      </if>
+      <if test="record.servicepwd != null" >
+        ServicePwd = #{record.servicepwd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdate != null" >
+        Createdate = #{record.createdate,jdbcType=BIGINT},
+      </if>
+      <if test="record.modifydate != null" >
+        ModifyDate = #{record.modifydate,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update CustomerSerInfo
+    set ServiceId = #{record.serviceid,jdbcType=TINYINT},
+      ServiceName = #{record.servicename,jdbcType=VARCHAR},
+      ServiceUser = #{record.serviceuser,jdbcType=VARCHAR},
+      ServiceNum = #{record.servicenum,jdbcType=VARCHAR},
+      Phone = #{record.phone,jdbcType=CHAR},
+      ServicePwd = #{record.servicepwd,jdbcType=VARCHAR},
+      Createdate = #{record.createdate,jdbcType=BIGINT},
+      ModifyDate = #{record.modifydate,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mwm.env.mybatis.modal.CustomerSerInfo" >
+    update CustomerSerInfo
+    <set >
+      <if test="servicename != null" >
+        ServiceName = #{servicename,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceuser != null" >
+        ServiceUser = #{serviceuser,jdbcType=VARCHAR},
+      </if>
+      <if test="servicenum != null" >
+        ServiceNum = #{servicenum,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        Phone = #{phone,jdbcType=CHAR},
+      </if>
+      <if test="servicepwd != null" >
+        ServicePwd = #{servicepwd,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null" >
+        Createdate = #{createdate,jdbcType=BIGINT},
+      </if>
+      <if test="modifydate != null" >
+        ModifyDate = #{modifydate,jdbcType=BIGINT},
+      </if>
+    </set>
+    where ServiceId = #{serviceid,jdbcType=TINYINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mwm.env.mybatis.modal.CustomerSerInfo" >
+    update CustomerSerInfo
+    set ServiceName = #{servicename,jdbcType=VARCHAR},
+      ServiceUser = #{serviceuser,jdbcType=VARCHAR},
+      ServiceNum = #{servicenum,jdbcType=VARCHAR},
+      Phone = #{phone,jdbcType=CHAR},
+      ServicePwd = #{servicepwd,jdbcType=VARCHAR},
+      Createdate = #{createdate,jdbcType=BIGINT},
+      ModifyDate = #{modifydate,jdbcType=BIGINT}
+    where ServiceId = #{serviceid,jdbcType=TINYINT}
+  </update>
+</mapper>

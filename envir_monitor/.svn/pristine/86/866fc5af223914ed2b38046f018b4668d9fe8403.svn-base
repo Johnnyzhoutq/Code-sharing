@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mwm.env.mybatis.dao.ProvideInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.mwm.env.mybatis.modal.ProvideInfo" >
+    <id column="ProvideId" property="provideid" jdbcType="INTEGER" />
+    <result column="UserId" property="userid" jdbcType="INTEGER" />
+    <result column="MeasureCerUrl" property="measurecerurl" jdbcType="VARCHAR" />
+    <result column="DetectionCapabilityUrl" property="detectioncapabilityurl" jdbcType="VARCHAR" />
+    <result column="AnnexsSetUrl" property="annexsseturl" jdbcType="VARCHAR" />
+    <result column="AuditStatus" property="auditstatus" jdbcType="CHAR" />
+    <result column="UserType" property="usertype" jdbcType="CHAR" />
+    <result column="AuditStute" property="auditstute" jdbcType="CHAR" />
+    <result column="Createdate" property="createdate" jdbcType="BIGINT" />
+    <result column="ModifyDate" property="modifydate" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ProvideId, UserId, MeasureCerUrl, DetectionCapabilityUrl, AnnexsSetUrl, AuditStatus, 
+    UserType, AuditStute, Createdate, ModifyDate
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mwm.env.mybatis.modal.ProvideInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ProvideInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from ProvideInfo
+    where ProvideId = #{provideid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from ProvideInfo
+    where ProvideId = #{provideid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mwm.env.mybatis.modal.ProvideInfoExample" >
+    delete from ProvideInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mwm.env.mybatis.modal.ProvideInfo" >
+    <selectKey resultType="java.lang.Integer" keyProperty="provideid" order="AFTER" >
+      select last_insert_id()
+    </selectKey>
+    insert into ProvideInfo (UserId, MeasureCerUrl, DetectionCapabilityUrl, 
+      AnnexsSetUrl, AuditStatus, UserType, 
+      AuditStute, Createdate, ModifyDate
+      )
+    values (#{userid,jdbcType=INTEGER}, #{measurecerurl,jdbcType=VARCHAR}, #{detectioncapabilityurl,jdbcType=VARCHAR}, 
+      #{annexsseturl,jdbcType=VARCHAR}, #{auditstatus,jdbcType=CHAR}, #{usertype,jdbcType=CHAR}, 
+      #{auditstute,jdbcType=CHAR}, #{createdate,jdbcType=BIGINT}, #{modifydate,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mwm.env.mybatis.modal.ProvideInfo" >
+    <selectKey resultType="java.lang.Integer" keyProperty="provideid" order="AFTER" >
+      select last_insert_id()
+    </selectKey>
+    insert into ProvideInfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        UserId,
+      </if>
+      <if test="measurecerurl != null" >
+        MeasureCerUrl,
+      </if>
+      <if test="detectioncapabilityurl != null" >
+        DetectionCapabilityUrl,
+      </if>
+      <if test="annexsseturl != null" >
+        AnnexsSetUrl,
+      </if>
+      <if test="auditstatus != null" >
+        AuditStatus,
+      </if>
+      <if test="usertype != null" >
+        UserType,
+      </if>
+      <if test="auditstute != null" >
+        AuditStute,
+      </if>
+      <if test="createdate != null" >
+        Createdate,
+      </if>
+      <if test="modifydate != null" >
+        ModifyDate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="measurecerurl != null" >
+        #{measurecerurl,jdbcType=VARCHAR},
+      </if>
+      <if test="detectioncapabilityurl != null" >
+        #{detectioncapabilityurl,jdbcType=VARCHAR},
+      </if>
+      <if test="annexsseturl != null" >
+        #{annexsseturl,jdbcType=VARCHAR},
+      </if>
+      <if test="auditstatus != null" >
+        #{auditstatus,jdbcType=CHAR},
+      </if>
+      <if test="usertype != null" >
+        #{usertype,jdbcType=CHAR},
+      </if>
+      <if test="auditstute != null" >
+        #{auditstute,jdbcType=CHAR},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=BIGINT},
+      </if>
+      <if test="modifydate != null" >
+        #{modifydate,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mwm.env.mybatis.modal.ProvideInfoExample" resultType="java.lang.Integer" >
+    select count(*) from ProvideInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ProvideInfo
+    <set >
+      <if test="record.provideid != null" >
+        ProvideId = #{record.provideid,jdbcType=INTEGER},
+      </if>
+      <if test="record.userid != null" >
+        UserId = #{record.userid,jdbcType=INTEGER},
+      </if>
+      <if test="record.measurecerurl != null" >
+        MeasureCerUrl = #{record.measurecerurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.detectioncapabilityurl != null" >
+        DetectionCapabilityUrl = #{record.detectioncapabilityurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.annexsseturl != null" >
+        AnnexsSetUrl = #{record.annexsseturl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.auditstatus != null" >
+        AuditStatus = #{record.auditstatus,jdbcType=CHAR},
+      </if>
+      <if test="record.usertype != null" >
+        UserType = #{record.usertype,jdbcType=CHAR},
+      </if>
+      <if test="record.auditstute != null" >
+        AuditStute = #{record.auditstute,jdbcType=CHAR},
+      </if>
+      <if test="record.createdate != null" >
+        Createdate = #{record.createdate,jdbcType=BIGINT},
+      </if>
+      <if test="record.modifydate != null" >
+        ModifyDate = #{record.modifydate,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ProvideInfo
+    set ProvideId = #{record.provideid,jdbcType=INTEGER},
+      UserId = #{record.userid,jdbcType=INTEGER},
+      MeasureCerUrl = #{record.measurecerurl,jdbcType=VARCHAR},
+      DetectionCapabilityUrl = #{record.detectioncapabilityurl,jdbcType=VARCHAR},
+      AnnexsSetUrl = #{record.annexsseturl,jdbcType=VARCHAR},
+      AuditStatus = #{record.auditstatus,jdbcType=CHAR},
+      UserType = #{record.usertype,jdbcType=CHAR},
+      AuditStute = #{record.auditstute,jdbcType=CHAR},
+      Createdate = #{record.createdate,jdbcType=BIGINT},
+      ModifyDate = #{record.modifydate,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mwm.env.mybatis.modal.ProvideInfo" >
+    update ProvideInfo
+    <set >
+      <if test="userid != null" >
+        UserId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="measurecerurl != null" >
+        MeasureCerUrl = #{measurecerurl,jdbcType=VARCHAR},
+      </if>
+      <if test="detectioncapabilityurl != null" >
+        DetectionCapabilityUrl = #{detectioncapabilityurl,jdbcType=VARCHAR},
+      </if>
+      <if test="annexsseturl != null" >
+        AnnexsSetUrl = #{annexsseturl,jdbcType=VARCHAR},
+      </if>
+      <if test="auditstatus != null" >
+        AuditStatus = #{auditstatus,jdbcType=CHAR},
+      </if>
+      <if test="usertype != null" >
+        UserType = #{usertype,jdbcType=CHAR},
+      </if>
+      <if test="auditstute != null" >
+        AuditStute = #{auditstute,jdbcType=CHAR},
+      </if>
+      <if test="createdate != null" >
+        Createdate = #{createdate,jdbcType=BIGINT},
+      </if>
+      <if test="modifydate != null" >
+        ModifyDate = #{modifydate,jdbcType=BIGINT},
+      </if>
+    </set>
+    where ProvideId = #{provideid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mwm.env.mybatis.modal.ProvideInfo" >
+    update ProvideInfo
+    set UserId = #{userid,jdbcType=INTEGER},
+      MeasureCerUrl = #{measurecerurl,jdbcType=VARCHAR},
+      DetectionCapabilityUrl = #{detectioncapabilityurl,jdbcType=VARCHAR},
+      AnnexsSetUrl = #{annexsseturl,jdbcType=VARCHAR},
+      AuditStatus = #{auditstatus,jdbcType=CHAR},
+      UserType = #{usertype,jdbcType=CHAR},
+      AuditStute = #{auditstute,jdbcType=CHAR},
+      Createdate = #{createdate,jdbcType=BIGINT},
+      ModifyDate = #{modifydate,jdbcType=BIGINT}
+    where ProvideId = #{provideid,jdbcType=INTEGER}
+  </update>
+</mapper>

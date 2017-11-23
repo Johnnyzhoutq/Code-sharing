@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mwm.env.dao.IDataGoodsDao">
+
+	<!-- 查询商品 -->
+	<select id="queryDataGoodsInfo" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		SELECT
+			good.*,
+			idx.IndexName indexname,
+			lib.IndexLibName indexlibname,
+			type.IndexTypeName indextypename
+			<if test="lon != null and lon != ''">
+			,ROUND(6378.138*2*ASIN(SQRT(POW(SIN((#{lat}*PI()/180-good.lat*PI()/180)/2),2)+COS(#{lat}*PI()/180)*COS(good.lat*PI()/180)*POW(SIN((#{lon}*PI()/180-good.lon*PI()/180)/2),2)))*1000) AS distance
+			</if>
+		FROM
+			DataGoodsInfo good
+			LEFT JOIN IndexInfo idx ON idx.IndexId = good.IndexId
+			LEFT JOIN IndexLibraryInfo lib ON lib.IndexLibId = idx.IndexLibId
+			LEFT JOIN IndexTypeInfo type ON type.IndexTypeId = good.GoodsType
+		WHERE good.ProvideId = #{providerId}
+		AND good.State = "N"
+		<if test="goodsId != null and goodsId != ''">
+		AND good.Goods = #{goodsId}
+		</if>
+		<if test="indexName != null and indexName != ''">
+		AND idx.IndexName LIKE CONCAT("%",#{indexName},"%")	
+		</if>
+		<if test="indexTypeId != null and indexTypeId != ''">
+		AND good.GoodsType = #{indexTypeId}
+		</if>
+		<if test="shelves != null and shelves != ''">
+		AND Shelves = #{shelves}
+		</if>
+		<if test="auditStatus != null and auditStatus != ''">
+		AND Shelves = #{auditStatus}
+		</if>
+		
+		<if test="lon != null and lon != ''">
+		HAVING round(distance) &lt; (good.Ranges + ${range})
+		</if>
+		
+		<if test="sortFiled != null and sortFiled == 'Createdate'">
+		ORDER BY good.Createdate DESC
+		</if>
+		<if test="sortFiled != null and sortFiled == 'UnitPrice'">
+		ORDER BY good.UnitPrice DESC
+		</if>
+	</select>
+	
+	<!-- 查询商品 -->
+	<select id="searchDatagoodsMap" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		SELECT
+			good.*,
+			ROUND(6378.138*2*ASIN(SQRT(POW(SIN((#{lat}*PI()/180-good.lat*PI()/180)/2),2)+COS(#{lat}*PI()/180)*COS(good.lat*PI()/180)*POW(SIN((#{lon}*PI()/180-good.lon*PI()/180)/2),2)))*1000) AS distance,
+			ind.IndexName indexname,
+			type.IndexTypeName indexTypeName,
+			rep.ReportName reportname
+		FROM
+			DataGoodsInfo good
+			LEFT JOIN IndexInfo ind ON ind.IndexId = good.IndexId
+			LEFT JOIN IndexTypeInfo type ON type.IndexTypeId = good.GoodsType
+			LEFT JOIN ReportInfo rep ON rep.ReportId = good.ReportId
+		WHERE 
+		good.State = "N"
+		<if test=" indexNameList != null and indexNameList != '' ">
+		and ind.IndexName in (${indexNameList})
+		</if>
+		<if test=" timeScope != null and timeScope != '' ">
+		AND good.EndDate - good.StartDate &lt; ${timeScope} 
+		</if>
+		<if test=" indexTypeId != null and indexTypeId != '' ">
+		AND type.IndexTypeId = #{indexTypeId}
+		</if>
+		HAVING 
+			round(distance) &lt; (good.Ranges + ${range})
+	</select>
+	
+</mapper>

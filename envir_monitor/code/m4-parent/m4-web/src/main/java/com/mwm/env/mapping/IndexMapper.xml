@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mwm.env.dao.IIndexDao">
+
+	<!-- 查询指标信息 -->
+	<select id="queryIndexInfo" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		SELECT
+			*
+		FROM
+			IndexInfo inf
+			LEFT JOIN IndexLibraryInfo lib ON lib.IndexLibId = inf.IndexLibId
+		WHERE
+			inf.ProvideId = #{provideId}
+			AND inf.State = "N"
+			<if test="name != null and name !=''">
+			AND inf.IndexName LIKE CONCAT("%",#{name},"%")
+			</if>
+			<if test="timeFrame != null and timeFrame !=''">
+			AND inf.Createdate > (UNIX_TIMESTAMP(NOW())*1000 - #{timeFrame})
+			</if>
+	</select>
+
+	<!-- 查询指标库指标 -->
+	<select id="queryIndexInfoForLib" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		SELECT
+			*
+		FROM
+			IndexLibraryInfo lib,
+			IndexInfo inf
+			WHERE lib.IndexLibId = inf.IndexLibId
+			AND lib.ProvideId  = #{providerId}
+			<if test="indexLibId != null and indexLibId !=''">
+				AND lib.IndexLibId = #{indexLibId}
+			</if>
+			<if test="indexName != null and indexName !=''">
+				AND inf.IndexName LIKE CONCAT("%",#{indexName},"%")
+			</if>
+			<if test="startDate != null and startDate !=''">
+				AND inf.CreateDate > ${startDate}
+			</if>
+	</select>
+	
+	<!-- 查询原始报告列表 -->
+	<select id="getReportList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		SELECT
+			*
+		FROM
+			ReportInfo re
+			LEFT JOIN DataGoodsInfo good ON good.ReportId = re.ReportId
+		WHERE
+			re.DeleteFlag = 0
+			AND re.ProvideId = #{provideId}
+			<if test="reportName != null and reportName !=''">
+			AND re.ReportName LIKE CONCAT("%",#{reportName},"%")
+			</if>
+	</select>
+	
+	<!-- 获取官方指标库 -->
+	<select id="getOfficialIndex" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		SELECT
+			*
+		FROM
+			OffIndexInfo offindex
+		LEFT JOIN OffIndexLibraryInfo offindexlib ON offindex.OffIndexLibId = offindexlib.OffIndexLibId
+	</select>
+	
+</mapper>

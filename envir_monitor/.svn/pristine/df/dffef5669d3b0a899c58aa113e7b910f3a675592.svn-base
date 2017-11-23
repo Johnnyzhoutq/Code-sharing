@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mwm.env.mybatis.dao.SlaveOrderInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.mwm.env.mybatis.modal.SlaveOrderInfo" >
+    <id column="SlaveId" property="slaveid" jdbcType="BIGINT" />
+    <result column="MasterId" property="masterid" jdbcType="BIGINT" />
+    <result column="ProvideId" property="provideid" jdbcType="INTEGER" />
+    <result column="SlaveNum" property="slavenum" jdbcType="VARCHAR" />
+    <result column="Recivable" property="recivable" jdbcType="DECIMAL" />
+    <result column="PaidPrice" property="paidprice" jdbcType="DECIMAL" />
+    <result column="PenaltyPrice" property="penaltyprice" jdbcType="DECIMAL" />
+    <result column="Refund" property="refund" jdbcType="DECIMAL" />
+    <result column="IncomeRatio" property="incomeratio" jdbcType="DECIMAL" />
+    <result column="OrderState" property="orderstate" jdbcType="CHAR" />
+    <result column="DeliveryNum" property="deliverynum" jdbcType="VARCHAR" />
+    <result column="DeliveryDate" property="deliverydate" jdbcType="BIGINT" />
+    <result column="RecipDate" property="recipdate" jdbcType="BIGINT" />
+    <result column="PlatformDate" property="platformdate" jdbcType="BIGINT" />
+    <result column="CompleteDate" property="completedate" jdbcType="BIGINT" />
+    <result column="Createdate" property="createdate" jdbcType="BIGINT" />
+    <result column="ModifyDate" property="modifydate" jdbcType="BIGINT" />
+    <result column="Goods" property="goods" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.mwm.env.mybatis.modal.SlaveOrderInfo" extends="BaseResultMap" >
+    <result column="DataGoods" property="datagoods" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    SlaveId, MasterId, ProvideId, SlaveNum, Recivable, PaidPrice, PenaltyPrice, Refund, 
+    IncomeRatio, OrderState, DeliveryNum, DeliveryDate, RecipDate, PlatformDate, CompleteDate, 
+    Createdate, ModifyDate, Goods
+  </sql>
+  <sql id="Blob_Column_List" >
+    DataGoods
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.mwm.env.mybatis.modal.SlaveOrderInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from SlaveOrderInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mwm.env.mybatis.modal.SlaveOrderInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from SlaveOrderInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from SlaveOrderInfo
+    where SlaveId = #{slaveid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from SlaveOrderInfo
+    where SlaveId = #{slaveid,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mwm.env.mybatis.modal.SlaveOrderInfoExample" >
+    delete from SlaveOrderInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mwm.env.mybatis.modal.SlaveOrderInfo" >
+    <selectKey resultType="java.lang.Long" keyProperty="slaveid" order="AFTER" >
+      select last_insert_id()
+    </selectKey>
+    insert into SlaveOrderInfo (MasterId, ProvideId, SlaveNum, 
+      Recivable, PaidPrice, PenaltyPrice, 
+      Refund, IncomeRatio, OrderState, 
+      DeliveryNum, DeliveryDate, RecipDate, 
+      PlatformDate, CompleteDate, Createdate, 
+      ModifyDate, Goods, DataGoods
+      )
+    values (#{masterid,jdbcType=BIGINT}, #{provideid,jdbcType=INTEGER}, #{slavenum,jdbcType=VARCHAR}, 
+      #{recivable,jdbcType=DECIMAL}, #{paidprice,jdbcType=DECIMAL}, #{penaltyprice,jdbcType=DECIMAL}, 
+      #{refund,jdbcType=DECIMAL}, #{incomeratio,jdbcType=DECIMAL}, #{orderstate,jdbcType=CHAR}, 
+      #{deliverynum,jdbcType=VARCHAR}, #{deliverydate,jdbcType=BIGINT}, #{recipdate,jdbcType=BIGINT}, 
+      #{platformdate,jdbcType=BIGINT}, #{completedate,jdbcType=BIGINT}, #{createdate,jdbcType=BIGINT}, 
+      #{modifydate,jdbcType=BIGINT}, #{goods,jdbcType=INTEGER}, #{datagoods,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mwm.env.mybatis.modal.SlaveOrderInfo" >
+    <selectKey resultType="java.lang.Long" keyProperty="slaveid" order="AFTER" >
+      select last_insert_id()
+    </selectKey>
+    insert into SlaveOrderInfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="masterid != null" >
+        MasterId,
+      </if>
+      <if test="provideid != null" >
+        ProvideId,
+      </if>
+      <if test="slavenum != null" >
+        SlaveNum,
+      </if>
+      <if test="recivable != null" >
+        Recivable,
+      </if>
+      <if test="paidprice != null" >
+        PaidPrice,
+      </if>
+      <if test="penaltyprice != null" >
+        PenaltyPrice,
+      </if>
+      <if test="refund != null" >
+        Refund,
+      </if>
+      <if test="incomeratio != null" >
+        IncomeRatio,
+      </if>
+      <if test="orderstate != null" >
+        OrderState,
+      </if>
+      <if test="deliverynum != null" >
+        DeliveryNum,
+      </if>
+      <if test="deliverydate != null" >
+        DeliveryDate,
+      </if>
+      <if test="recipdate != null" >
+        RecipDate,
+      </if>
+      <if test="platformdate != null" >
+        PlatformDate,
+      </if>
+      <if test="completedate != null" >
+        CompleteDate,
+      </if>
+      <if test="createdate != null" >
+        Createdate,
+      </if>
+      <if test="modifydate != null" >
+        ModifyDate,
+      </if>
+      <if test="goods != null" >
+        Goods,
+      </if>
+      <if test="datagoods != null" >
+        DataGoods,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="masterid != null" >
+        #{masterid,jdbcType=BIGINT},
+      </if>
+      <if test="provideid != null" >
+        #{provideid,jdbcType=INTEGER},
+      </if>
+      <if test="slavenum != null" >
+        #{slavenum,jdbcType=VARCHAR},
+      </if>
+      <if test="recivable != null" >
+        #{recivable,jdbcType=DECIMAL},
+      </if>
+      <if test="paidprice != null" >
+        #{paidprice,jdbcType=DECIMAL},
+      </if>
+      <if test="penaltyprice != null" >
+        #{penaltyprice,jdbcType=DECIMAL},
+      </if>
+      <if test="refund != null" >
+        #{refund,jdbcType=DECIMAL},
+      </if>
+      <if test="incomeratio != null" >
+        #{incomeratio,jdbcType=DECIMAL},
+      </if>
+      <if test="orderstate != null" >
+        #{orderstate,jdbcType=CHAR},
+      </if>
+      <if test="deliverynum != null" >
+        #{deliverynum,jdbcType=VARCHAR},
+      </if>
+      <if test="deliverydate != null" >
+        #{deliverydate,jdbcType=BIGINT},
+      </if>
+      <if test="recipdate != null" >
+        #{recipdate,jdbcType=BIGINT},
+      </if>
+      <if test="platformdate != null" >
+        #{platformdate,jdbcType=BIGINT},
+      </if>
+      <if test="completedate != null" >
+        #{completedate,jdbcType=BIGINT},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=BIGINT},
+      </if>
+      <if test="modifydate != null" >
+        #{modifydate,jdbcType=BIGINT},
+      </if>
+      <if test="goods != null" >
+        #{goods,jdbcType=INTEGER},
+      </if>
+      <if test="datagoods != null" >
+        #{datagoods,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mwm.env.mybatis.modal.SlaveOrderInfoExample" resultType="java.lang.Integer" >
+    select count(*) from SlaveOrderInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update SlaveOrderInfo
+    <set >
+      <if test="record.slaveid != null" >
+        SlaveId = #{record.slaveid,jdbcType=BIGINT},
+      </if>
+      <if test="record.masterid != null" >
+        MasterId = #{record.masterid,jdbcType=BIGINT},
+      </if>
+      <if test="record.provideid != null" >
+        ProvideId = #{record.provideid,jdbcType=INTEGER},
+      </if>
+      <if test="record.slavenum != null" >
+        SlaveNum = #{record.slavenum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.recivable != null" >
+        Recivable = #{record.recivable,jdbcType=DECIMAL},
+      </if>
+      <if test="record.paidprice != null" >
+        PaidPrice = #{record.paidprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.penaltyprice != null" >
+        PenaltyPrice = #{record.penaltyprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.refund != null" >
+        Refund = #{record.refund,jdbcType=DECIMAL},
+      </if>
+      <if test="record.incomeratio != null" >
+        IncomeRatio = #{record.incomeratio,jdbcType=DECIMAL},
+      </if>
+      <if test="record.orderstate != null" >
+        OrderState = #{record.orderstate,jdbcType=CHAR},
+      </if>
+      <if test="record.deliverynum != null" >
+        DeliveryNum = #{record.deliverynum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deliverydate != null" >
+        DeliveryDate = #{record.deliverydate,jdbcType=BIGINT},
+      </if>
+      <if test="record.recipdate != null" >
+        RecipDate = #{record.recipdate,jdbcType=BIGINT},
+      </if>
+      <if test="record.platformdate != null" >
+        PlatformDate = #{record.platformdate,jdbcType=BIGINT},
+      </if>
+      <if test="record.completedate != null" >
+        CompleteDate = #{record.completedate,jdbcType=BIGINT},
+      </if>
+      <if test="record.createdate != null" >
+        Createdate = #{record.createdate,jdbcType=BIGINT},
+      </if>
+      <if test="record.modifydate != null" >
+        ModifyDate = #{record.modifydate,jdbcType=BIGINT},
+      </if>
+      <if test="record.goods != null" >
+        Goods = #{record.goods,jdbcType=INTEGER},
+      </if>
+      <if test="record.datagoods != null" >
+        DataGoods = #{record.datagoods,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update SlaveOrderInfo
+    set SlaveId = #{record.slaveid,jdbcType=BIGINT},
+      MasterId = #{record.masterid,jdbcType=BIGINT},
+      ProvideId = #{record.provideid,jdbcType=INTEGER},
+      SlaveNum = #{record.slavenum,jdbcType=VARCHAR},
+      Recivable = #{record.recivable,jdbcType=DECIMAL},
+      PaidPrice = #{record.paidprice,jdbcType=DECIMAL},
+      PenaltyPrice = #{record.penaltyprice,jdbcType=DECIMAL},
+      Refund = #{record.refund,jdbcType=DECIMAL},
+      IncomeRatio = #{record.incomeratio,jdbcType=DECIMAL},
+      OrderState = #{record.orderstate,jdbcType=CHAR},
+      DeliveryNum = #{record.deliverynum,jdbcType=VARCHAR},
+      DeliveryDate = #{record.deliverydate,jdbcType=BIGINT},
+      RecipDate = #{record.recipdate,jdbcType=BIGINT},
+      PlatformDate = #{record.platformdate,jdbcType=BIGINT},
+      CompleteDate = #{record.completedate,jdbcType=BIGINT},
+      Createdate = #{record.createdate,jdbcType=BIGINT},
+      ModifyDate = #{record.modifydate,jdbcType=BIGINT},
+      Goods = #{record.goods,jdbcType=INTEGER},
+      DataGoods = #{record.datagoods,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update SlaveOrderInfo
+    set SlaveId = #{record.slaveid,jdbcType=BIGINT},
+      MasterId = #{record.masterid,jdbcType=BIGINT},
+      ProvideId = #{record.provideid,jdbcType=INTEGER},
+      SlaveNum = #{record.slavenum,jdbcType=VARCHAR},
+      Recivable = #{record.recivable,jdbcType=DECIMAL},
+      PaidPrice = #{record.paidprice,jdbcType=DECIMAL},
+      PenaltyPrice = #{record.penaltyprice,jdbcType=DECIMAL},
+      Refund = #{record.refund,jdbcType=DECIMAL},
+      IncomeRatio = #{record.incomeratio,jdbcType=DECIMAL},
+      OrderState = #{record.orderstate,jdbcType=CHAR},
+      DeliveryNum = #{record.deliverynum,jdbcType=VARCHAR},
+      DeliveryDate = #{record.deliverydate,jdbcType=BIGINT},
+      RecipDate = #{record.recipdate,jdbcType=BIGINT},
+      PlatformDate = #{record.platformdate,jdbcType=BIGINT},
+      CompleteDate = #{record.completedate,jdbcType=BIGINT},
+      Createdate = #{record.createdate,jdbcType=BIGINT},
+      ModifyDate = #{record.modifydate,jdbcType=BIGINT},
+      Goods = #{record.goods,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mwm.env.mybatis.modal.SlaveOrderInfo" >
+    update SlaveOrderInfo
+    <set >
+      <if test="masterid != null" >
+        MasterId = #{masterid,jdbcType=BIGINT},
+      </if>
+      <if test="provideid != null" >
+        ProvideId = #{provideid,jdbcType=INTEGER},
+      </if>
+      <if test="slavenum != null" >
+        SlaveNum = #{slavenum,jdbcType=VARCHAR},
+      </if>
+      <if test="recivable != null" >
+        Recivable = #{recivable,jdbcType=DECIMAL},
+      </if>
+      <if test="paidprice != null" >
+        PaidPrice = #{paidprice,jdbcType=DECIMAL},
+      </if>
+      <if test="penaltyprice != null" >
+        PenaltyPrice = #{penaltyprice,jdbcType=DECIMAL},
+      </if>
+      <if test="refund != null" >
+        Refund = #{refund,jdbcType=DECIMAL},
+      </if>
+      <if test="incomeratio != null" >
+        IncomeRatio = #{incomeratio,jdbcType=DECIMAL},
+      </if>
+      <if test="orderstate != null" >
+        OrderState = #{orderstate,jdbcType=CHAR},
+      </if>
+      <if test="deliverynum != null" >
+        DeliveryNum = #{deliverynum,jdbcType=VARCHAR},
+      </if>
+      <if test="deliverydate != null" >
+        DeliveryDate = #{deliverydate,jdbcType=BIGINT},
+      </if>
+      <if test="recipdate != null" >
+        RecipDate = #{recipdate,jdbcType=BIGINT},
+      </if>
+      <if test="platformdate != null" >
+        PlatformDate = #{platformdate,jdbcType=BIGINT},
+      </if>
+      <if test="completedate != null" >
+        CompleteDate = #{completedate,jdbcType=BIGINT},
+      </if>
+      <if test="createdate != null" >
+        Createdate = #{createdate,jdbcType=BIGINT},
+      </if>
+      <if test="modifydate != null" >
+        ModifyDate = #{modifydate,jdbcType=BIGINT},
+      </if>
+      <if test="goods != null" >
+        Goods = #{goods,jdbcType=INTEGER},
+      </if>
+      <if test="datagoods != null" >
+        DataGoods = #{datagoods,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where SlaveId = #{slaveid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.mwm.env.mybatis.modal.SlaveOrderInfo" >
+    update SlaveOrderInfo
+    set MasterId = #{masterid,jdbcType=BIGINT},
+      ProvideId = #{provideid,jdbcType=INTEGER},
+      SlaveNum = #{slavenum,jdbcType=VARCHAR},
+      Recivable = #{recivable,jdbcType=DECIMAL},
+      PaidPrice = #{paidprice,jdbcType=DECIMAL},
+      PenaltyPrice = #{penaltyprice,jdbcType=DECIMAL},
+      Refund = #{refund,jdbcType=DECIMAL},
+      IncomeRatio = #{incomeratio,jdbcType=DECIMAL},
+      OrderState = #{orderstate,jdbcType=CHAR},
+      DeliveryNum = #{deliverynum,jdbcType=VARCHAR},
+      DeliveryDate = #{deliverydate,jdbcType=BIGINT},
+      RecipDate = #{recipdate,jdbcType=BIGINT},
+      PlatformDate = #{platformdate,jdbcType=BIGINT},
+      CompleteDate = #{completedate,jdbcType=BIGINT},
+      Createdate = #{createdate,jdbcType=BIGINT},
+      ModifyDate = #{modifydate,jdbcType=BIGINT},
+      Goods = #{goods,jdbcType=INTEGER},
+      DataGoods = #{datagoods,jdbcType=LONGVARCHAR}
+    where SlaveId = #{slaveid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mwm.env.mybatis.modal.SlaveOrderInfo" >
+    update SlaveOrderInfo
+    set MasterId = #{masterid,jdbcType=BIGINT},
+      ProvideId = #{provideid,jdbcType=INTEGER},
+      SlaveNum = #{slavenum,jdbcType=VARCHAR},
+      Recivable = #{recivable,jdbcType=DECIMAL},
+      PaidPrice = #{paidprice,jdbcType=DECIMAL},
+      PenaltyPrice = #{penaltyprice,jdbcType=DECIMAL},
+      Refund = #{refund,jdbcType=DECIMAL},
+      IncomeRatio = #{incomeratio,jdbcType=DECIMAL},
+      OrderState = #{orderstate,jdbcType=CHAR},
+      DeliveryNum = #{deliverynum,jdbcType=VARCHAR},
+      DeliveryDate = #{deliverydate,jdbcType=BIGINT},
+      RecipDate = #{recipdate,jdbcType=BIGINT},
+      PlatformDate = #{platformdate,jdbcType=BIGINT},
+      CompleteDate = #{completedate,jdbcType=BIGINT},
+      Createdate = #{createdate,jdbcType=BIGINT},
+      ModifyDate = #{modifydate,jdbcType=BIGINT},
+      Goods = #{goods,jdbcType=INTEGER}
+    where SlaveId = #{slaveid,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,655 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <title>king-供应商 成长体系</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <link href="resources/css/jquery-ui-themes.css" type="text/css" rel="stylesheet"/>
+    <link href="resources/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
+    <link href="data/styles.css" type="text/css" rel="stylesheet"/>
+    <link href="files/king-供应商_成长体系/styles.css" type="text/css" rel="stylesheet"/>
+    <script src="resources/scripts/jquery-1.7.1.min.js"></script>
+    <script src="resources/scripts/jquery-ui-1.8.10.custom.min.js"></script>
+    <script src="resources/scripts/axure/axQuery.js"></script>
+    <script src="resources/scripts/axure/globals.js"></script>
+    <script src="resources/scripts/axutils.js"></script>
+    <script src="resources/scripts/axure/annotation.js"></script>
+    <script src="resources/scripts/axure/axQuery.std.js"></script>
+    <script src="resources/scripts/axure/doc.js"></script>
+    <script src="data/document.js"></script>
+    <script src="resources/scripts/messagecenter.js"></script>
+    <script src="resources/scripts/axure/events.js"></script>
+    <script src="resources/scripts/axure/recording.js"></script>
+    <script src="resources/scripts/axure/action.js"></script>
+    <script src="resources/scripts/axure/expr.js"></script>
+    <script src="resources/scripts/axure/geometry.js"></script>
+    <script src="resources/scripts/axure/flyout.js"></script>
+    <script src="resources/scripts/axure/ie.js"></script>
+    <script src="resources/scripts/axure/model.js"></script>
+    <script src="resources/scripts/axure/repeater.js"></script>
+    <script src="resources/scripts/axure/sto.js"></script>
+    <script src="resources/scripts/axure/utils.temp.js"></script>
+    <script src="resources/scripts/axure/variables.js"></script>
+    <script src="resources/scripts/axure/drag.js"></script>
+    <script src="resources/scripts/axure/move.js"></script>
+    <script src="resources/scripts/axure/visibility.js"></script>
+    <script src="resources/scripts/axure/style.js"></script>
+    <script src="resources/scripts/axure/adaptive.js"></script>
+    <script src="resources/scripts/axure/tree.js"></script>
+    <script src="resources/scripts/axure/init.temp.js"></script>
+    <script src="files/king-供应商_成长体系/data.js"></script>
+    <script src="resources/scripts/axure/legacy.js"></script>
+    <script src="resources/scripts/axure/viewer.js"></script>
+    <script src="resources/scripts/axure/math.js"></script>
+    <script type="text/javascript">
+      $axure.utils.getTransparentGifPath = function() { return 'resources/images/transparent.gif'; };
+      $axure.utils.getOtherPath = function() { return 'resources/Other.html'; };
+      $axure.utils.getReloadPath = function() { return 'resources/reload.html'; };
+    </script>
+  </head>
+  <body>
+    <div id="base" class="">
+
+      <!-- Unnamed (矩形) -->
+      <div id="u7634" class="ax_default _三级标题">
+        <div id="u7634_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u7635" class="text" style="visibility: visible;">
+          <p><span>你现在是认证供应商</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (供应方) -->
+
+      <!-- Unnamed (垂直线) -->
+      <div id="u7637" class="ax_default line">
+        <img id="u7637_img" class="img " src="images/ber6789-____1/u1325.png"/>
+        <!-- Unnamed () -->
+        <div id="u7638" class="text" style="display: none; visibility: hidden">
+          <p><span></span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (树状菜单) -->
+      <div id="u7639" class="ax_default tree_node treeroot">
+        <div id="u7639_children" class="u7639_children">
+
+          <!-- Unnamed (树节点) -->
+          <div id="u7640" class="ax_default tree_node treenode">
+
+            <!-- Unnamed (图片) -->
+            <div id="u7641" class="ax_default image">
+              <img id="u7641_img" class="img " src="images/ber6789-___/u535_selected.png"/>
+              <!-- Unnamed () -->
+              <div id="u7642" class="text" style="display: none; visibility: hidden">
+                <p><span></span></p>
+              </div>
+            </div>
+            <!-- Unnamed (矩形) -->
+            <div id="u7643" class="" selectiongroup="u7636u7639_tree_group">
+              <div id="u7643_div" class=""></div>
+              <!-- Unnamed () -->
+              <div id="u7644" class="text" style="visibility: visible;">
+                <p><span>数据管理</span></p>
+              </div>
+            </div>
+            <div id="u7640_children" class="u7640_children">
+
+              <!-- Unnamed (树节点) -->
+              <div id="u7645" class="ax_default tree_node treenode">
+                <!-- Unnamed (矩形) -->
+                <div id="u7646" class="" selectiongroup="u7636u7639_tree_group">
+                  <div id="u7646_div" class=""></div>
+                  <!-- Unnamed () -->
+                  <div id="u7647" class="text" style="visibility: visible;">
+                    <p><span>新建指标母版</span></p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Unnamed (树节点) -->
+              <div id="u7648" class="ax_default tree_node treenode">
+                <!-- Unnamed (矩形) -->
+                <div id="u7649" class="" selectiongroup="u7636u7639_tree_group">
+                  <div id="u7649_div" class=""></div>
+                  <!-- Unnamed () -->
+                  <div id="u7650" class="text" style="visibility: visible;">
+                    <p><span>原始报告管理</span></p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Unnamed (树节点) -->
+              <div id="u7651" class="ax_default tree_node treenode">
+                <!-- Unnamed (矩形) -->
+                <div id="u7652" class="" selectiongroup="u7636u7639_tree_group">
+                  <div id="u7652_div" class=""></div>
+                  <!-- Unnamed () -->
+                  <div id="u7653" class="text" style="visibility: visible;">
+                    <p><span>我的指标库</span></p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Unnamed (树节点) -->
+              <div id="u7654" class="ax_default tree_node treenode">
+                <!-- Unnamed (矩形) -->
+                <div id="u7655" class="" selectiongroup="u7636u7639_tree_group">
+                  <div id="u7655_div" class=""></div>
+                  <!-- Unnamed () -->
+                  <div id="u7656" class="text" style="visibility: visible;">
+                    <p><span>常用指标类型</span></p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Unnamed (树节点) -->
+              <div id="u7657" class="ax_default tree_node treenode">
+                <!-- Unnamed (矩形) -->
+                <div id="u7658" class="" selectiongroup="u7636u7639_tree_group">
+                  <div id="u7658_div" class=""></div>
+                  <!-- Unnamed () -->
+                  <div id="u7659" class="text" style="visibility: visible;">
+                    <p><span>生成商品</span></p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Unnamed (树节点) -->
+              <div id="u7660" class="ax_default tree_node treenode">
+                <!-- Unnamed (矩形) -->
+                <div id="u7661" class="" selectiongroup="u7636u7639_tree_group">
+                  <div id="u7661_div" class=""></div>
+                  <!-- Unnamed () -->
+                  <div id="u7662" class="text" style="visibility: visible;">
+                    <p><span>我的商品</span></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Unnamed (树状菜单) -->
+      <div id="u7663" class="ax_default tree_node treeroot">
+        <div id="u7663_children" class="u7663_children">
+
+          <!-- Unnamed (树节点) -->
+          <div id="u7664" class="ax_default tree_node treenode">
+
+            <!-- Unnamed (图片) -->
+            <div id="u7665" class="ax_default image">
+              <img id="u7665_img" class="img " src="images/ber6789-___/u535_selected.png"/>
+              <!-- Unnamed () -->
+              <div id="u7666" class="text" style="display: none; visibility: hidden">
+                <p><span></span></p>
+              </div>
+            </div>
+            <!-- Unnamed (矩形) -->
+            <div id="u7667" class="" selectiongroup="u7636u7663_tree_group">
+              <div id="u7667_div" class=""></div>
+              <!-- Unnamed () -->
+              <div id="u7668" class="text" style="visibility: visible;">
+                <p><span>订单管理</span></p>
+              </div>
+            </div>
+            <div id="u7664_children" class="u7664_children">
+
+              <!-- Unnamed (树节点) -->
+              <div id="u7669" class="ax_default tree_node treenode">
+                <!-- Unnamed (矩形) -->
+                <div id="u7670" class="" selectiongroup="u7636u7663_tree_group">
+                  <div id="u7670_div" class=""></div>
+                  <!-- Unnamed () -->
+                  <div id="u7671" class="text" style="visibility: visible;">
+                    <p><span>新订单(1)</span></p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Unnamed (树节点) -->
+              <div id="u7672" class="ax_default tree_node treenode">
+                <!-- Unnamed (矩形) -->
+                <div id="u7673" class="" selectiongroup="u7636u7663_tree_group">
+                  <div id="u7673_div" class=""></div>
+                  <!-- Unnamed () -->
+                  <div id="u7674" class="text" style="visibility: visible;">
+                    <p><span>待发货(1)</span></p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Unnamed (树节点) -->
+              <div id="u7675" class="ax_default tree_node treenode">
+                <!-- Unnamed (矩形) -->
+                <div id="u7676" class="" selectiongroup="u7636u7663_tree_group">
+                  <div id="u7676_div" class=""></div>
+                  <!-- Unnamed () -->
+                  <div id="u7677" class="text" style="visibility: visible;">
+                    <p><span>待收货(1)</span></p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Unnamed (树节点) -->
+              <div id="u7678" class="ax_default tree_node treenode">
+                <!-- Unnamed (矩形) -->
+                <div id="u7679" class="" selectiongroup="u7636u7663_tree_group">
+                  <div id="u7679_div" class=""></div>
+                  <!-- Unnamed () -->
+                  <div id="u7680" class="text" style="visibility: visible;">
+                    <p><span>已结束</span></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u7681" class="ax_default label">
+        <div id="u7681_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u7682" class="text" style="visibility: visible;">
+          <p><span>投诉建议</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u7683" class="ax_default label">
+        <div id="u7683_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u7684" class="text" style="visibility: visible;">
+          <p><span>物流查询</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u7685" class="ax_default label">
+        <div id="u7685_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u7686" class="text" style="visibility: visible;">
+          <p><span>金牌供应商</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (nav) -->
+
+      <!-- Unnamed (矩形) -->
+      <div id="u7688" class="ax_default link_button">
+        <div id="u7688_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u7689" class="text" style="visibility: visible;">
+          <p><span>首页</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u7690" class="ax_default link_button">
+        <div id="u7690_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u7691" class="text" style="visibility: visible;">
+          <p><span>帮助手册</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (水平线) -->
+      <div id="u7692" class="ax_default line">
+        <img id="u7692_img" class="img " src="images/首页/u7.png"/>
+        <!-- Unnamed () -->
+        <div id="u7693" class="text" style="display: none; visibility: hidden">
+          <p><span></span></p>
+        </div>
+      </div>
+
+      <!-- 登录 (矩形) -->
+      <div id="u7694" class="ax_default link_button" data-label="登录">
+        <div id="u7694_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u7695" class="text" style="visibility: visible;">
+          <p><span>登录</span></p>
+        </div>
+      </div>
+
+      <!-- 注册 (矩形) -->
+      <div id="u7696" class="ax_default link_button" data-label="注册">
+        <div id="u7696_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u7697" class="text" style="visibility: visible;">
+          <p><span>注册</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u7698" class="ax_default link_button">
+        <div id="u7698_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u7699" class="text" style="visibility: visible;">
+          <p><span>在线客服</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u7700" class="ax_default link_button">
+        <div id="u7700_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u7701" class="text" style="visibility: visible;">
+          <p><span>我要买报告</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u7702" class="ax_default link_button">
+        <div id="u7702_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u7703" class="text" style="visibility: visible;">
+          <p><span>我要卖报告</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (形状) -->
+      <div id="u7704" class="ax_default icon ax_default_hidden" style="display: none; visibility: hidden">
+        <img id="u7704_img" class="img " src="images/首页/u19.png"/>
+        <!-- Unnamed () -->
+        <div id="u7705" class="text" style="display: none; visibility: hidden">
+          <p><span></span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u7706" class="ax_default link_button">
+        <div id="u7706_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u7707" class="text" style="visibility: visible;">
+          <p><span>商务合作</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u7708" class="ax_default link_button">
+        <div id="u7708_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u7709" class="text" style="visibility: visible;">
+          <p><span>人才招聘</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u7710" class="ax_default label">
+        <div id="u7710_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u7711" class="text" style="visibility: visible;">
+          <p><span>1step认证供应商</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u7712" class="ax_default label">
+        <div id="u7712_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u7713" class="text" style="visibility: visible;">
+          <p><span>2step银牌供应商</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u7714" class="ax_default label">
+        <div id="u7714_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u7715" class="text" style="visibility: visible;">
+          <p><span>3step金牌供应商</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (表格) -->
+      <div id="u7716" class="ax_default">
+
+        <!-- Unnamed (单元格) -->
+        <div id="u7717" class="ax_default table_cell">
+          <img id="u7717_img" class="img " src="images/king-供应商_成长体系/u7717.png"/>
+          <!-- Unnamed () -->
+          <div id="u7718" class="text" style="visibility: visible;">
+            <p><span>前提条件</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u7719" class="ax_default table_cell">
+          <img id="u7719_img" class="img " src="images/king-供应商_成长体系/u7719.png"/>
+          <!-- Unnamed () -->
+          <div id="u7720" class="text" style="visibility: visible;">
+            <p><span>通过平台资料审核</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u7721" class="ax_default table_cell">
+          <img id="u7721_img" class="img " src="images/king-供应商_成长体系/u7721.png"/>
+          <!-- Unnamed () -->
+          <div id="u7722" class="text" style="visibility: visible;">
+            <p><span>成为认证供应商</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u7723" class="ax_default table_cell">
+          <img id="u7723_img" class="img " src="images/king-供应商_成长体系/u7723.png"/>
+          <!-- Unnamed () -->
+          <div id="u7724" class="text" style="visibility: visible;">
+            <p><span>成为银牌供应商</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u7725" class="ax_default table_cell">
+          <img id="u7725_img" class="img " src="images/king-供应商_成长体系/u7717.png"/>
+          <!-- Unnamed () -->
+          <div id="u7726" class="text" style="visibility: visible;">
+            <p><span>申请方式</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u7727" class="ax_default table_cell">
+          <img id="u7727_img" class="img " src="images/king-供应商_成长体系/u7719.png"/>
+          <!-- Unnamed () -->
+          <div id="u7728" class="text" style="visibility: visible;">
+            <p><span>免费</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u7729" class="ax_default table_cell">
+          <img id="u7729_img" class="img " src="images/king-供应商_成长体系/u7721.png"/>
+          <!-- Unnamed () -->
+          <div id="u7730" class="text" style="visibility: visible;">
+            <p><span>￥50000保证金</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u7731" class="ax_default table_cell">
+          <img id="u7731_img" class="img " src="images/king-供应商_成长体系/u7723.png"/>
+          <!-- Unnamed () -->
+          <div id="u7732" class="text" style="visibility: visible;">
+            <p><span>￥1000/月 ￥10000/年</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u7733" class="ax_default table_cell">
+          <img id="u7733_img" class="img " src="images/king-供应商_成长体系/u7733.png"/>
+          <!-- Unnamed () -->
+          <div id="u7734" class="text" style="visibility: visible;">
+            <p><span>使用期限</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u7735" class="ax_default table_cell">
+          <img id="u7735_img" class="img " src="images/king-供应商_成长体系/u7735.png"/>
+          <!-- Unnamed () -->
+          <div id="u7736" class="text" style="visibility: visible;">
+            <p><span>永久</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u7737" class="ax_default table_cell">
+          <img id="u7737_img" class="img " src="images/king-供应商_成长体系/u7737.png"/>
+          <!-- Unnamed () -->
+          <div id="u7738" class="text" style="visibility: visible;">
+            <p><span>永久</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (单元格) -->
+        <div id="u7739" class="ax_default table_cell">
+          <img id="u7739_img" class="img " src="images/king-供应商_成长体系/u7739.png"/>
+          <!-- Unnamed () -->
+          <div id="u7740" class="text" style="visibility: visible;">
+            <p><span>付费期限</span></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u7741" class="ax_default label">
+        <div id="u7741_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u7742" class="text" style="visibility: visible;">
+          <p><span>成为认证供应商您可以：</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u7743" class="ax_default _文本段落">
+        <div id="u7743_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u7744" class="text" style="visibility: visible;">
+          <p><span>1.享有平台中优质的数据需求方资源</span></p><p><span>2.享有平台安全有保障的数据交易</span></p><p><span>3.享有平台独有的数据指标管理</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u7745" class="ax_default label">
+        <div id="u7745_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u7746" class="text" style="visibility: visible;">
+          <p><span>成为银牌供应商您可以：</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u7747" class="ax_default _文本段落">
+        <div id="u7747_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u7748" class="text" style="visibility: visible;">
+          <p><span>1.享有平台中认证供应商的所有服务</span></p><p><span>2.享有平台数据商品专有的银牌供应商数据标识</span></p><p><span>3.享有平台出具报告专有的银牌供应商认证标志</span></p><p><span>4.享有平台提供的每笔交易减免10%的交易分成</span></p><p><span>5.享有平台专有客服提供免费手把手帮助和代理建立数据指标库、商品生成服务</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u7749" class="ax_default label">
+        <div id="u7749_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u7750" class="text" style="visibility: visible;">
+          <p><span>成为金牌供应商您可以：</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u7751" class="ax_default _文本段落">
+        <div id="u7751_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u7752" class="text" style="visibility: visible;">
+          <p><span>1.享有平台中银牌供应商的所有服务</span></p><p><span>2.享有平台数据商品专有的金牌供应商数据标识</span></p><p><span>3.享有平台出具报告专有的金牌牌供应商认证标志</span></p><p><span>4.享有平台提供的每笔交易减免15%的交易分成</span></p><p><span>5.享有平台专有客服提供银牌供应商基础上的定制人工服务</span></p><p><span>6.享有平台交易中意外原因导致的交易毁约，平台可代替供应商赔付</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u7753" class="ax_default primary_button">
+        <div id="u7753_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u7754" class="text" style="visibility: visible;">
+          <p><span>金牌供应商</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u7755" class="ax_default primary_button">
+        <div id="u7755_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u7756" class="text" style="visibility: visible;">
+          <p><span>银牌牌供应商</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (文本段落) -->
+      <div id="u7757" class="ax_default _文本段落">
+        <img id="u7757_img" class="img " src="images/king-供应商_成长体系/u7757.png"/>
+        <!-- Unnamed () -->
+        <div id="u7758" class="text" style="visibility: visible;">
+          <p><span>您可以加入：</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u7759" class="ax_default _文本段落">
+        <div id="u7759_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u7760" class="text" style="visibility: visible;">
+          <p><span>&nbsp;&nbsp; &nbsp; &nbsp; 供应商体系是数据交易平台为满足不同需求供应商提供不同多项的专有定制化服务，成为平台金牌供应商可享受平台完整的数据交易服务，优质的交易机会，独有的用户口碑；成为银牌供应商，在享有平台更多的交易保障，完备的平台服务；成为认证供应商，享有平台优质的数据需求方资源，安全的数据交易，特有的数据指标管理；让供应商以最小的成本保障最优质的服务。</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (图片) -->
+      <div id="u7761" class="ax_default image">
+        <img id="u7761_img" class="img " src="images/搜指标/u889.png"/>
+        <!-- Unnamed () -->
+        <div id="u7762" class="text" style="display: none; visibility: hidden">
+          <p><span></span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (图片) -->
+      <div id="u7763" class="ax_default image">
+        <img id="u7763_img" class="img " src="images/搜指标/u891.png"/>
+        <!-- Unnamed () -->
+        <div id="u7764" class="text" style="display: none; visibility: hidden">
+          <p><span></span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (图片) -->
+      <div id="u7765" class="ax_default image">
+        <img id="u7765_img" class="img " src="images/搜指标/u893.png"/>
+        <!-- Unnamed () -->
+        <div id="u7766" class="text" style="display: none; visibility: hidden">
+          <p><span></span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u7767" class="ax_default _文本段落">
+        <div id="u7767_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u7768" class="text" style="visibility: visible;">
+          <p><span>使用期限：永久</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (图片) -->
+      <div id="u7769" class="ax_default image">
+        <img id="u7769_img" class="img " src="images/搜指标/u893.png"/>
+        <!-- Unnamed () -->
+        <div id="u7770" class="text" style="display: none; visibility: hidden">
+          <p><span></span></p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mwm.env.mybatis.dao.MasterOrderInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.mwm.env.mybatis.modal.MasterOrderInfo" >
+    <id column="MasterId" property="masterid" jdbcType="BIGINT" />
+    <result column="MasterNum" property="masternum" jdbcType="VARCHAR" />
+    <result column="UserId" property="userid" jdbcType="INTEGER" />
+    <result column="ProjectName" property="projectname" jdbcType="VARCHAR" />
+    <result column="DetectionType" property="detectiontype" jdbcType="VARCHAR" />
+    <result column="Requester" property="requester" jdbcType="VARCHAR" />
+    <result column="AddressId" property="addressid" jdbcType="INTEGER" />
+    <result column="InvoiceType" property="invoicetype" jdbcType="CHAR" />
+    <result column="Process" property="process" jdbcType="CHAR" />
+    <result column="Amount" property="amount" jdbcType="DECIMAL" />
+    <result column="PaymentTime" property="paymenttime" jdbcType="BIGINT" />
+    <result column="InfoAudit" property="infoaudit" jdbcType="CHAR" />
+    <result column="CompleteDate" property="completedate" jdbcType="BIGINT" />
+    <result column="Createdate" property="createdate" jdbcType="BIGINT" />
+    <result column="OrderType" property="ordertype" jdbcType="INTEGER" />
+    <result column="State" property="state" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.mwm.env.mybatis.modal.MasterOrderInfo" extends="BaseResultMap" >
+    <result column="InvoiceContent" property="invoicecontent" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    MasterId, MasterNum, UserId, ProjectName, DetectionType, Requester, AddressId, InvoiceType, 
+    Process, Amount, PaymentTime, InfoAudit, CompleteDate, Createdate, OrderType, State
+  </sql>
+  <sql id="Blob_Column_List" >
+    InvoiceContent
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.mwm.env.mybatis.modal.MasterOrderInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from MasterOrderInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mwm.env.mybatis.modal.MasterOrderInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from MasterOrderInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from MasterOrderInfo
+    where MasterId = #{masterid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from MasterOrderInfo
+    where MasterId = #{masterid,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mwm.env.mybatis.modal.MasterOrderInfoExample" >
+    delete from MasterOrderInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mwm.env.mybatis.modal.MasterOrderInfo" >
+    <selectKey resultType="java.lang.Long" keyProperty="masterid" order="AFTER" >
+      select last_insert_id()
+    </selectKey>
+    insert into MasterOrderInfo (MasterNum, UserId, ProjectName, 
+      DetectionType, Requester, AddressId, 
+      InvoiceType, Process, Amount, 
+      PaymentTime, InfoAudit, CompleteDate, 
+      Createdate, OrderType, State, 
+      InvoiceContent)
+    values (#{masternum,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER}, #{projectname,jdbcType=VARCHAR}, 
+      #{detectiontype,jdbcType=VARCHAR}, #{requester,jdbcType=VARCHAR}, #{addressid,jdbcType=INTEGER}, 
+      #{invoicetype,jdbcType=CHAR}, #{process,jdbcType=CHAR}, #{amount,jdbcType=DECIMAL}, 
+      #{paymenttime,jdbcType=BIGINT}, #{infoaudit,jdbcType=CHAR}, #{completedate,jdbcType=BIGINT}, 
+      #{createdate,jdbcType=BIGINT}, #{ordertype,jdbcType=INTEGER}, #{state,jdbcType=VARCHAR}, 
+      #{invoicecontent,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mwm.env.mybatis.modal.MasterOrderInfo" >
+    <selectKey resultType="java.lang.Long" keyProperty="masterid" order="AFTER" >
+      select last_insert_id()
+    </selectKey>
+    insert into MasterOrderInfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="masternum != null" >
+        MasterNum,
+      </if>
+      <if test="userid != null" >
+        UserId,
+      </if>
+      <if test="projectname != null" >
+        ProjectName,
+      </if>
+      <if test="detectiontype != null" >
+        DetectionType,
+      </if>
+      <if test="requester != null" >
+        Requester,
+      </if>
+      <if test="addressid != null" >
+        AddressId,
+      </if>
+      <if test="invoicetype != null" >
+        InvoiceType,
+      </if>
+      <if test="process != null" >
+        Process,
+      </if>
+      <if test="amount != null" >
+        Amount,
+      </if>
+      <if test="paymenttime != null" >
+        PaymentTime,
+      </if>
+      <if test="infoaudit != null" >
+        InfoAudit,
+      </if>
+      <if test="completedate != null" >
+        CompleteDate,
+      </if>
+      <if test="createdate != null" >
+        Createdate,
+      </if>
+      <if test="ordertype != null" >
+        OrderType,
+      </if>
+      <if test="state != null" >
+        State,
+      </if>
+      <if test="invoicecontent != null" >
+        InvoiceContent,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="masternum != null" >
+        #{masternum,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="projectname != null" >
+        #{projectname,jdbcType=VARCHAR},
+      </if>
+      <if test="detectiontype != null" >
+        #{detectiontype,jdbcType=VARCHAR},
+      </if>
+      <if test="requester != null" >
+        #{requester,jdbcType=VARCHAR},
+      </if>
+      <if test="addressid != null" >
+        #{addressid,jdbcType=INTEGER},
+      </if>
+      <if test="invoicetype != null" >
+        #{invoicetype,jdbcType=CHAR},
+      </if>
+      <if test="process != null" >
+        #{process,jdbcType=CHAR},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="paymenttime != null" >
+        #{paymenttime,jdbcType=BIGINT},
+      </if>
+      <if test="infoaudit != null" >
+        #{infoaudit,jdbcType=CHAR},
+      </if>
+      <if test="completedate != null" >
+        #{completedate,jdbcType=BIGINT},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=BIGINT},
+      </if>
+      <if test="ordertype != null" >
+        #{ordertype,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="invoicecontent != null" >
+        #{invoicecontent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mwm.env.mybatis.modal.MasterOrderInfoExample" resultType="java.lang.Integer" >
+    select count(*) from MasterOrderInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update MasterOrderInfo
+    <set >
+      <if test="record.masterid != null" >
+        MasterId = #{record.masterid,jdbcType=BIGINT},
+      </if>
+      <if test="record.masternum != null" >
+        MasterNum = #{record.masternum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userid != null" >
+        UserId = #{record.userid,jdbcType=INTEGER},
+      </if>
+      <if test="record.projectname != null" >
+        ProjectName = #{record.projectname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.detectiontype != null" >
+        DetectionType = #{record.detectiontype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.requester != null" >
+        Requester = #{record.requester,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addressid != null" >
+        AddressId = #{record.addressid,jdbcType=INTEGER},
+      </if>
+      <if test="record.invoicetype != null" >
+        InvoiceType = #{record.invoicetype,jdbcType=CHAR},
+      </if>
+      <if test="record.process != null" >
+        Process = #{record.process,jdbcType=CHAR},
+      </if>
+      <if test="record.amount != null" >
+        Amount = #{record.amount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.paymenttime != null" >
+        PaymentTime = #{record.paymenttime,jdbcType=BIGINT},
+      </if>
+      <if test="record.infoaudit != null" >
+        InfoAudit = #{record.infoaudit,jdbcType=CHAR},
+      </if>
+      <if test="record.completedate != null" >
+        CompleteDate = #{record.completedate,jdbcType=BIGINT},
+      </if>
+      <if test="record.createdate != null" >
+        Createdate = #{record.createdate,jdbcType=BIGINT},
+      </if>
+      <if test="record.ordertype != null" >
+        OrderType = #{record.ordertype,jdbcType=INTEGER},
+      </if>
+      <if test="record.state != null" >
+        State = #{record.state,jdbcType=VARCHAR},
+      </if>
+      <if test="record.invoicecontent != null" >
+        InvoiceContent = #{record.invoicecontent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update MasterOrderInfo
+    set MasterId = #{record.masterid,jdbcType=BIGINT},
+      MasterNum = #{record.masternum,jdbcType=VARCHAR},
+      UserId = #{record.userid,jdbcType=INTEGER},
+      ProjectName = #{record.projectname,jdbcType=VARCHAR},
+      DetectionType = #{record.detectiontype,jdbcType=VARCHAR},
+      Requester = #{record.requester,jdbcType=VARCHAR},
+      AddressId = #{record.addressid,jdbcType=INTEGER},
+      InvoiceType = #{record.invoicetype,jdbcType=CHAR},
+      Process = #{record.process,jdbcType=CHAR},
+      Amount = #{record.amount,jdbcType=DECIMAL},
+      PaymentTime = #{record.paymenttime,jdbcType=BIGINT},
+      InfoAudit = #{record.infoaudit,jdbcType=CHAR},
+      CompleteDate = #{record.completedate,jdbcType=BIGINT},
+      Createdate = #{record.createdate,jdbcType=BIGINT},
+      OrderType = #{record.ordertype,jdbcType=INTEGER},
+      State = #{record.state,jdbcType=VARCHAR},
+      InvoiceContent = #{record.invoicecontent,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update MasterOrderInfo
+    set MasterId = #{record.masterid,jdbcType=BIGINT},
+      MasterNum = #{record.masternum,jdbcType=VARCHAR},
+      UserId = #{record.userid,jdbcType=INTEGER},
+      ProjectName = #{record.projectname,jdbcType=VARCHAR},
+      DetectionType = #{record.detectiontype,jdbcType=VARCHAR},
+      Requester = #{record.requester,jdbcType=VARCHAR},
+      AddressId = #{record.addressid,jdbcType=INTEGER},
+      InvoiceType = #{record.invoicetype,jdbcType=CHAR},
+      Process = #{record.process,jdbcType=CHAR},
+      Amount = #{record.amount,jdbcType=DECIMAL},
+      PaymentTime = #{record.paymenttime,jdbcType=BIGINT},
+      InfoAudit = #{record.infoaudit,jdbcType=CHAR},
+      CompleteDate = #{record.completedate,jdbcType=BIGINT},
+      Createdate = #{record.createdate,jdbcType=BIGINT},
+      OrderType = #{record.ordertype,jdbcType=INTEGER},
+      State = #{record.state,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mwm.env.mybatis.modal.MasterOrderInfo" >
+    update MasterOrderInfo
+    <set >
+      <if test="masternum != null" >
+        MasterNum = #{masternum,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        UserId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="projectname != null" >
+        ProjectName = #{projectname,jdbcType=VARCHAR},
+      </if>
+      <if test="detectiontype != null" >
+        DetectionType = #{detectiontype,jdbcType=VARCHAR},
+      </if>
+      <if test="requester != null" >
+        Requester = #{requester,jdbcType=VARCHAR},
+      </if>
+      <if test="addressid != null" >
+        AddressId = #{addressid,jdbcType=INTEGER},
+      </if>
+      <if test="invoicetype != null" >
+        InvoiceType = #{invoicetype,jdbcType=CHAR},
+      </if>
+      <if test="process != null" >
+        Process = #{process,jdbcType=CHAR},
+      </if>
+      <if test="amount != null" >
+        Amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="paymenttime != null" >
+        PaymentTime = #{paymenttime,jdbcType=BIGINT},
+      </if>
+      <if test="infoaudit != null" >
+        InfoAudit = #{infoaudit,jdbcType=CHAR},
+      </if>
+      <if test="completedate != null" >
+        CompleteDate = #{completedate,jdbcType=BIGINT},
+      </if>
+      <if test="createdate != null" >
+        Createdate = #{createdate,jdbcType=BIGINT},
+      </if>
+      <if test="ordertype != null" >
+        OrderType = #{ordertype,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        State = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="invoicecontent != null" >
+        InvoiceContent = #{invoicecontent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where MasterId = #{masterid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.mwm.env.mybatis.modal.MasterOrderInfo" >
+    update MasterOrderInfo
+    set MasterNum = #{masternum,jdbcType=VARCHAR},
+      UserId = #{userid,jdbcType=INTEGER},
+      ProjectName = #{projectname,jdbcType=VARCHAR},
+      DetectionType = #{detectiontype,jdbcType=VARCHAR},
+      Requester = #{requester,jdbcType=VARCHAR},
+      AddressId = #{addressid,jdbcType=INTEGER},
+      InvoiceType = #{invoicetype,jdbcType=CHAR},
+      Process = #{process,jdbcType=CHAR},
+      Amount = #{amount,jdbcType=DECIMAL},
+      PaymentTime = #{paymenttime,jdbcType=BIGINT},
+      InfoAudit = #{infoaudit,jdbcType=CHAR},
+      CompleteDate = #{completedate,jdbcType=BIGINT},
+      Createdate = #{createdate,jdbcType=BIGINT},
+      OrderType = #{ordertype,jdbcType=INTEGER},
+      State = #{state,jdbcType=VARCHAR},
+      InvoiceContent = #{invoicecontent,jdbcType=LONGVARCHAR}
+    where MasterId = #{masterid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mwm.env.mybatis.modal.MasterOrderInfo" >
+    update MasterOrderInfo
+    set MasterNum = #{masternum,jdbcType=VARCHAR},
+      UserId = #{userid,jdbcType=INTEGER},
+      ProjectName = #{projectname,jdbcType=VARCHAR},
+      DetectionType = #{detectiontype,jdbcType=VARCHAR},
+      Requester = #{requester,jdbcType=VARCHAR},
+      AddressId = #{addressid,jdbcType=INTEGER},
+      InvoiceType = #{invoicetype,jdbcType=CHAR},
+      Process = #{process,jdbcType=CHAR},
+      Amount = #{amount,jdbcType=DECIMAL},
+      PaymentTime = #{paymenttime,jdbcType=BIGINT},
+      InfoAudit = #{infoaudit,jdbcType=CHAR},
+      CompleteDate = #{completedate,jdbcType=BIGINT},
+      Createdate = #{createdate,jdbcType=BIGINT},
+      OrderType = #{ordertype,jdbcType=INTEGER},
+      State = #{state,jdbcType=VARCHAR}
+    where MasterId = #{masterid,jdbcType=BIGINT}
+  </update>
+</mapper>

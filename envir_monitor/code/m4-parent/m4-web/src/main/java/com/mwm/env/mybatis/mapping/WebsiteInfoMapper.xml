@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mwm.env.mybatis.dao.WebsiteInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.mwm.env.mybatis.modal.WebsiteInfo" >
+    <id column="Id" property="id" jdbcType="TINYINT" />
+    <result column="Name" property="name" jdbcType="VARCHAR" />
+    <result column="Keyword" property="keyword" jdbcType="VARCHAR" />
+    <result column="FilingInfo" property="filinginfo" jdbcType="VARCHAR" />
+    <result column="Createdate" property="createdate" jdbcType="BIGINT" />
+    <result column="ModifyDate" property="modifydate" jdbcType="BIGINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.mwm.env.mybatis.modal.WebsiteInfoWithBLOBs" extends="BaseResultMap" >
+    <result column="Description" property="description" jdbcType="LONGVARCHAR" />
+    <result column="ParamesterSettings" property="paramestersettings" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    Id, Name, Keyword, FilingInfo, Createdate, ModifyDate
+  </sql>
+  <sql id="Blob_Column_List" >
+    Description, ParamesterSettings
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.mwm.env.mybatis.modal.WebsiteInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from WebsiteInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mwm.env.mybatis.modal.WebsiteInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from WebsiteInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Byte" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from WebsiteInfo
+    where Id = #{id,jdbcType=TINYINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Byte" >
+    delete from WebsiteInfo
+    where Id = #{id,jdbcType=TINYINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mwm.env.mybatis.modal.WebsiteInfoExample" >
+    delete from WebsiteInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mwm.env.mybatis.modal.WebsiteInfoWithBLOBs" >
+    <selectKey resultType="java.lang.Byte" keyProperty="id" order="AFTER" >
+      select last_insert_id()
+    </selectKey>
+    insert into WebsiteInfo (Name, Keyword, FilingInfo, 
+      Createdate, ModifyDate, Description, 
+      ParamesterSettings)
+    values (#{name,jdbcType=VARCHAR}, #{keyword,jdbcType=VARCHAR}, #{filinginfo,jdbcType=VARCHAR}, 
+      #{createdate,jdbcType=BIGINT}, #{modifydate,jdbcType=BIGINT}, #{description,jdbcType=LONGVARCHAR}, 
+      #{paramestersettings,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mwm.env.mybatis.modal.WebsiteInfoWithBLOBs" >
+    <selectKey resultType="java.lang.Byte" keyProperty="id" order="AFTER" >
+      select last_insert_id()
+    </selectKey>
+    insert into WebsiteInfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        Name,
+      </if>
+      <if test="keyword != null" >
+        Keyword,
+      </if>
+      <if test="filinginfo != null" >
+        FilingInfo,
+      </if>
+      <if test="createdate != null" >
+        Createdate,
+      </if>
+      <if test="modifydate != null" >
+        ModifyDate,
+      </if>
+      <if test="description != null" >
+        Description,
+      </if>
+      <if test="paramestersettings != null" >
+        ParamesterSettings,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="keyword != null" >
+        #{keyword,jdbcType=VARCHAR},
+      </if>
+      <if test="filinginfo != null" >
+        #{filinginfo,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=BIGINT},
+      </if>
+      <if test="modifydate != null" >
+        #{modifydate,jdbcType=BIGINT},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="paramestersettings != null" >
+        #{paramestersettings,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mwm.env.mybatis.modal.WebsiteInfoExample" resultType="java.lang.Integer" >
+    select count(*) from WebsiteInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update WebsiteInfo
+    <set >
+      <if test="record.id != null" >
+        Id = #{record.id,jdbcType=TINYINT},
+      </if>
+      <if test="record.name != null" >
+        Name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.keyword != null" >
+        Keyword = #{record.keyword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.filinginfo != null" >
+        FilingInfo = #{record.filinginfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdate != null" >
+        Createdate = #{record.createdate,jdbcType=BIGINT},
+      </if>
+      <if test="record.modifydate != null" >
+        ModifyDate = #{record.modifydate,jdbcType=BIGINT},
+      </if>
+      <if test="record.description != null" >
+        Description = #{record.description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.paramestersettings != null" >
+        ParamesterSettings = #{record.paramestersettings,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update WebsiteInfo
+    set Id = #{record.id,jdbcType=TINYINT},
+      Name = #{record.name,jdbcType=VARCHAR},
+      Keyword = #{record.keyword,jdbcType=VARCHAR},
+      FilingInfo = #{record.filinginfo,jdbcType=VARCHAR},
+      Createdate = #{record.createdate,jdbcType=BIGINT},
+      ModifyDate = #{record.modifydate,jdbcType=BIGINT},
+      Description = #{record.description,jdbcType=LONGVARCHAR},
+      ParamesterSettings = #{record.paramestersettings,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update WebsiteInfo
+    set Id = #{record.id,jdbcType=TINYINT},
+      Name = #{record.name,jdbcType=VARCHAR},
+      Keyword = #{record.keyword,jdbcType=VARCHAR},
+      FilingInfo = #{record.filinginfo,jdbcType=VARCHAR},
+      Createdate = #{record.createdate,jdbcType=BIGINT},
+      ModifyDate = #{record.modifydate,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mwm.env.mybatis.modal.WebsiteInfoWithBLOBs" >
+    update WebsiteInfo
+    <set >
+      <if test="name != null" >
+        Name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="keyword != null" >
+        Keyword = #{keyword,jdbcType=VARCHAR},
+      </if>
+      <if test="filinginfo != null" >
+        FilingInfo = #{filinginfo,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null" >
+        Createdate = #{createdate,jdbcType=BIGINT},
+      </if>
+      <if test="modifydate != null" >
+        ModifyDate = #{modifydate,jdbcType=BIGINT},
+      </if>
+      <if test="description != null" >
+        Description = #{description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="paramestersettings != null" >
+        ParamesterSettings = #{paramestersettings,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=TINYINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.mwm.env.mybatis.modal.WebsiteInfoWithBLOBs" >
+    update WebsiteInfo
+    set Name = #{name,jdbcType=VARCHAR},
+      Keyword = #{keyword,jdbcType=VARCHAR},
+      FilingInfo = #{filinginfo,jdbcType=VARCHAR},
+      Createdate = #{createdate,jdbcType=BIGINT},
+      ModifyDate = #{modifydate,jdbcType=BIGINT},
+      Description = #{description,jdbcType=LONGVARCHAR},
+      ParamesterSettings = #{paramestersettings,jdbcType=LONGVARCHAR}
+    where Id = #{id,jdbcType=TINYINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mwm.env.mybatis.modal.WebsiteInfo" >
+    update WebsiteInfo
+    set Name = #{name,jdbcType=VARCHAR},
+      Keyword = #{keyword,jdbcType=VARCHAR},
+      FilingInfo = #{filinginfo,jdbcType=VARCHAR},
+      Createdate = #{createdate,jdbcType=BIGINT},
+      ModifyDate = #{modifydate,jdbcType=BIGINT}
+    where Id = #{id,jdbcType=TINYINT}
+  </update>
+</mapper>

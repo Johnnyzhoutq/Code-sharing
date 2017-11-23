@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mwm.env.mybatis.dao.DemandInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.mwm.env.mybatis.modal.DemandInfo" >
+    <id column="DemandId" property="demandid" jdbcType="INTEGER" />
+    <result column="DemandLibId" property="demandlibid" jdbcType="INTEGER" />
+    <result column="UserId" property="userid" jdbcType="INTEGER" />
+    <result column="DemandName" property="demandname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    DemandId, DemandLibId, UserId, DemandName
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mwm.env.mybatis.modal.DemandInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from DemandInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from DemandInfo
+    where DemandId = #{demandid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from DemandInfo
+    where DemandId = #{demandid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mwm.env.mybatis.modal.DemandInfoExample" >
+    delete from DemandInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mwm.env.mybatis.modal.DemandInfo" >
+    <selectKey resultType="java.lang.Integer" keyProperty="demandid" order="AFTER" >
+      select last_insert_id()
+    </selectKey>
+    insert into DemandInfo (DemandLibId, UserId, DemandName
+      )
+    values (#{demandlibid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{demandname,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mwm.env.mybatis.modal.DemandInfo" >
+    <selectKey resultType="java.lang.Integer" keyProperty="demandid" order="AFTER" >
+      select last_insert_id()
+    </selectKey>
+    insert into DemandInfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="demandlibid != null" >
+        DemandLibId,
+      </if>
+      <if test="userid != null" >
+        UserId,
+      </if>
+      <if test="demandname != null" >
+        DemandName,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="demandlibid != null" >
+        #{demandlibid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="demandname != null" >
+        #{demandname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mwm.env.mybatis.modal.DemandInfoExample" resultType="java.lang.Integer" >
+    select count(*) from DemandInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update DemandInfo
+    <set >
+      <if test="record.demandid != null" >
+        DemandId = #{record.demandid,jdbcType=INTEGER},
+      </if>
+      <if test="record.demandlibid != null" >
+        DemandLibId = #{record.demandlibid,jdbcType=INTEGER},
+      </if>
+      <if test="record.userid != null" >
+        UserId = #{record.userid,jdbcType=INTEGER},
+      </if>
+      <if test="record.demandname != null" >
+        DemandName = #{record.demandname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update DemandInfo
+    set DemandId = #{record.demandid,jdbcType=INTEGER},
+      DemandLibId = #{record.demandlibid,jdbcType=INTEGER},
+      UserId = #{record.userid,jdbcType=INTEGER},
+      DemandName = #{record.demandname,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mwm.env.mybatis.modal.DemandInfo" >
+    update DemandInfo
+    <set >
+      <if test="demandlibid != null" >
+        DemandLibId = #{demandlibid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        UserId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="demandname != null" >
+        DemandName = #{demandname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where DemandId = #{demandid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mwm.env.mybatis.modal.DemandInfo" >
+    update DemandInfo
+    set DemandLibId = #{demandlibid,jdbcType=INTEGER},
+      UserId = #{userid,jdbcType=INTEGER},
+      DemandName = #{demandname,jdbcType=VARCHAR}
+    where DemandId = #{demandid,jdbcType=INTEGER}
+  </update>
+</mapper>

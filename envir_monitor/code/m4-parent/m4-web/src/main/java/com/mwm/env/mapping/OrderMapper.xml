@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mwm.env.dao.IOrderDao">
+
+	<!-- 需求方**子订单**购物车 -->
+	<select id="getSlaveOrderForCart" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		SELECT
+			*
+		FROM
+			SlaveOrderInfo sl
+			LEFT JOIN DataGoodsInfo good ON good.Goods = sl.Goods
+			LEFT JOIN IndexInfo ind ON ind.IndexId = good.IndexId
+			LEFT JOIN IndexTypeInfo ty ON ty.IndexTypeId = good.GoodsType
+			LEFT JOIN IndexLibraryInfo lib ON lib.IndexLibId = ind.IndexLibId
+			LEFT JOIN ReportInfo re ON re.ReportId = good.ReportId
+		WHERE
+			sl.MasterId = #{masterId}
+		AND sl.OrderState = 1
+	</select>
+	
+	<!-- 需求方**主订单信息 -->
+	<select id="getMasterOrderList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		SELECT
+			*
+		FROM
+			MasterOrderInfo mo
+		WHERE mo.State = "N"
+			AND mo.UserId = #{userid}
+			ORDER BY mo.Createdate DESC
+			<if test=" masterid != null and masterid != ''">
+			AND mo.MasterId =  #{masterid}
+			</if>
+			<if test="timeframe != null and timeframe !=''">
+			AND mo.Createdate > (UNIX_TIMESTAMP(NOW())*1000 - #{timeframe})
+			</if>
+			<if test="auditstatus != null and auditstatus !=''">
+			AND mo.auditstatus = #{auditstatus}
+			</if>
+	</select>
+	
+	<!-- 需求方**主订单下面的子订单 -->
+	<select id="getSlaveOrderForMasterOrder" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		
+	</select>
+	
+</mapper>

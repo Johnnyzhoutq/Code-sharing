@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mwm.env.mybatis.dao.IndexInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.mwm.env.mybatis.modal.IndexInfo" >
+    <id column="IndexId" property="indexid" jdbcType="INTEGER" />
+    <result column="ProvideId" property="provideid" jdbcType="INTEGER" />
+    <result column="IndexLibId" property="indexlibid" jdbcType="INTEGER" />
+    <result column="IndexName" property="indexname" jdbcType="VARCHAR" />
+    <result column="IndexUnits" property="indexunits" jdbcType="VARCHAR" />
+    <result column="IndexPrice" property="indexprice" jdbcType="DECIMAL" />
+    <result column="OffIndexId" property="offindexid" jdbcType="INTEGER" />
+    <result column="Createdate" property="createdate" jdbcType="BIGINT" />
+    <result column="ModifyDate" property="modifydate" jdbcType="BIGINT" />
+    <result column="State" property="state" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.mwm.env.mybatis.modal.IndexInfo" extends="BaseResultMap" >
+    <result column="IndexRemark" property="indexremark" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    IndexId, ProvideId, IndexLibId, IndexName, IndexUnits, IndexPrice, OffIndexId, Createdate, 
+    ModifyDate, State
+  </sql>
+  <sql id="Blob_Column_List" >
+    IndexRemark
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.mwm.env.mybatis.modal.IndexInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from IndexInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mwm.env.mybatis.modal.IndexInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from IndexInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from IndexInfo
+    where IndexId = #{indexid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from IndexInfo
+    where IndexId = #{indexid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mwm.env.mybatis.modal.IndexInfoExample" >
+    delete from IndexInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mwm.env.mybatis.modal.IndexInfo" >
+    <selectKey resultType="java.lang.Integer" keyProperty="indexid" order="AFTER" >
+      select last_insert_id()
+    </selectKey>
+    insert into IndexInfo (ProvideId, IndexLibId, IndexName, 
+      IndexUnits, IndexPrice, OffIndexId, 
+      Createdate, ModifyDate, State, 
+      IndexRemark)
+    values (#{provideid,jdbcType=INTEGER}, #{indexlibid,jdbcType=INTEGER}, #{indexname,jdbcType=VARCHAR}, 
+      #{indexunits,jdbcType=VARCHAR}, #{indexprice,jdbcType=DECIMAL}, #{offindexid,jdbcType=INTEGER}, 
+      #{createdate,jdbcType=BIGINT}, #{modifydate,jdbcType=BIGINT}, #{state,jdbcType=VARCHAR}, 
+      #{indexremark,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mwm.env.mybatis.modal.IndexInfo" >
+    <selectKey resultType="java.lang.Integer" keyProperty="indexid" order="AFTER" >
+      select last_insert_id()
+    </selectKey>
+    insert into IndexInfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="provideid != null" >
+        ProvideId,
+      </if>
+      <if test="indexlibid != null" >
+        IndexLibId,
+      </if>
+      <if test="indexname != null" >
+        IndexName,
+      </if>
+      <if test="indexunits != null" >
+        IndexUnits,
+      </if>
+      <if test="indexprice != null" >
+        IndexPrice,
+      </if>
+      <if test="offindexid != null" >
+        OffIndexId,
+      </if>
+      <if test="createdate != null" >
+        Createdate,
+      </if>
+      <if test="modifydate != null" >
+        ModifyDate,
+      </if>
+      <if test="state != null" >
+        State,
+      </if>
+      <if test="indexremark != null" >
+        IndexRemark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="provideid != null" >
+        #{provideid,jdbcType=INTEGER},
+      </if>
+      <if test="indexlibid != null" >
+        #{indexlibid,jdbcType=INTEGER},
+      </if>
+      <if test="indexname != null" >
+        #{indexname,jdbcType=VARCHAR},
+      </if>
+      <if test="indexunits != null" >
+        #{indexunits,jdbcType=VARCHAR},
+      </if>
+      <if test="indexprice != null" >
+        #{indexprice,jdbcType=DECIMAL},
+      </if>
+      <if test="offindexid != null" >
+        #{offindexid,jdbcType=INTEGER},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=BIGINT},
+      </if>
+      <if test="modifydate != null" >
+        #{modifydate,jdbcType=BIGINT},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="indexremark != null" >
+        #{indexremark,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mwm.env.mybatis.modal.IndexInfoExample" resultType="java.lang.Integer" >
+    select count(*) from IndexInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update IndexInfo
+    <set >
+      <if test="record.indexid != null" >
+        IndexId = #{record.indexid,jdbcType=INTEGER},
+      </if>
+      <if test="record.provideid != null" >
+        ProvideId = #{record.provideid,jdbcType=INTEGER},
+      </if>
+      <if test="record.indexlibid != null" >
+        IndexLibId = #{record.indexlibid,jdbcType=INTEGER},
+      </if>
+      <if test="record.indexname != null" >
+        IndexName = #{record.indexname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.indexunits != null" >
+        IndexUnits = #{record.indexunits,jdbcType=VARCHAR},
+      </if>
+      <if test="record.indexprice != null" >
+        IndexPrice = #{record.indexprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.offindexid != null" >
+        OffIndexId = #{record.offindexid,jdbcType=INTEGER},
+      </if>
+      <if test="record.createdate != null" >
+        Createdate = #{record.createdate,jdbcType=BIGINT},
+      </if>
+      <if test="record.modifydate != null" >
+        ModifyDate = #{record.modifydate,jdbcType=BIGINT},
+      </if>
+      <if test="record.state != null" >
+        State = #{record.state,jdbcType=VARCHAR},
+      </if>
+      <if test="record.indexremark != null" >
+        IndexRemark = #{record.indexremark,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update IndexInfo
+    set IndexId = #{record.indexid,jdbcType=INTEGER},
+      ProvideId = #{record.provideid,jdbcType=INTEGER},
+      IndexLibId = #{record.indexlibid,jdbcType=INTEGER},
+      IndexName = #{record.indexname,jdbcType=VARCHAR},
+      IndexUnits = #{record.indexunits,jdbcType=VARCHAR},
+      IndexPrice = #{record.indexprice,jdbcType=DECIMAL},
+      OffIndexId = #{record.offindexid,jdbcType=INTEGER},
+      Createdate = #{record.createdate,jdbcType=BIGINT},
+      ModifyDate = #{record.modifydate,jdbcType=BIGINT},
+      State = #{record.state,jdbcType=VARCHAR},
+      IndexRemark = #{record.indexremark,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update IndexInfo
+    set IndexId = #{record.indexid,jdbcType=INTEGER},
+      ProvideId = #{record.provideid,jdbcType=INTEGER},
+      IndexLibId = #{record.indexlibid,jdbcType=INTEGER},
+      IndexName = #{record.indexname,jdbcType=VARCHAR},
+      IndexUnits = #{record.indexunits,jdbcType=VARCHAR},
+      IndexPrice = #{record.indexprice,jdbcType=DECIMAL},
+      OffIndexId = #{record.offindexid,jdbcType=INTEGER},
+      Createdate = #{record.createdate,jdbcType=BIGINT},
+      ModifyDate = #{record.modifydate,jdbcType=BIGINT},
+      State = #{record.state,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mwm.env.mybatis.modal.IndexInfo" >
+    update IndexInfo
+    <set >
+      <if test="provideid != null" >
+        ProvideId = #{provideid,jdbcType=INTEGER},
+      </if>
+      <if test="indexlibid != null" >
+        IndexLibId = #{indexlibid,jdbcType=INTEGER},
+      </if>
+      <if test="indexname != null" >
+        IndexName = #{indexname,jdbcType=VARCHAR},
+      </if>
+      <if test="indexunits != null" >
+        IndexUnits = #{indexunits,jdbcType=VARCHAR},
+      </if>
+      <if test="indexprice != null" >
+        IndexPrice = #{indexprice,jdbcType=DECIMAL},
+      </if>
+      <if test="offindexid != null" >
+        OffIndexId = #{offindexid,jdbcType=INTEGER},
+      </if>
+      <if test="createdate != null" >
+        Createdate = #{createdate,jdbcType=BIGINT},
+      </if>
+      <if test="modifydate != null" >
+        ModifyDate = #{modifydate,jdbcType=BIGINT},
+      </if>
+      <if test="state != null" >
+        State = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="indexremark != null" >
+        IndexRemark = #{indexremark,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where IndexId = #{indexid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.mwm.env.mybatis.modal.IndexInfo" >
+    update IndexInfo
+    set ProvideId = #{provideid,jdbcType=INTEGER},
+      IndexLibId = #{indexlibid,jdbcType=INTEGER},
+      IndexName = #{indexname,jdbcType=VARCHAR},
+      IndexUnits = #{indexunits,jdbcType=VARCHAR},
+      IndexPrice = #{indexprice,jdbcType=DECIMAL},
+      OffIndexId = #{offindexid,jdbcType=INTEGER},
+      Createdate = #{createdate,jdbcType=BIGINT},
+      ModifyDate = #{modifydate,jdbcType=BIGINT},
+      State = #{state,jdbcType=VARCHAR},
+      IndexRemark = #{indexremark,jdbcType=LONGVARCHAR}
+    where IndexId = #{indexid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mwm.env.mybatis.modal.IndexInfo" >
+    update IndexInfo
+    set ProvideId = #{provideid,jdbcType=INTEGER},
+      IndexLibId = #{indexlibid,jdbcType=INTEGER},
+      IndexName = #{indexname,jdbcType=VARCHAR},
+      IndexUnits = #{indexunits,jdbcType=VARCHAR},
+      IndexPrice = #{indexprice,jdbcType=DECIMAL},
+      OffIndexId = #{offindexid,jdbcType=INTEGER},
+      Createdate = #{createdate,jdbcType=BIGINT},
+      ModifyDate = #{modifydate,jdbcType=BIGINT},
+      State = #{state,jdbcType=VARCHAR}
+    where IndexId = #{indexid,jdbcType=INTEGER}
+  </update>
+</mapper>

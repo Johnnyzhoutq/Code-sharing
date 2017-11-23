@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mwm.env.mybatis.dao.ComplaintContentMapper" >
+  <resultMap id="BaseResultMap" type="com.mwm.env.mybatis.modal.ComplaintContent" >
+    <id column="ContentId" property="contentid" jdbcType="INTEGER" />
+    <result column="ServiceSerial" property="serviceserial" jdbcType="VARCHAR" />
+    <result column="OrderId" property="orderid" jdbcType="INTEGER" />
+    <result column="UserId" property="userid" jdbcType="INTEGER" />
+    <result column="UserName" property="username" jdbcType="VARCHAR" />
+    <result column="UserType" property="usertype" jdbcType="CHAR" />
+    <result column="AcceptType" property="accepttype" jdbcType="CHAR" />
+    <result column="ServiceId" property="serviceid" jdbcType="TINYINT" />
+    <result column="CharRecord" property="charrecord" jdbcType="VARCHAR" />
+    <result column="Createdate" property="createdate" jdbcType="BIGINT" />
+    <result column="ModifyDate" property="modifydate" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ContentId, ServiceSerial, OrderId, UserId, UserName, UserType, AcceptType, ServiceId, 
+    CharRecord, Createdate, ModifyDate
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mwm.env.mybatis.modal.ComplaintContentExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ComplaintContent
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from ComplaintContent
+    where ContentId = #{contentid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from ComplaintContent
+    where ContentId = #{contentid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mwm.env.mybatis.modal.ComplaintContentExample" >
+    delete from ComplaintContent
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mwm.env.mybatis.modal.ComplaintContent" >
+    <selectKey resultType="java.lang.Integer" keyProperty="contentid" order="AFTER" >
+      select last_insert_id()
+    </selectKey>
+    insert into ComplaintContent (ServiceSerial, OrderId, UserId, 
+      UserName, UserType, AcceptType, 
+      ServiceId, CharRecord, Createdate, 
+      ModifyDate)
+    values (#{serviceserial,jdbcType=VARCHAR}, #{orderid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, 
+      #{username,jdbcType=VARCHAR}, #{usertype,jdbcType=CHAR}, #{accepttype,jdbcType=CHAR}, 
+      #{serviceid,jdbcType=TINYINT}, #{charrecord,jdbcType=VARCHAR}, #{createdate,jdbcType=BIGINT}, 
+      #{modifydate,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mwm.env.mybatis.modal.ComplaintContent" >
+    <selectKey resultType="java.lang.Integer" keyProperty="contentid" order="AFTER" >
+      select last_insert_id()
+    </selectKey>
+    insert into ComplaintContent
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="serviceserial != null" >
+        ServiceSerial,
+      </if>
+      <if test="orderid != null" >
+        OrderId,
+      </if>
+      <if test="userid != null" >
+        UserId,
+      </if>
+      <if test="username != null" >
+        UserName,
+      </if>
+      <if test="usertype != null" >
+        UserType,
+      </if>
+      <if test="accepttype != null" >
+        AcceptType,
+      </if>
+      <if test="serviceid != null" >
+        ServiceId,
+      </if>
+      <if test="charrecord != null" >
+        CharRecord,
+      </if>
+      <if test="createdate != null" >
+        Createdate,
+      </if>
+      <if test="modifydate != null" >
+        ModifyDate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="serviceserial != null" >
+        #{serviceserial,jdbcType=VARCHAR},
+      </if>
+      <if test="orderid != null" >
+        #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="usertype != null" >
+        #{usertype,jdbcType=CHAR},
+      </if>
+      <if test="accepttype != null" >
+        #{accepttype,jdbcType=CHAR},
+      </if>
+      <if test="serviceid != null" >
+        #{serviceid,jdbcType=TINYINT},
+      </if>
+      <if test="charrecord != null" >
+        #{charrecord,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=BIGINT},
+      </if>
+      <if test="modifydate != null" >
+        #{modifydate,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mwm.env.mybatis.modal.ComplaintContentExample" resultType="java.lang.Integer" >
+    select count(*) from ComplaintContent
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ComplaintContent
+    <set >
+      <if test="record.contentid != null" >
+        ContentId = #{record.contentid,jdbcType=INTEGER},
+      </if>
+      <if test="record.serviceserial != null" >
+        ServiceSerial = #{record.serviceserial,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderid != null" >
+        OrderId = #{record.orderid,jdbcType=INTEGER},
+      </if>
+      <if test="record.userid != null" >
+        UserId = #{record.userid,jdbcType=INTEGER},
+      </if>
+      <if test="record.username != null" >
+        UserName = #{record.username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.usertype != null" >
+        UserType = #{record.usertype,jdbcType=CHAR},
+      </if>
+      <if test="record.accepttype != null" >
+        AcceptType = #{record.accepttype,jdbcType=CHAR},
+      </if>
+      <if test="record.serviceid != null" >
+        ServiceId = #{record.serviceid,jdbcType=TINYINT},
+      </if>
+      <if test="record.charrecord != null" >
+        CharRecord = #{record.charrecord,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdate != null" >
+        Createdate = #{record.createdate,jdbcType=BIGINT},
+      </if>
+      <if test="record.modifydate != null" >
+        ModifyDate = #{record.modifydate,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ComplaintContent
+    set ContentId = #{record.contentid,jdbcType=INTEGER},
+      ServiceSerial = #{record.serviceserial,jdbcType=VARCHAR},
+      OrderId = #{record.orderid,jdbcType=INTEGER},
+      UserId = #{record.userid,jdbcType=INTEGER},
+      UserName = #{record.username,jdbcType=VARCHAR},
+      UserType = #{record.usertype,jdbcType=CHAR},
+      AcceptType = #{record.accepttype,jdbcType=CHAR},
+      ServiceId = #{record.serviceid,jdbcType=TINYINT},
+      CharRecord = #{record.charrecord,jdbcType=VARCHAR},
+      Createdate = #{record.createdate,jdbcType=BIGINT},
+      ModifyDate = #{record.modifydate,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mwm.env.mybatis.modal.ComplaintContent" >
+    update ComplaintContent
+    <set >
+      <if test="serviceserial != null" >
+        ServiceSerial = #{serviceserial,jdbcType=VARCHAR},
+      </if>
+      <if test="orderid != null" >
+        OrderId = #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        UserId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        UserName = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="usertype != null" >
+        UserType = #{usertype,jdbcType=CHAR},
+      </if>
+      <if test="accepttype != null" >
+        AcceptType = #{accepttype,jdbcType=CHAR},
+      </if>
+      <if test="serviceid != null" >
+        ServiceId = #{serviceid,jdbcType=TINYINT},
+      </if>
+      <if test="charrecord != null" >
+        CharRecord = #{charrecord,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null" >
+        Createdate = #{createdate,jdbcType=BIGINT},
+      </if>
+      <if test="modifydate != null" >
+        ModifyDate = #{modifydate,jdbcType=BIGINT},
+      </if>
+    </set>
+    where ContentId = #{contentid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mwm.env.mybatis.modal.ComplaintContent" >
+    update ComplaintContent
+    set ServiceSerial = #{serviceserial,jdbcType=VARCHAR},
+      OrderId = #{orderid,jdbcType=INTEGER},
+      UserId = #{userid,jdbcType=INTEGER},
+      UserName = #{username,jdbcType=VARCHAR},
+      UserType = #{usertype,jdbcType=CHAR},
+      AcceptType = #{accepttype,jdbcType=CHAR},
+      ServiceId = #{serviceid,jdbcType=TINYINT},
+      CharRecord = #{charrecord,jdbcType=VARCHAR},
+      Createdate = #{createdate,jdbcType=BIGINT},
+      ModifyDate = #{modifydate,jdbcType=BIGINT}
+    where ContentId = #{contentid,jdbcType=INTEGER}
+  </update>
+</mapper>

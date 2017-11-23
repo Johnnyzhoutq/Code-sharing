@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mwm.env.mybatis.dao.MemberInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.mwm.env.mybatis.modal.MemberInfo" >
+    <id column="MemberId" property="memberid" jdbcType="INTEGER" />
+    <result column="ProvideId" property="provideid" jdbcType="INTEGER" />
+    <result column="UserId" property="userid" jdbcType="INTEGER" />
+    <result column="MemberType" property="membertype" jdbcType="INTEGER" />
+    <result column="OpenedTime" property="openedtime" jdbcType="BIGINT" />
+    <result column="OpenedWay" property="openedway" jdbcType="CHAR" />
+    <result column="OpenedContent" property="openedcontent" jdbcType="CHAR" />
+    <result column="AmountPaid" property="amountpaid" jdbcType="DECIMAL" />
+    <result column="AmountWay" property="amountway" jdbcType="CHAR" />
+    <result column="IncomRatio" property="incomratio" jdbcType="DECIMAL" />
+    <result column="PeriodBegin" property="periodbegin" jdbcType="BIGINT" />
+    <result column="PeriodEnd" property="periodend" jdbcType="BIGINT" />
+    <result column="Createdate" property="createdate" jdbcType="BIGINT" />
+    <result column="ModifyDate" property="modifydate" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    MemberId, ProvideId, UserId, MemberType, OpenedTime, OpenedWay, OpenedContent, AmountPaid, 
+    AmountWay, IncomRatio, PeriodBegin, PeriodEnd, Createdate, ModifyDate
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mwm.env.mybatis.modal.MemberInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from MemberInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from MemberInfo
+    where MemberId = #{memberid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from MemberInfo
+    where MemberId = #{memberid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mwm.env.mybatis.modal.MemberInfoExample" >
+    delete from MemberInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mwm.env.mybatis.modal.MemberInfo" >
+    <selectKey resultType="java.lang.Integer" keyProperty="memberid" order="AFTER" >
+      select last_insert_id()
+    </selectKey>
+    insert into MemberInfo (ProvideId, UserId, MemberType, 
+      OpenedTime, OpenedWay, OpenedContent, 
+      AmountPaid, AmountWay, IncomRatio, 
+      PeriodBegin, PeriodEnd, Createdate, 
+      ModifyDate)
+    values (#{provideid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{membertype,jdbcType=INTEGER}, 
+      #{openedtime,jdbcType=BIGINT}, #{openedway,jdbcType=CHAR}, #{openedcontent,jdbcType=CHAR}, 
+      #{amountpaid,jdbcType=DECIMAL}, #{amountway,jdbcType=CHAR}, #{incomratio,jdbcType=DECIMAL}, 
+      #{periodbegin,jdbcType=BIGINT}, #{periodend,jdbcType=BIGINT}, #{createdate,jdbcType=BIGINT}, 
+      #{modifydate,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mwm.env.mybatis.modal.MemberInfo" >
+    <selectKey resultType="java.lang.Integer" keyProperty="memberid" order="AFTER" >
+      select last_insert_id()
+    </selectKey>
+    insert into MemberInfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="provideid != null" >
+        ProvideId,
+      </if>
+      <if test="userid != null" >
+        UserId,
+      </if>
+      <if test="membertype != null" >
+        MemberType,
+      </if>
+      <if test="openedtime != null" >
+        OpenedTime,
+      </if>
+      <if test="openedway != null" >
+        OpenedWay,
+      </if>
+      <if test="openedcontent != null" >
+        OpenedContent,
+      </if>
+      <if test="amountpaid != null" >
+        AmountPaid,
+      </if>
+      <if test="amountway != null" >
+        AmountWay,
+      </if>
+      <if test="incomratio != null" >
+        IncomRatio,
+      </if>
+      <if test="periodbegin != null" >
+        PeriodBegin,
+      </if>
+      <if test="periodend != null" >
+        PeriodEnd,
+      </if>
+      <if test="createdate != null" >
+        Createdate,
+      </if>
+      <if test="modifydate != null" >
+        ModifyDate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="provideid != null" >
+        #{provideid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="membertype != null" >
+        #{membertype,jdbcType=INTEGER},
+      </if>
+      <if test="openedtime != null" >
+        #{openedtime,jdbcType=BIGINT},
+      </if>
+      <if test="openedway != null" >
+        #{openedway,jdbcType=CHAR},
+      </if>
+      <if test="openedcontent != null" >
+        #{openedcontent,jdbcType=CHAR},
+      </if>
+      <if test="amountpaid != null" >
+        #{amountpaid,jdbcType=DECIMAL},
+      </if>
+      <if test="amountway != null" >
+        #{amountway,jdbcType=CHAR},
+      </if>
+      <if test="incomratio != null" >
+        #{incomratio,jdbcType=DECIMAL},
+      </if>
+      <if test="periodbegin != null" >
+        #{periodbegin,jdbcType=BIGINT},
+      </if>
+      <if test="periodend != null" >
+        #{periodend,jdbcType=BIGINT},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=BIGINT},
+      </if>
+      <if test="modifydate != null" >
+        #{modifydate,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mwm.env.mybatis.modal.MemberInfoExample" resultType="java.lang.Integer" >
+    select count(*) from MemberInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update MemberInfo
+    <set >
+      <if test="record.memberid != null" >
+        MemberId = #{record.memberid,jdbcType=INTEGER},
+      </if>
+      <if test="record.provideid != null" >
+        ProvideId = #{record.provideid,jdbcType=INTEGER},
+      </if>
+      <if test="record.userid != null" >
+        UserId = #{record.userid,jdbcType=INTEGER},
+      </if>
+      <if test="record.membertype != null" >
+        MemberType = #{record.membertype,jdbcType=INTEGER},
+      </if>
+      <if test="record.openedtime != null" >
+        OpenedTime = #{record.openedtime,jdbcType=BIGINT},
+      </if>
+      <if test="record.openedway != null" >
+        OpenedWay = #{record.openedway,jdbcType=CHAR},
+      </if>
+      <if test="record.openedcontent != null" >
+        OpenedContent = #{record.openedcontent,jdbcType=CHAR},
+      </if>
+      <if test="record.amountpaid != null" >
+        AmountPaid = #{record.amountpaid,jdbcType=DECIMAL},
+      </if>
+      <if test="record.amountway != null" >
+        AmountWay = #{record.amountway,jdbcType=CHAR},
+      </if>
+      <if test="record.incomratio != null" >
+        IncomRatio = #{record.incomratio,jdbcType=DECIMAL},
+      </if>
+      <if test="record.periodbegin != null" >
+        PeriodBegin = #{record.periodbegin,jdbcType=BIGINT},
+      </if>
+      <if test="record.periodend != null" >
+        PeriodEnd = #{record.periodend,jdbcType=BIGINT},
+      </if>
+      <if test="record.createdate != null" >
+        Createdate = #{record.createdate,jdbcType=BIGINT},
+      </if>
+      <if test="record.modifydate != null" >
+        ModifyDate = #{record.modifydate,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update MemberInfo
+    set MemberId = #{record.memberid,jdbcType=INTEGER},
+      ProvideId = #{record.provideid,jdbcType=INTEGER},
+      UserId = #{record.userid,jdbcType=INTEGER},
+      MemberType = #{record.membertype,jdbcType=INTEGER},
+      OpenedTime = #{record.openedtime,jdbcType=BIGINT},
+      OpenedWay = #{record.openedway,jdbcType=CHAR},
+      OpenedContent = #{record.openedcontent,jdbcType=CHAR},
+      AmountPaid = #{record.amountpaid,jdbcType=DECIMAL},
+      AmountWay = #{record.amountway,jdbcType=CHAR},
+      IncomRatio = #{record.incomratio,jdbcType=DECIMAL},
+      PeriodBegin = #{record.periodbegin,jdbcType=BIGINT},
+      PeriodEnd = #{record.periodend,jdbcType=BIGINT},
+      Createdate = #{record.createdate,jdbcType=BIGINT},
+      ModifyDate = #{record.modifydate,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mwm.env.mybatis.modal.MemberInfo" >
+    update MemberInfo
+    <set >
+      <if test="provideid != null" >
+        ProvideId = #{provideid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        UserId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="membertype != null" >
+        MemberType = #{membertype,jdbcType=INTEGER},
+      </if>
+      <if test="openedtime != null" >
+        OpenedTime = #{openedtime,jdbcType=BIGINT},
+      </if>
+      <if test="openedway != null" >
+        OpenedWay = #{openedway,jdbcType=CHAR},
+      </if>
+      <if test="openedcontent != null" >
+        OpenedContent = #{openedcontent,jdbcType=CHAR},
+      </if>
+      <if test="amountpaid != null" >
+        AmountPaid = #{amountpaid,jdbcType=DECIMAL},
+      </if>
+      <if test="amountway != null" >
+        AmountWay = #{amountway,jdbcType=CHAR},
+      </if>
+      <if test="incomratio != null" >
+        IncomRatio = #{incomratio,jdbcType=DECIMAL},
+      </if>
+      <if test="periodbegin != null" >
+        PeriodBegin = #{periodbegin,jdbcType=BIGINT},
+      </if>
+      <if test="periodend != null" >
+        PeriodEnd = #{periodend,jdbcType=BIGINT},
+      </if>
+      <if test="createdate != null" >
+        Createdate = #{createdate,jdbcType=BIGINT},
+      </if>
+      <if test="modifydate != null" >
+        ModifyDate = #{modifydate,jdbcType=BIGINT},
+      </if>
+    </set>
+    where MemberId = #{memberid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mwm.env.mybatis.modal.MemberInfo" >
+    update MemberInfo
+    set ProvideId = #{provideid,jdbcType=INTEGER},
+      UserId = #{userid,jdbcType=INTEGER},
+      MemberType = #{membertype,jdbcType=INTEGER},
+      OpenedTime = #{openedtime,jdbcType=BIGINT},
+      OpenedWay = #{openedway,jdbcType=CHAR},
+      OpenedContent = #{openedcontent,jdbcType=CHAR},
+      AmountPaid = #{amountpaid,jdbcType=DECIMAL},
+      AmountWay = #{amountway,jdbcType=CHAR},
+      IncomRatio = #{incomratio,jdbcType=DECIMAL},
+      PeriodBegin = #{periodbegin,jdbcType=BIGINT},
+      PeriodEnd = #{periodend,jdbcType=BIGINT},
+      Createdate = #{createdate,jdbcType=BIGINT},
+      ModifyDate = #{modifydate,jdbcType=BIGINT}
+    where MemberId = #{memberid,jdbcType=INTEGER}
+  </update>
+</mapper>

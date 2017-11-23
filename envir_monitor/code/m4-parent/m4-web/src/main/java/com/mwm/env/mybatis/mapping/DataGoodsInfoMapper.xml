@@ -1,0 +1,601 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mwm.env.mybatis.dao.DataGoodsInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.mwm.env.mybatis.modal.DataGoodsInfo" >
+    <id column="Goods" property="goods" jdbcType="INTEGER" />
+    <result column="ProvideId" property="provideid" jdbcType="INTEGER" />
+    <result column="IndexId" property="indexid" jdbcType="INTEGER" />
+    <result column="ReportId" property="reportid" jdbcType="INTEGER" />
+    <result column="GoodsType" property="goodstype" jdbcType="INTEGER" />
+    <result column="Sell" property="sell" jdbcType="CHAR" />
+    <result column="Units" property="units" jdbcType="VARCHAR" />
+    <result column="UnitPrice" property="unitprice" jdbcType="DECIMAL" />
+    <result column="Location" property="location" jdbcType="VARCHAR" />
+    <result column="ExpiryDate" property="expirydate" jdbcType="VARCHAR" />
+    <result column="Shelves" property="shelves" jdbcType="CHAR" />
+    <result column="AuditStatus" property="auditstatus" jdbcType="CHAR" />
+    <result column="Createdate" property="createdate" jdbcType="BIGINT" />
+    <result column="ModifyDate" property="modifydate" jdbcType="BIGINT" />
+    <result column="StartDate" property="startdate" jdbcType="BIGINT" />
+    <result column="EndDate" property="enddate" jdbcType="BIGINT" />
+    <result column="State" property="state" jdbcType="CHAR" />
+    <result column="SimpleTimeDetail" property="simpletimedetail" jdbcType="VARCHAR" />
+    <result column="SimpleTime" property="simpletime" jdbcType="BIGINT" />
+    <result column="Lon" property="lon" jdbcType="VARCHAR" />
+    <result column="Lat" property="lat" jdbcType="VARCHAR" />
+    <result column="Ranges" property="ranges" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.mwm.env.mybatis.modal.DataGoodsInfoWithBLOBs" extends="BaseResultMap" >
+    <result column="Content" property="content" jdbcType="LONGVARCHAR" />
+    <result column="Basis" property="basis" jdbcType="LONGVARCHAR" />
+    <result column="Remark" property="remark" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    Goods, ProvideId, IndexId, ReportId, GoodsType, Sell, Units, UnitPrice, Location, 
+    ExpiryDate, Shelves, AuditStatus, Createdate, ModifyDate, StartDate, EndDate, State, 
+    SimpleTimeDetail, SimpleTime, Lon, Lat, Ranges
+  </sql>
+  <sql id="Blob_Column_List" >
+    Content, Basis, Remark
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.mwm.env.mybatis.modal.DataGoodsInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from DataGoodsInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mwm.env.mybatis.modal.DataGoodsInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from DataGoodsInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from DataGoodsInfo
+    where Goods = #{goods,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from DataGoodsInfo
+    where Goods = #{goods,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mwm.env.mybatis.modal.DataGoodsInfoExample" >
+    delete from DataGoodsInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mwm.env.mybatis.modal.DataGoodsInfoWithBLOBs" >
+    <selectKey resultType="java.lang.Integer" keyProperty="goods" order="AFTER" >
+      select last_insert_id()
+    </selectKey>
+    insert into DataGoodsInfo (ProvideId, IndexId, ReportId, 
+      GoodsType, Sell, Units, 
+      UnitPrice, Location, ExpiryDate, 
+      Shelves, AuditStatus, Createdate, 
+      ModifyDate, StartDate, EndDate, 
+      State, SimpleTimeDetail, SimpleTime, 
+      Lon, Lat, Ranges, Content, 
+      Basis, Remark)
+    values (#{provideid,jdbcType=INTEGER}, #{indexid,jdbcType=INTEGER}, #{reportid,jdbcType=INTEGER}, 
+      #{goodstype,jdbcType=INTEGER}, #{sell,jdbcType=CHAR}, #{units,jdbcType=VARCHAR}, 
+      #{unitprice,jdbcType=DECIMAL}, #{location,jdbcType=VARCHAR}, #{expirydate,jdbcType=VARCHAR}, 
+      #{shelves,jdbcType=CHAR}, #{auditstatus,jdbcType=CHAR}, #{createdate,jdbcType=BIGINT}, 
+      #{modifydate,jdbcType=BIGINT}, #{startdate,jdbcType=BIGINT}, #{enddate,jdbcType=BIGINT}, 
+      #{state,jdbcType=CHAR}, #{simpletimedetail,jdbcType=VARCHAR}, #{simpletime,jdbcType=BIGINT}, 
+      #{lon,jdbcType=VARCHAR}, #{lat,jdbcType=VARCHAR}, #{ranges,jdbcType=INTEGER}, #{content,jdbcType=LONGVARCHAR}, 
+      #{basis,jdbcType=LONGVARCHAR}, #{remark,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mwm.env.mybatis.modal.DataGoodsInfoWithBLOBs" >
+    <selectKey resultType="java.lang.Integer" keyProperty="goods" order="AFTER" >
+      select last_insert_id()
+    </selectKey>
+    insert into DataGoodsInfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="provideid != null" >
+        ProvideId,
+      </if>
+      <if test="indexid != null" >
+        IndexId,
+      </if>
+      <if test="reportid != null" >
+        ReportId,
+      </if>
+      <if test="goodstype != null" >
+        GoodsType,
+      </if>
+      <if test="sell != null" >
+        Sell,
+      </if>
+      <if test="units != null" >
+        Units,
+      </if>
+      <if test="unitprice != null" >
+        UnitPrice,
+      </if>
+      <if test="location != null" >
+        Location,
+      </if>
+      <if test="expirydate != null" >
+        ExpiryDate,
+      </if>
+      <if test="shelves != null" >
+        Shelves,
+      </if>
+      <if test="auditstatus != null" >
+        AuditStatus,
+      </if>
+      <if test="createdate != null" >
+        Createdate,
+      </if>
+      <if test="modifydate != null" >
+        ModifyDate,
+      </if>
+      <if test="startdate != null" >
+        StartDate,
+      </if>
+      <if test="enddate != null" >
+        EndDate,
+      </if>
+      <if test="state != null" >
+        State,
+      </if>
+      <if test="simpletimedetail != null" >
+        SimpleTimeDetail,
+      </if>
+      <if test="simpletime != null" >
+        SimpleTime,
+      </if>
+      <if test="lon != null" >
+        Lon,
+      </if>
+      <if test="lat != null" >
+        Lat,
+      </if>
+      <if test="ranges != null" >
+        Ranges,
+      </if>
+      <if test="content != null" >
+        Content,
+      </if>
+      <if test="basis != null" >
+        Basis,
+      </if>
+      <if test="remark != null" >
+        Remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="provideid != null" >
+        #{provideid,jdbcType=INTEGER},
+      </if>
+      <if test="indexid != null" >
+        #{indexid,jdbcType=INTEGER},
+      </if>
+      <if test="reportid != null" >
+        #{reportid,jdbcType=INTEGER},
+      </if>
+      <if test="goodstype != null" >
+        #{goodstype,jdbcType=INTEGER},
+      </if>
+      <if test="sell != null" >
+        #{sell,jdbcType=CHAR},
+      </if>
+      <if test="units != null" >
+        #{units,jdbcType=VARCHAR},
+      </if>
+      <if test="unitprice != null" >
+        #{unitprice,jdbcType=DECIMAL},
+      </if>
+      <if test="location != null" >
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="expirydate != null" >
+        #{expirydate,jdbcType=VARCHAR},
+      </if>
+      <if test="shelves != null" >
+        #{shelves,jdbcType=CHAR},
+      </if>
+      <if test="auditstatus != null" >
+        #{auditstatus,jdbcType=CHAR},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=BIGINT},
+      </if>
+      <if test="modifydate != null" >
+        #{modifydate,jdbcType=BIGINT},
+      </if>
+      <if test="startdate != null" >
+        #{startdate,jdbcType=BIGINT},
+      </if>
+      <if test="enddate != null" >
+        #{enddate,jdbcType=BIGINT},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=CHAR},
+      </if>
+      <if test="simpletimedetail != null" >
+        #{simpletimedetail,jdbcType=VARCHAR},
+      </if>
+      <if test="simpletime != null" >
+        #{simpletime,jdbcType=BIGINT},
+      </if>
+      <if test="lon != null" >
+        #{lon,jdbcType=VARCHAR},
+      </if>
+      <if test="lat != null" >
+        #{lat,jdbcType=VARCHAR},
+      </if>
+      <if test="ranges != null" >
+        #{ranges,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="basis != null" >
+        #{basis,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mwm.env.mybatis.modal.DataGoodsInfoExample" resultType="java.lang.Integer" >
+    select count(*) from DataGoodsInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update DataGoodsInfo
+    <set >
+      <if test="record.goods != null" >
+        Goods = #{record.goods,jdbcType=INTEGER},
+      </if>
+      <if test="record.provideid != null" >
+        ProvideId = #{record.provideid,jdbcType=INTEGER},
+      </if>
+      <if test="record.indexid != null" >
+        IndexId = #{record.indexid,jdbcType=INTEGER},
+      </if>
+      <if test="record.reportid != null" >
+        ReportId = #{record.reportid,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodstype != null" >
+        GoodsType = #{record.goodstype,jdbcType=INTEGER},
+      </if>
+      <if test="record.sell != null" >
+        Sell = #{record.sell,jdbcType=CHAR},
+      </if>
+      <if test="record.units != null" >
+        Units = #{record.units,jdbcType=VARCHAR},
+      </if>
+      <if test="record.unitprice != null" >
+        UnitPrice = #{record.unitprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.location != null" >
+        Location = #{record.location,jdbcType=VARCHAR},
+      </if>
+      <if test="record.expirydate != null" >
+        ExpiryDate = #{record.expirydate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shelves != null" >
+        Shelves = #{record.shelves,jdbcType=CHAR},
+      </if>
+      <if test="record.auditstatus != null" >
+        AuditStatus = #{record.auditstatus,jdbcType=CHAR},
+      </if>
+      <if test="record.createdate != null" >
+        Createdate = #{record.createdate,jdbcType=BIGINT},
+      </if>
+      <if test="record.modifydate != null" >
+        ModifyDate = #{record.modifydate,jdbcType=BIGINT},
+      </if>
+      <if test="record.startdate != null" >
+        StartDate = #{record.startdate,jdbcType=BIGINT},
+      </if>
+      <if test="record.enddate != null" >
+        EndDate = #{record.enddate,jdbcType=BIGINT},
+      </if>
+      <if test="record.state != null" >
+        State = #{record.state,jdbcType=CHAR},
+      </if>
+      <if test="record.simpletimedetail != null" >
+        SimpleTimeDetail = #{record.simpletimedetail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.simpletime != null" >
+        SimpleTime = #{record.simpletime,jdbcType=BIGINT},
+      </if>
+      <if test="record.lon != null" >
+        Lon = #{record.lon,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lat != null" >
+        Lat = #{record.lat,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ranges != null" >
+        Ranges = #{record.ranges,jdbcType=INTEGER},
+      </if>
+      <if test="record.content != null" >
+        Content = #{record.content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.basis != null" >
+        Basis = #{record.basis,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        Remark = #{record.remark,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update DataGoodsInfo
+    set Goods = #{record.goods,jdbcType=INTEGER},
+      ProvideId = #{record.provideid,jdbcType=INTEGER},
+      IndexId = #{record.indexid,jdbcType=INTEGER},
+      ReportId = #{record.reportid,jdbcType=INTEGER},
+      GoodsType = #{record.goodstype,jdbcType=INTEGER},
+      Sell = #{record.sell,jdbcType=CHAR},
+      Units = #{record.units,jdbcType=VARCHAR},
+      UnitPrice = #{record.unitprice,jdbcType=DECIMAL},
+      Location = #{record.location,jdbcType=VARCHAR},
+      ExpiryDate = #{record.expirydate,jdbcType=VARCHAR},
+      Shelves = #{record.shelves,jdbcType=CHAR},
+      AuditStatus = #{record.auditstatus,jdbcType=CHAR},
+      Createdate = #{record.createdate,jdbcType=BIGINT},
+      ModifyDate = #{record.modifydate,jdbcType=BIGINT},
+      StartDate = #{record.startdate,jdbcType=BIGINT},
+      EndDate = #{record.enddate,jdbcType=BIGINT},
+      State = #{record.state,jdbcType=CHAR},
+      SimpleTimeDetail = #{record.simpletimedetail,jdbcType=VARCHAR},
+      SimpleTime = #{record.simpletime,jdbcType=BIGINT},
+      Lon = #{record.lon,jdbcType=VARCHAR},
+      Lat = #{record.lat,jdbcType=VARCHAR},
+      Ranges = #{record.ranges,jdbcType=INTEGER},
+      Content = #{record.content,jdbcType=LONGVARCHAR},
+      Basis = #{record.basis,jdbcType=LONGVARCHAR},
+      Remark = #{record.remark,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update DataGoodsInfo
+    set Goods = #{record.goods,jdbcType=INTEGER},
+      ProvideId = #{record.provideid,jdbcType=INTEGER},
+      IndexId = #{record.indexid,jdbcType=INTEGER},
+      ReportId = #{record.reportid,jdbcType=INTEGER},
+      GoodsType = #{record.goodstype,jdbcType=INTEGER},
+      Sell = #{record.sell,jdbcType=CHAR},
+      Units = #{record.units,jdbcType=VARCHAR},
+      UnitPrice = #{record.unitprice,jdbcType=DECIMAL},
+      Location = #{record.location,jdbcType=VARCHAR},
+      ExpiryDate = #{record.expirydate,jdbcType=VARCHAR},
+      Shelves = #{record.shelves,jdbcType=CHAR},
+      AuditStatus = #{record.auditstatus,jdbcType=CHAR},
+      Createdate = #{record.createdate,jdbcType=BIGINT},
+      ModifyDate = #{record.modifydate,jdbcType=BIGINT},
+      StartDate = #{record.startdate,jdbcType=BIGINT},
+      EndDate = #{record.enddate,jdbcType=BIGINT},
+      State = #{record.state,jdbcType=CHAR},
+      SimpleTimeDetail = #{record.simpletimedetail,jdbcType=VARCHAR},
+      SimpleTime = #{record.simpletime,jdbcType=BIGINT},
+      Lon = #{record.lon,jdbcType=VARCHAR},
+      Lat = #{record.lat,jdbcType=VARCHAR},
+      Ranges = #{record.ranges,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mwm.env.mybatis.modal.DataGoodsInfoWithBLOBs" >
+    update DataGoodsInfo
+    <set >
+      <if test="provideid != null" >
+        ProvideId = #{provideid,jdbcType=INTEGER},
+      </if>
+      <if test="indexid != null" >
+        IndexId = #{indexid,jdbcType=INTEGER},
+      </if>
+      <if test="reportid != null" >
+        ReportId = #{reportid,jdbcType=INTEGER},
+      </if>
+      <if test="goodstype != null" >
+        GoodsType = #{goodstype,jdbcType=INTEGER},
+      </if>
+      <if test="sell != null" >
+        Sell = #{sell,jdbcType=CHAR},
+      </if>
+      <if test="units != null" >
+        Units = #{units,jdbcType=VARCHAR},
+      </if>
+      <if test="unitprice != null" >
+        UnitPrice = #{unitprice,jdbcType=DECIMAL},
+      </if>
+      <if test="location != null" >
+        Location = #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="expirydate != null" >
+        ExpiryDate = #{expirydate,jdbcType=VARCHAR},
+      </if>
+      <if test="shelves != null" >
+        Shelves = #{shelves,jdbcType=CHAR},
+      </if>
+      <if test="auditstatus != null" >
+        AuditStatus = #{auditstatus,jdbcType=CHAR},
+      </if>
+      <if test="createdate != null" >
+        Createdate = #{createdate,jdbcType=BIGINT},
+      </if>
+      <if test="modifydate != null" >
+        ModifyDate = #{modifydate,jdbcType=BIGINT},
+      </if>
+      <if test="startdate != null" >
+        StartDate = #{startdate,jdbcType=BIGINT},
+      </if>
+      <if test="enddate != null" >
+        EndDate = #{enddate,jdbcType=BIGINT},
+      </if>
+      <if test="state != null" >
+        State = #{state,jdbcType=CHAR},
+      </if>
+      <if test="simpletimedetail != null" >
+        SimpleTimeDetail = #{simpletimedetail,jdbcType=VARCHAR},
+      </if>
+      <if test="simpletime != null" >
+        SimpleTime = #{simpletime,jdbcType=BIGINT},
+      </if>
+      <if test="lon != null" >
+        Lon = #{lon,jdbcType=VARCHAR},
+      </if>
+      <if test="lat != null" >
+        Lat = #{lat,jdbcType=VARCHAR},
+      </if>
+      <if test="ranges != null" >
+        Ranges = #{ranges,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        Content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="basis != null" >
+        Basis = #{basis,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="remark != null" >
+        Remark = #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where Goods = #{goods,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.mwm.env.mybatis.modal.DataGoodsInfoWithBLOBs" >
+    update DataGoodsInfo
+    set ProvideId = #{provideid,jdbcType=INTEGER},
+      IndexId = #{indexid,jdbcType=INTEGER},
+      ReportId = #{reportid,jdbcType=INTEGER},
+      GoodsType = #{goodstype,jdbcType=INTEGER},
+      Sell = #{sell,jdbcType=CHAR},
+      Units = #{units,jdbcType=VARCHAR},
+      UnitPrice = #{unitprice,jdbcType=DECIMAL},
+      Location = #{location,jdbcType=VARCHAR},
+      ExpiryDate = #{expirydate,jdbcType=VARCHAR},
+      Shelves = #{shelves,jdbcType=CHAR},
+      AuditStatus = #{auditstatus,jdbcType=CHAR},
+      Createdate = #{createdate,jdbcType=BIGINT},
+      ModifyDate = #{modifydate,jdbcType=BIGINT},
+      StartDate = #{startdate,jdbcType=BIGINT},
+      EndDate = #{enddate,jdbcType=BIGINT},
+      State = #{state,jdbcType=CHAR},
+      SimpleTimeDetail = #{simpletimedetail,jdbcType=VARCHAR},
+      SimpleTime = #{simpletime,jdbcType=BIGINT},
+      Lon = #{lon,jdbcType=VARCHAR},
+      Lat = #{lat,jdbcType=VARCHAR},
+      Ranges = #{ranges,jdbcType=INTEGER},
+      Content = #{content,jdbcType=LONGVARCHAR},
+      Basis = #{basis,jdbcType=LONGVARCHAR},
+      Remark = #{remark,jdbcType=LONGVARCHAR}
+    where Goods = #{goods,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mwm.env.mybatis.modal.DataGoodsInfo" >
+    update DataGoodsInfo
+    set ProvideId = #{provideid,jdbcType=INTEGER},
+      IndexId = #{indexid,jdbcType=INTEGER},
+      ReportId = #{reportid,jdbcType=INTEGER},
+      GoodsType = #{goodstype,jdbcType=INTEGER},
+      Sell = #{sell,jdbcType=CHAR},
+      Units = #{units,jdbcType=VARCHAR},
+      UnitPrice = #{unitprice,jdbcType=DECIMAL},
+      Location = #{location,jdbcType=VARCHAR},
+      ExpiryDate = #{expirydate,jdbcType=VARCHAR},
+      Shelves = #{shelves,jdbcType=CHAR},
+      AuditStatus = #{auditstatus,jdbcType=CHAR},
+      Createdate = #{createdate,jdbcType=BIGINT},
+      ModifyDate = #{modifydate,jdbcType=BIGINT},
+      StartDate = #{startdate,jdbcType=BIGINT},
+      EndDate = #{enddate,jdbcType=BIGINT},
+      State = #{state,jdbcType=CHAR},
+      SimpleTimeDetail = #{simpletimedetail,jdbcType=VARCHAR},
+      SimpleTime = #{simpletime,jdbcType=BIGINT},
+      Lon = #{lon,jdbcType=VARCHAR},
+      Lat = #{lat,jdbcType=VARCHAR},
+      Ranges = #{ranges,jdbcType=INTEGER}
+    where Goods = #{goods,jdbcType=INTEGER}
+  </update>
+</mapper>

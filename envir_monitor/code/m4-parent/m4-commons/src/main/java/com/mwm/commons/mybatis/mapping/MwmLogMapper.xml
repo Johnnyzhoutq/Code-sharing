@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mwm.commons.mybatis.dao.MwmLogMapper" >
+  <resultMap id="BaseResultMap" type="com.mwm.commons.mybatis.modal.MwmLog" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="STAFF_ID" property="staffId" jdbcType="INTEGER" />
+    <result column="OP_IP" property="opIp" jdbcType="VARCHAR" />
+    <result column="OP_TYPE" property="opType" jdbcType="VARCHAR" />
+    <result column="OP_CONTENT" property="opContent" jdbcType="VARCHAR" />
+    <result column="OP_TIME" property="opTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, STAFF_ID, OP_IP, OP_TYPE, OP_CONTENT, OP_TIME
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mwm.commons.mybatis.modal.MwmLogExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from mwm_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from mwm_log
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from mwm_log
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mwm.commons.mybatis.modal.MwmLogExample" >
+    delete from mwm_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mwm.commons.mybatis.modal.MwmLog" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      select last_insert_id()
+    </selectKey>
+    insert into mwm_log (STAFF_ID, OP_IP, OP_TYPE, 
+      OP_CONTENT, OP_TIME)
+    values (#{staffId,jdbcType=INTEGER}, #{opIp,jdbcType=VARCHAR}, #{opType,jdbcType=VARCHAR}, 
+      #{opContent,jdbcType=VARCHAR}, #{opTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mwm.commons.mybatis.modal.MwmLog" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      select last_insert_id()
+    </selectKey>
+    insert into mwm_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="staffId != null" >
+        STAFF_ID,
+      </if>
+      <if test="opIp != null" >
+        OP_IP,
+      </if>
+      <if test="opType != null" >
+        OP_TYPE,
+      </if>
+      <if test="opContent != null" >
+        OP_CONTENT,
+      </if>
+      <if test="opTime != null" >
+        OP_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="staffId != null" >
+        #{staffId,jdbcType=INTEGER},
+      </if>
+      <if test="opIp != null" >
+        #{opIp,jdbcType=VARCHAR},
+      </if>
+      <if test="opType != null" >
+        #{opType,jdbcType=VARCHAR},
+      </if>
+      <if test="opContent != null" >
+        #{opContent,jdbcType=VARCHAR},
+      </if>
+      <if test="opTime != null" >
+        #{opTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mwm.commons.mybatis.modal.MwmLogExample" resultType="java.lang.Integer" >
+    select count(*) from mwm_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update mwm_log
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.staffId != null" >
+        STAFF_ID = #{record.staffId,jdbcType=INTEGER},
+      </if>
+      <if test="record.opIp != null" >
+        OP_IP = #{record.opIp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.opType != null" >
+        OP_TYPE = #{record.opType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.opContent != null" >
+        OP_CONTENT = #{record.opContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.opTime != null" >
+        OP_TIME = #{record.opTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update mwm_log
+    set ID = #{record.id,jdbcType=INTEGER},
+      STAFF_ID = #{record.staffId,jdbcType=INTEGER},
+      OP_IP = #{record.opIp,jdbcType=VARCHAR},
+      OP_TYPE = #{record.opType,jdbcType=VARCHAR},
+      OP_CONTENT = #{record.opContent,jdbcType=VARCHAR},
+      OP_TIME = #{record.opTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mwm.commons.mybatis.modal.MwmLog" >
+    update mwm_log
+    <set >
+      <if test="staffId != null" >
+        STAFF_ID = #{staffId,jdbcType=INTEGER},
+      </if>
+      <if test="opIp != null" >
+        OP_IP = #{opIp,jdbcType=VARCHAR},
+      </if>
+      <if test="opType != null" >
+        OP_TYPE = #{opType,jdbcType=VARCHAR},
+      </if>
+      <if test="opContent != null" >
+        OP_CONTENT = #{opContent,jdbcType=VARCHAR},
+      </if>
+      <if test="opTime != null" >
+        OP_TIME = #{opTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mwm.commons.mybatis.modal.MwmLog" >
+    update mwm_log
+    set STAFF_ID = #{staffId,jdbcType=INTEGER},
+      OP_IP = #{opIp,jdbcType=VARCHAR},
+      OP_TYPE = #{opType,jdbcType=VARCHAR},
+      OP_CONTENT = #{opContent,jdbcType=VARCHAR},
+      OP_TIME = #{opTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

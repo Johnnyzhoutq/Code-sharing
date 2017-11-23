@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mwm.env.mybatis.dao.ChargeBackInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.mwm.env.mybatis.modal.ChargeBackInfo" >
+    <id column="BackId" property="backid" jdbcType="INTEGER" />
+    <result column="OrderId" property="orderid" jdbcType="INTEGER" />
+    <result column="OrderNum" property="ordernum" jdbcType="VARCHAR" />
+    <result column="UserId" property="userid" jdbcType="INTEGER" />
+    <result column="UserName" property="username" jdbcType="VARCHAR" />
+    <result column="ProvideId" property="provideid" jdbcType="INTEGER" />
+    <result column="ProvideName" property="providename" jdbcType="VARCHAR" />
+    <result column="BackUser" property="backuser" jdbcType="CHAR" />
+    <result column="Amout" property="amout" jdbcType="DECIMAL" />
+    <result column="Process" property="process" jdbcType="CHAR" />
+    <result column="AuditStatus" property="auditstatus" jdbcType="CHAR" />
+    <result column="Createdate" property="createdate" jdbcType="BIGINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.mwm.env.mybatis.modal.ChargeBackInfoWithBLOBs" extends="BaseResultMap" >
+    <result column="Reason" property="reason" jdbcType="LONGVARCHAR" />
+    <result column="Content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    BackId, OrderId, OrderNum, UserId, UserName, ProvideId, ProvideName, BackUser, Amout, 
+    Process, AuditStatus, Createdate
+  </sql>
+  <sql id="Blob_Column_List" >
+    Reason, Content
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.mwm.env.mybatis.modal.ChargeBackInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ChargeBackInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mwm.env.mybatis.modal.ChargeBackInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ChargeBackInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ChargeBackInfo
+    where BackId = #{backid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from ChargeBackInfo
+    where BackId = #{backid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mwm.env.mybatis.modal.ChargeBackInfoExample" >
+    delete from ChargeBackInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mwm.env.mybatis.modal.ChargeBackInfoWithBLOBs" >
+    <selectKey resultType="java.lang.Integer" keyProperty="backid" order="AFTER" >
+      select last_insert_id()
+    </selectKey>
+    insert into ChargeBackInfo (OrderId, OrderNum, UserId, 
+      UserName, ProvideId, ProvideName, 
+      BackUser, Amout, Process, 
+      AuditStatus, Createdate, Reason, 
+      Content)
+    values (#{orderid,jdbcType=INTEGER}, #{ordernum,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER}, 
+      #{username,jdbcType=VARCHAR}, #{provideid,jdbcType=INTEGER}, #{providename,jdbcType=VARCHAR}, 
+      #{backuser,jdbcType=CHAR}, #{amout,jdbcType=DECIMAL}, #{process,jdbcType=CHAR}, 
+      #{auditstatus,jdbcType=CHAR}, #{createdate,jdbcType=BIGINT}, #{reason,jdbcType=LONGVARCHAR}, 
+      #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mwm.env.mybatis.modal.ChargeBackInfoWithBLOBs" >
+    <selectKey resultType="java.lang.Integer" keyProperty="backid" order="AFTER" >
+      select last_insert_id()
+    </selectKey>
+    insert into ChargeBackInfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderid != null" >
+        OrderId,
+      </if>
+      <if test="ordernum != null" >
+        OrderNum,
+      </if>
+      <if test="userid != null" >
+        UserId,
+      </if>
+      <if test="username != null" >
+        UserName,
+      </if>
+      <if test="provideid != null" >
+        ProvideId,
+      </if>
+      <if test="providename != null" >
+        ProvideName,
+      </if>
+      <if test="backuser != null" >
+        BackUser,
+      </if>
+      <if test="amout != null" >
+        Amout,
+      </if>
+      <if test="process != null" >
+        Process,
+      </if>
+      <if test="auditstatus != null" >
+        AuditStatus,
+      </if>
+      <if test="createdate != null" >
+        Createdate,
+      </if>
+      <if test="reason != null" >
+        Reason,
+      </if>
+      <if test="content != null" >
+        Content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderid != null" >
+        #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="ordernum != null" >
+        #{ordernum,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="provideid != null" >
+        #{provideid,jdbcType=INTEGER},
+      </if>
+      <if test="providename != null" >
+        #{providename,jdbcType=VARCHAR},
+      </if>
+      <if test="backuser != null" >
+        #{backuser,jdbcType=CHAR},
+      </if>
+      <if test="amout != null" >
+        #{amout,jdbcType=DECIMAL},
+      </if>
+      <if test="process != null" >
+        #{process,jdbcType=CHAR},
+      </if>
+      <if test="auditstatus != null" >
+        #{auditstatus,jdbcType=CHAR},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=BIGINT},
+      </if>
+      <if test="reason != null" >
+        #{reason,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mwm.env.mybatis.modal.ChargeBackInfoExample" resultType="java.lang.Integer" >
+    select count(*) from ChargeBackInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ChargeBackInfo
+    <set >
+      <if test="record.backid != null" >
+        BackId = #{record.backid,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderid != null" >
+        OrderId = #{record.orderid,jdbcType=INTEGER},
+      </if>
+      <if test="record.ordernum != null" >
+        OrderNum = #{record.ordernum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userid != null" >
+        UserId = #{record.userid,jdbcType=INTEGER},
+      </if>
+      <if test="record.username != null" >
+        UserName = #{record.username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.provideid != null" >
+        ProvideId = #{record.provideid,jdbcType=INTEGER},
+      </if>
+      <if test="record.providename != null" >
+        ProvideName = #{record.providename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.backuser != null" >
+        BackUser = #{record.backuser,jdbcType=CHAR},
+      </if>
+      <if test="record.amout != null" >
+        Amout = #{record.amout,jdbcType=DECIMAL},
+      </if>
+      <if test="record.process != null" >
+        Process = #{record.process,jdbcType=CHAR},
+      </if>
+      <if test="record.auditstatus != null" >
+        AuditStatus = #{record.auditstatus,jdbcType=CHAR},
+      </if>
+      <if test="record.createdate != null" >
+        Createdate = #{record.createdate,jdbcType=BIGINT},
+      </if>
+      <if test="record.reason != null" >
+        Reason = #{record.reason,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.content != null" >
+        Content = #{record.content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update ChargeBackInfo
+    set BackId = #{record.backid,jdbcType=INTEGER},
+      OrderId = #{record.orderid,jdbcType=INTEGER},
+      OrderNum = #{record.ordernum,jdbcType=VARCHAR},
+      UserId = #{record.userid,jdbcType=INTEGER},
+      UserName = #{record.username,jdbcType=VARCHAR},
+      ProvideId = #{record.provideid,jdbcType=INTEGER},
+      ProvideName = #{record.providename,jdbcType=VARCHAR},
+      BackUser = #{record.backuser,jdbcType=CHAR},
+      Amout = #{record.amout,jdbcType=DECIMAL},
+      Process = #{record.process,jdbcType=CHAR},
+      AuditStatus = #{record.auditstatus,jdbcType=CHAR},
+      Createdate = #{record.createdate,jdbcType=BIGINT},
+      Reason = #{record.reason,jdbcType=LONGVARCHAR},
+      Content = #{record.content,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ChargeBackInfo
+    set BackId = #{record.backid,jdbcType=INTEGER},
+      OrderId = #{record.orderid,jdbcType=INTEGER},
+      OrderNum = #{record.ordernum,jdbcType=VARCHAR},
+      UserId = #{record.userid,jdbcType=INTEGER},
+      UserName = #{record.username,jdbcType=VARCHAR},
+      ProvideId = #{record.provideid,jdbcType=INTEGER},
+      ProvideName = #{record.providename,jdbcType=VARCHAR},
+      BackUser = #{record.backuser,jdbcType=CHAR},
+      Amout = #{record.amout,jdbcType=DECIMAL},
+      Process = #{record.process,jdbcType=CHAR},
+      AuditStatus = #{record.auditstatus,jdbcType=CHAR},
+      Createdate = #{record.createdate,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mwm.env.mybatis.modal.ChargeBackInfoWithBLOBs" >
+    update ChargeBackInfo
+    <set >
+      <if test="orderid != null" >
+        OrderId = #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="ordernum != null" >
+        OrderNum = #{ordernum,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        UserId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        UserName = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="provideid != null" >
+        ProvideId = #{provideid,jdbcType=INTEGER},
+      </if>
+      <if test="providename != null" >
+        ProvideName = #{providename,jdbcType=VARCHAR},
+      </if>
+      <if test="backuser != null" >
+        BackUser = #{backuser,jdbcType=CHAR},
+      </if>
+      <if test="amout != null" >
+        Amout = #{amout,jdbcType=DECIMAL},
+      </if>
+      <if test="process != null" >
+        Process = #{process,jdbcType=CHAR},
+      </if>
+      <if test="auditstatus != null" >
+        AuditStatus = #{auditstatus,jdbcType=CHAR},
+      </if>
+      <if test="createdate != null" >
+        Createdate = #{createdate,jdbcType=BIGINT},
+      </if>
+      <if test="reason != null" >
+        Reason = #{reason,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="content != null" >
+        Content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where BackId = #{backid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.mwm.env.mybatis.modal.ChargeBackInfoWithBLOBs" >
+    update ChargeBackInfo
+    set OrderId = #{orderid,jdbcType=INTEGER},
+      OrderNum = #{ordernum,jdbcType=VARCHAR},
+      UserId = #{userid,jdbcType=INTEGER},
+      UserName = #{username,jdbcType=VARCHAR},
+      ProvideId = #{provideid,jdbcType=INTEGER},
+      ProvideName = #{providename,jdbcType=VARCHAR},
+      BackUser = #{backuser,jdbcType=CHAR},
+      Amout = #{amout,jdbcType=DECIMAL},
+      Process = #{process,jdbcType=CHAR},
+      AuditStatus = #{auditstatus,jdbcType=CHAR},
+      Createdate = #{createdate,jdbcType=BIGINT},
+      Reason = #{reason,jdbcType=LONGVARCHAR},
+      Content = #{content,jdbcType=LONGVARCHAR}
+    where BackId = #{backid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mwm.env.mybatis.modal.ChargeBackInfo" >
+    update ChargeBackInfo
+    set OrderId = #{orderid,jdbcType=INTEGER},
+      OrderNum = #{ordernum,jdbcType=VARCHAR},
+      UserId = #{userid,jdbcType=INTEGER},
+      UserName = #{username,jdbcType=VARCHAR},
+      ProvideId = #{provideid,jdbcType=INTEGER},
+      ProvideName = #{providename,jdbcType=VARCHAR},
+      BackUser = #{backuser,jdbcType=CHAR},
+      Amout = #{amout,jdbcType=DECIMAL},
+      Process = #{process,jdbcType=CHAR},
+      AuditStatus = #{auditstatus,jdbcType=CHAR},
+      Createdate = #{createdate,jdbcType=BIGINT}
+    where BackId = #{backid,jdbcType=INTEGER}
+  </update>
+</mapper>
